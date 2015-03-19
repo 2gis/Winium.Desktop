@@ -1,4 +1,5 @@
 # Winium for Desktop
+[![GitHub release](https://img.shields.io/github/release/2gis/Winium.Desktop.svg?style=flat-square)](https://github.com/2gis/Winium.Desktop/releases/)
 [![GitHub license](https://img.shields.io/badge/license-MPL 2.0-blue.svg?style=flat-square)](LICENSE)
 
 <p align="center">
@@ -18,6 +19,28 @@ For Windows Phone 8 Silverlight test automation tool see [Windows Phone Driver](
 You have Selenium WebDriver for testing of web apps, Appium for testing of iOS and Android apps. And now you have Selenium-based tools for testing of Windows apps too. What are some of the benefits? As said by Appium:
 > - You can write tests with your favorite dev tools using any WebDriver-compatible language such as Java, Objective-C, JavaScript with Node.js (in promise, callback or generator flavors), PHP, Python, Ruby, C#, Clojure, or Perl with the Selenium WebDriver API and language-specific client libraries.
 > - You can use any testing framework.
+
+## Requirements
+* Microsoft .NET Framework 4.5.1
+
+## Quick Start
+1. Write your tests using you favorite language. In your tests use `app` [desired capability](https://github.com/2gis/Winium.Desktop/wiki/Capabilities) to set path to tested app's exe file. Here is python example:
+	```python
+	# put it in setUp
+	self.driver = webdriver.Remote(command_executor='http://localhost:9999',
+	                               desired_capabilities={'app': 'C:\\testApp.exe'})
+	# put it in test method body
+	win = self.driver.find_element_by_id('WpfTestApplicationMainWindow')
+	win.find_element_by_id('SetTextButton').click()
+	assert 'CARAMBA' == self.driver.find_element_by_id('MyTextBox').text
+	```
+
+2. Start `Winium.Desktop.Driver.exe` ([download release from github](https://github.com/2gis/Winium.Desktop/releases) or build it yourself)
+
+3. Run your tests and watch the magic happening
+
+## How it works
+**Winium.Desktop.Driver** implements Selenium Remote WebDriver and listens for JsonWireProtocol commands. It is responsible for automation of app under test using [Winium.Cruciatus](https://github.com/2gis/Winium.Cruciatus).
 
 ## Contributing
 
