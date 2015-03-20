@@ -1,4 +1,4 @@
-# Winium for Desktop
+# Winium для Desktop
 [![GitHub release](https://img.shields.io/github/release/2gis/Winium.Desktop.svg?style=flat-square)](https://github.com/2gis/Winium.Desktop/releases/)
 [![GitHub license](https://img.shields.io/badge/license-MPL 2.0-blue.svg?style=flat-square)](LICENSE)
 
@@ -6,7 +6,7 @@
 <img src="https://raw.githubusercontent.com/2gis/Winium.StoreApps/assets/winium.png" alt="Winium.Desktop это реализация Selenium Remote WebDriver для автоматизации тестирования Windows приложений построенных на WinFroms и WPF платформах">
 </p>
 
-Winium.Desktop это реализация Selenium Remote WebDriver для автоматизации тестирования Windows приложений построенных на WinFroms и WPF платформах.
+Winium.Desktop это open-source инструмент для автоматизации тестирования Windows приложений построенных на WinFroms и WPF платформах.
 
 ## Поддерживаемые платформы
 - WinForms
@@ -42,14 +42,14 @@ Winium.Desktop это реализация Selenium Remote WebDriver для ав
 ## Как это работает
 **Winium.Desktop.Driver** реализует Selenium Remote WebDriver и слушает команды в JsonWireProtocol. Для автоматизации действий над приложением используется фреймворк [Winium.Cruciatus](https://github.com/2gis/Winium.Cruciatus).
 
-## Contributing
+## Вклад в развитие
 
 Мы открыты для сотрудничества!
 
 1. Проверьте нет ли уже открытого issue или заведите новый issue для обсуждения новой фичи или бага.
 2. Форкните репозиторий и начните делать свои изменения в ветке мастер или новой ветке
 3. Мы советуем написать тест, который покажет, что баг был починен или что новая фича работает как ожидается.
-4. Создайте pull-request и тыкайте в мэнтейнера до тех пор, пока он не примет и не сольет ваши изменения. 
+4. Создайте pull-request и тыкайте в мэнтейнера до тех пор, пока он не примет и не сольет ваши изменения.  :smiley:
 
 ## Контакты
 
