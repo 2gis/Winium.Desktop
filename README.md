@@ -10,7 +10,7 @@ English description | <a href="README_RU.md">Описание на русско�
 <img src="https://raw.githubusercontent.com/2gis/Winium.StoreApps/assets/winium.png" alt="Winium.Desktop is Selenium Remote WebDriver implementation for automated testing of Windows application based on WinFroms and WPF platforms">
 </p>
 
-Winium.Desktop is Selenium Remote WebDriver implementation for automated testing of Windows application based on WinFroms and WPF platforms.
+Winium.Desktop is an open source test automation tool for automated testing of Windows application based on WinFroms and WPF platforms.
 
 ## Supported Platforms
 - WinForms
