@@ -1,3 +1,7 @@
+<p align="right">
+English description | <a href="README_RU.md">Описание на русском</a>
+</p>
+
 # Winium for Desktop
 [![GitHub release](https://img.shields.io/github/release/2gis/Winium.Desktop.svg?style=flat-square)](https://github.com/2gis/Winium.Desktop/releases/)
 [![GitHub license](https://img.shields.io/badge/license-MPL 2.0-blue.svg?style=flat-square)](LICENSE)
@@ -6,7 +10,7 @@
 <img src="https://raw.githubusercontent.com/2gis/Winium.StoreApps/assets/winium.png" alt="Winium.Desktop is Selenium Remote WebDriver implementation for automated testing of Windows application based on WinFroms and WPF platforms">
 </p>
 
-Winium.Desktop is Selenium Remote WebDriver implementation for automated testing of Windows application based on WinFroms and WPF platforms.
+Winium.Desktop is an open source test automation tool for automated testing of Windows application based on WinFroms and WPF platforms.
 
 ## Supported Platforms
 - WinForms
