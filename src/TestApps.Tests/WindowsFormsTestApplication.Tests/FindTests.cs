@@ -58,6 +58,14 @@
             Assert.NotNull(element);
         }
 
+        [Test]
+        public void FindElementsTest()
+        {
+            var parent = this.Driver.FindElementById("Form1");
+            var childElements = parent.FindElements(By.ClassName(string.Empty));
+            Assert.AreEqual(33, childElements.Count);
+        }
+
         #endregion
     }
 }

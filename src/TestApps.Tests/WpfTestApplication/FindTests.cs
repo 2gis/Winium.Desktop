@@ -58,6 +58,14 @@
             Assert.NotNull(element);
         }
 
+        [Test]
+        public void FindElementsTest()
+        {
+            var parent = this.Driver.FindElementById("WpfTestApplicationMainWindow");
+            var childElements = parent.FindElements(By.ClassName(string.Empty));
+            Assert.AreEqual(10, childElements.Count);
+        }
+
         #endregion
     }
 }

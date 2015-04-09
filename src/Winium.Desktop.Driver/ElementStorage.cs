@@ -62,6 +62,24 @@
             return this.FindElement(parent, searchStrategy, searchValue);
         }
 
+        public IEnumerable<string> FindElements(CruciatusElement parent, string searchStrategy, string searchValue)
+        {
+            var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
+            var elements = parent.FindElements(strategy);
+            if (elements == null)
+            {
+                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
+            }
+
+            return this.RegisterElements(elements);
+        }
+
+        public IEnumerable<string> FindElements(string parentRegisteredKey, string searchStrategy, string searchValue)
+        {
+            var parent = this.GetRegisteredElement(parentRegisteredKey);
+            return this.FindElements(parent, searchStrategy, searchValue);
+        }
+
         /// <summary>
         /// Returns FrameworkElement registered with specified key if any exists. Throws if no element is found.
         /// </summary>
@@ -96,6 +114,11 @@
             }
 
             return registeredKey;
+        }
+
+        public IEnumerable<string> RegisterElements(IEnumerable<CruciatusElement> elements)
+        {
+            return elements.Select(this.RegisterElement);
         }
 
         #endregion
