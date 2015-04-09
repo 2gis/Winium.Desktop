@@ -42,25 +42,35 @@
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="NLog, Version=3.1.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\NLog.3.1.0.0\lib\net45\NLog.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WindowsInput">
+    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Winium.Cruciatus, Version=2.0.5551.23217, Culture=neutral, processorArchitecture=MSIL">
-      <SpecificVersion>False</SpecificVersion>
       <HintPath>..\packages\Winium.Cruciatus.2.0.0\lib\net45\Winium.Cruciatus.dll</HintPath>
+      <Private>True</Private>
     </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutorDispatchTable.cs" />
+    <Compile Include="CommandExecutors\GetElementTextExecutor.cs" />
+    <Compile Include="CommandExecutors\ClearElementExecutor.cs" />
+    <Compile Include="CommandExecutors\SendKeysToActiveElementExecutor.cs" />
+    <Compile Include="CommandExecutors\SendKeysToElementExecutor.cs" />
     <Compile Include="CommandExecutors\ClickElementExecutor.cs" />
     <Compile Include="CommandExecutors\CloseExecutor.cs" />
     <Compile Include="CommandExecutors\CommandExecutorBase.cs" />
@@ -80,7 +90,9 @@
     <Compile Include="UriDispatchTables.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.config" />
+    <None Include="App.config">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
