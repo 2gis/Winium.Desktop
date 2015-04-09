@@ -23,7 +23,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "TestApps.Tests", "TestApps.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsTestApplication.Tests", "TestApps.Tests\WindowsFormsTestApplication.Tests\WindowsFormsTestApplication.Tests.csproj", "{DC69009A-39E7-4F02-B721-3CC99B4EA637}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTestApplication", "TestApps.Tests\WpfTestApplication\WpfTestApplication.csproj", "{8B4DB0CD-0853-43A4-8E45-EB7080C1DCD7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTestApplication.Tests", "TestApps.Tests\WpfTestApplication.Tests\WpfTestApplication.Tests.csproj", "{8B4DB0CD-0853-43A4-8E45-EB7080C1DCD7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

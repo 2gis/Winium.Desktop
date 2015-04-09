@@ -58,6 +58,16 @@
             Assert.NotNull(element);
         }
 
+        [Test]
+        public void FindElementsTest()
+        {
+            var window = this.Driver.FindElementById("Form1");
+            var comboBox = window.FindElement(By.Id("TextComboBox"));
+            var elements = comboBox.FindElements(By.Id(string.Empty));
+
+            Assert.AreEqual(6, elements.Count);
+        }
+
         #endregion
     }
 }

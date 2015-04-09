@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication
+﻿namespace WpfTestApplication.Tests
 {
     #region using
 

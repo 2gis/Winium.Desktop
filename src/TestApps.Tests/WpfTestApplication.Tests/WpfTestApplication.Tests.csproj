@@ -7,8 +7,8 @@
     <ProjectGuid>{8B4DB0CD-0853-43A4-8E45-EB7080C1DCD7}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfTestApplication</RootNamespace>
-    <AssemblyName>WpfTestApplication</AssemblyName>
+    <RootNamespace>WpfTestApplication.Tests</RootNamespace>
+    <AssemblyName>WpfTestApplication.Tests</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>

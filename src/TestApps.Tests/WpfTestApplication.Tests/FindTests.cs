@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication
+﻿namespace WpfTestApplication.Tests
 {
     #region using
 
@@ -56,6 +56,18 @@
         {
             var element = this.Driver.FindElement(By.Name("MainWindow"));
             Assert.NotNull(element);
+        }
+
+        [Test]
+        public void FindElementsTest()
+        {
+            var window = this.Driver.FindElementById("WpfTestApplicationMainWindow");
+            var comboBox = window.FindElement(By.Id("TextComboBox"));
+            comboBox.Click();
+
+            var elements = comboBox.FindElements(By.ClassName("ListBoxItem"));
+
+            Assert.AreEqual(6, elements.Count);
         }
 
         #endregion
