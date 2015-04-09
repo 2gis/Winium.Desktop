@@ -13,9 +13,9 @@
         protected override string DoImpl()
         {
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            
+
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
-            
+
             return this.JsonResponse(ResponseStatus.Success, element.Text());
         }
 

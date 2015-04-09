@@ -1,6 +1,10 @@
 ﻿namespace Winium.Desktop.Driver.CommandExecutors
 {
+    #region using
+
     using Winium.Cruciatus;
+
+    #endregion
 
     internal class SendKeysToActiveElementExecutor : CommandExecutorBase
     {
@@ -8,7 +12,7 @@
 
         protected override string DoImpl()
         {
-            var text = string.Join("", this.ExecutedCommand.Parameters["value"]);
+            var text = string.Join(string.Empty, this.ExecutedCommand.Parameters["value"]);
 
             CruciatusFactory.Keyboard.SendText(text);
 
