@@ -3,6 +3,7 @@ English description | <a href="README_RU.md">Описание на русско�
 </p>
 
 # Winium for Desktop
+[![Build Status](https://img.shields.io/jenkins/s/http/opensource-ci.2gis.ru/Winium.Desktop.svg?style=flat-square)](http://opensource-ci.2gis.ru/job/Winium.Desktop/)
 [![GitHub release](https://img.shields.io/github/release/2gis/Winium.Desktop.svg?style=flat-square)](https://github.com/2gis/Winium.Desktop/releases/)
 [![GitHub license](https://img.shields.io/badge/license-MPL 2.0-blue.svg?style=flat-square)](LICENSE)
 
