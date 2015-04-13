@@ -66,10 +66,6 @@
         {
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
             var elements = parent.FindElements(strategy);
-            if (elements == null)
-            {
-                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
-            }
 
             return this.RegisterElements(elements);
         }
