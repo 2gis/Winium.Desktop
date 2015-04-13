@@ -70,6 +70,15 @@
             Assert.AreEqual(6, elements.Count);
         }
 
+        [Test]
+        public void FindNoElementsTest()
+        {
+            var window = this.Driver.FindElementById("WpfTestApplicationMainWindow");
+            var elements = window.FindElements(By.Id("UnexistId"));
+
+            Assert.AreEqual(0, elements.Count);
+        }
+
         #endregion
     }
 }
