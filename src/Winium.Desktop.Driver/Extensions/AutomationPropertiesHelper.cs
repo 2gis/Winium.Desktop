@@ -73,7 +73,7 @@
                     return AutomationElementIdentifiers.ItemStatusProperty;
                 default:
                     CruciatusFactory.Logger.Error(
-                        string.Format("Property {0} not support by CruciatusElement", propertyName));
+                        string.Format("Property {0} is not supported by CruciatusElement", propertyName));
                     throw new CruciatusException("UNSUPPORTED PROPERTY CALLED");
             }
         }
