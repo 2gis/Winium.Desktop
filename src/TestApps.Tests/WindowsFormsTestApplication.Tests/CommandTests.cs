@@ -43,13 +43,6 @@
         }
 
         [Test]
-        public void GetElementAttributeTest()
-        {
-            var element = this.testWindow.FindElement(By.Id("TextBox1"));
-            Assert.AreEqual("TextBox1", element.GetAttribute("Name"));
-        }
-
-        [Test]
         public void GetElementTextTest()
         {
             var textBox = this.testWindow.FindElement(By.Id("TextBox1"));
