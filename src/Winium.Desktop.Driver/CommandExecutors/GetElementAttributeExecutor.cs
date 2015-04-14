@@ -23,7 +23,7 @@
 
             try
             {
-                var property = AutomationPropertiesHelper.GetAutomationProperty(propertyName);
+                var property = AutomationPropertyHelper.GetAutomationProperty(propertyName);
                 var propertyValue = element.GetAutomationPropertyValue<object>(property);
                 return this.JsonResponse(ResponseStatus.Success, propertyValue);
             }

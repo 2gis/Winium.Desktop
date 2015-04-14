@@ -48,14 +48,8 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
-    <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
       <Private>True</Private>
@@ -85,7 +79,7 @@
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementStorage.cs" />
-    <Compile Include="Extensions\AutomationPropertiesHelper.cs" />
+    <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="Listener.cs" />
