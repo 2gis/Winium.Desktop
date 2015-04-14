@@ -47,6 +47,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="FindTests.cs" />
     <Compile Include="CommandTests.cs" />
+    <Compile Include="GetElementAttributeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
