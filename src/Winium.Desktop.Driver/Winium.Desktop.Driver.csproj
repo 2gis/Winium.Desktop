@@ -68,6 +68,8 @@
     <Compile Include="CommandExecutors\FindChildElementsExecutor.cs" />
     <Compile Include="CommandExecutors\FindElementsExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementAttributeExecutor.cs" />
+    <Compile Include="CommandExecutors\IsElementDisplayedExecutor.cs" />
+    <Compile Include="CommandExecutors\ImplicitlyWaitExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementSizeExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementTextExecutor.cs" />
     <Compile Include="CommandExecutors\ClearElementExecutor.cs" />
