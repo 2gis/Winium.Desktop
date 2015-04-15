@@ -38,6 +38,7 @@
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
@@ -46,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BaseTest.cs" />
     <Compile Include="GetElementAttributeTests.cs" />
+    <Compile Include="GetElementSizeTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandTests.cs" />
     <Compile Include="FindTests.cs" />

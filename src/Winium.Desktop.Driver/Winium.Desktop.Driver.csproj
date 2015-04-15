@@ -49,7 +49,9 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
+    <Reference Include="WindowsBase" />
     <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
       <Private>True</Private>
@@ -66,6 +68,7 @@
     <Compile Include="CommandExecutors\FindChildElementsExecutor.cs" />
     <Compile Include="CommandExecutors\FindElementsExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementAttributeExecutor.cs" />
+    <Compile Include="CommandExecutors\GetElementSizeExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementTextExecutor.cs" />
     <Compile Include="CommandExecutors\ClearElementExecutor.cs" />
     <Compile Include="CommandExecutors\SendKeysToActiveElementExecutor.cs" />
