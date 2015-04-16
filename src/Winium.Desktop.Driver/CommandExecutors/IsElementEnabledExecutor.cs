@@ -6,7 +6,7 @@
 
     #endregion
 
-    internal class IsElementDisplayedExecutor : CommandExecutorBase
+    internal class IsElementEnabledExecutor : CommandExecutorBase
     {
         #region Methods
 
@@ -16,7 +16,7 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
-            return this.JsonResponse(ResponseStatus.Success, !element.Properties.IsOffscreen);
+            return this.JsonResponse(ResponseStatus.Success, element.Properties.IsEnabled);
         }
 
         #endregion
