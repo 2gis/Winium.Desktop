@@ -19,7 +19,7 @@
 
             CruciatusFactory.Settings.SearchTimeout = Convert.ToInt32(timeout);
 
-            return this.JsonResponse(ResponseStatus.Success, null);
+            return this.JsonResponse();
         }
 
         #endregion

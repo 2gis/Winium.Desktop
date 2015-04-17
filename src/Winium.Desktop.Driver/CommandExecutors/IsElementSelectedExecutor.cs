@@ -19,14 +19,8 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
-            var isSelected = false;
-
-            var isPatternAvailable = AutomationElementIdentifiers.IsSelectionItemPatternAvailableProperty;
-            if (element.GetAutomationPropertyValue<bool>(isPatternAvailable))
-            {
-                var property = SelectionItemPattern.IsSelectedProperty;
-                isSelected = element.GetAutomationPropertyValue<bool>(property);
-            }
+            var property = SelectionItemPattern.IsSelectedProperty;
+            var isSelected = element.GetAutomationPropertyValue<bool>(property);
 
             return this.JsonResponse(ResponseStatus.Success, isSelected);
         }
