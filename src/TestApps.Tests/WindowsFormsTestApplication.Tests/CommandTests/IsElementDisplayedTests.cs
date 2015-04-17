@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -8,14 +8,14 @@
 
     #endregion
 
-    public class IsElementDisplayedTests : BaseTest
+    public class IsElementDisplayedTests : BaseForMainWindowTest
     {
         #region Public Methods and Operators
 
         [Test]
         public void IsDisplaydVisibleElement()
         {
-            var element = this.Driver.FindElementById("WpfTestApplicationMainWindow").FindElement(By.Id("TextBox1"));
+            var element = this.MainWindow.FindElement(By.Id("TextBox1"));
 
             Assert.IsTrue(element.Displayed);
         }

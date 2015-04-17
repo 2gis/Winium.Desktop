@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -8,26 +8,14 @@
 
     #endregion
 
-    public class IsElementSelectedTests : BaseTest
+    public class IsElementSelectedTests : BaseForMainWindowTest
     {
-        #region Fields
-
-        private IWebElement mainWindow;
-
-        #endregion
-
         #region Public Methods and Operators
-
-        [SetUp]
-        public void FindBaseElement()
-        {
-            this.mainWindow = this.Driver.FindElementById("Form1");
-        }
 
         [Test]
         public void IsSelectedListItem()
         {
-            var list = this.mainWindow.FindElement(By.Id("TextListBox"));
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
             var listItem = list.FindElement(By.Name("May"));
 
             listItem.Click();
@@ -38,7 +26,7 @@
         [Test]
         public void IsSelectedTab()
         {
-            var tab = this.mainWindow.FindElement(By.Name("TabItem1"));
+            var tab = this.MainWindow.FindElement(By.Name("TabItem1"));
 
             Assert.IsTrue(tab.Selected);
         }
@@ -46,7 +34,7 @@
         [Test]
         public void IsUnselectedListItem()
         {
-            var list = this.mainWindow.FindElement(By.Id("TextListBox"));
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
             var listItem = list.FindElement(By.Name("May"));
 
             Assert.IsFalse(listItem.Selected);
@@ -55,7 +43,7 @@
         [Test]
         public void IsUnselectedTab()
         {
-            var tab = this.mainWindow.FindElement(By.Name("TabItem2"));
+            var tab = this.MainWindow.FindElement(By.Name("TabItem2"));
 
             Assert.IsFalse(tab.Selected);
         }

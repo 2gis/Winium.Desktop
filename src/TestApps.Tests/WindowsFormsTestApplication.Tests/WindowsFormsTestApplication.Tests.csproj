@@ -45,15 +45,20 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForMainWindowTest.cs" />
     <Compile Include="BaseTest.cs" />
-    <Compile Include="FindTests.cs" />
-    <Compile Include="CommandTests.cs" />
-    <Compile Include="GetElementSizeTests.cs" />
-    <Compile Include="GetElementAttributeTests.cs" />
-    <Compile Include="IsElementEnabledTests.cs" />
-    <Compile Include="TakeScreenshotTests.cs" />
-    <Compile Include="IsElementSelectedTests.cs" />
-    <Compile Include="IsElementDisplayedTests.cs" />
+    <Compile Include="CommandTests\FindTests.cs" />
+    <Compile Include="CommandTests\ClickElementTests.cs" />
+    <Compile Include="CommandTests\GetElementSizeTests.cs" />
+    <Compile Include="CommandTests\GetElementAttributeTests.cs" />
+    <Compile Include="CommandTests\IsElementEnabledTests.cs" />
+    <Compile Include="CommandTests\GetElementTextTests.cs" />
+    <Compile Include="CommandTests\ClearElementTests.cs" />
+    <Compile Include="CommandTests\SendKeysToActiveElementTests.cs" />
+    <Compile Include="CommandTests\SendKeysToElementTests.cs" />
+    <Compile Include="CommandTests\TakeScreenshotTests.cs" />
+    <Compile Include="CommandTests\IsElementSelectedTests.cs" />
+    <Compile Include="CommandTests\IsElementDisplayedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

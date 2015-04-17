@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WpfTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -11,7 +11,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void IsSelectedListItem()
+        public void TakeScreenshotAfterStartApplication()
         {
             var screenshot = this.Driver.GetScreenshot().ToString();
             Assert.That(screenshot.Length, Is.GreaterThan(0));

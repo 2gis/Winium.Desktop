@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -14,7 +14,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void FindChildElementByClassNameTest()
+        public void FindChildElementByClassName()
         {
             var parent = this.Driver.FindElementById("Form1");
             var child = parent.FindElement(By.ClassName("WindowsForms10.EDIT.app.0.2bf8098_r11_ad1"));
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void FindChildElementByIdTest()
+        public void FindChildElementById()
         {
             var parent = this.Driver.FindElementById("Form1");
             var child = parent.FindElement(By.Id("TextBox1"));
@@ -30,7 +30,7 @@
         }
 
         [Test]
-        public void FindChildElementByNameTest()
+        public void FindChildElementByName()
         {
             var parent = this.Driver.FindElementById("Form1");
             var child = parent.FindElement(By.Name("TextBox1"));
@@ -38,28 +38,28 @@
         }
 
         [Test]
-        public void FindElementByClassNameTest()
+        public void FindElementByClassName()
         {
             var element = this.Driver.FindElement(By.ClassName("WindowsForms10.EDIT.app.0.2bf8098_r11_ad1"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementByIdTest()
+        public void FindElementById()
         {
             var element = this.Driver.FindElement(By.Id("TextBox1"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementByNameTest()
+        public void FindElementByName()
         {
             var element = this.Driver.FindElement(By.Name("TextBox1"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementsTest()
+        public void FindElements()
         {
             var window = this.Driver.FindElementById("Form1");
             var comboBox = window.FindElement(By.Id("TextComboBox"));
@@ -69,7 +69,7 @@
         }
 
         [Test]
-        public void FindNoElementsTest()
+        public void FindNoElements()
         {
             var window = this.Driver.FindElementById("Form1");
             var elements = window.FindElements(By.Id("UnexistId"));
