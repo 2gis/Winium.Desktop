@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
+    <Compile Include="CommandExecutors\QuitExecutor.cs" />
     <Compile Include="CommandExecutorDispatchTable.cs" />
     <Compile Include="CommandExecutors\ScreenshotExecutor.cs" />
     <Compile Include="CommandExecutors\FindChildElementsExecutor.cs" />

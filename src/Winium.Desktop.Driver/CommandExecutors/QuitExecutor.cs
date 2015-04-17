@@ -6,7 +6,7 @@
 
     #endregion
 
-    internal class CloseExecutor : CommandExecutorBase
+    internal class QuitExecutor : CommandExecutorBase
     {
         #region Methods
 
