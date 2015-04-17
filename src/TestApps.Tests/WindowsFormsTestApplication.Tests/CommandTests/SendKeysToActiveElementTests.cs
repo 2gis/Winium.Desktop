@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -13,7 +13,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void SendKeysToActiveElementTest()
+        public void SendKeysToActiveElement()
         {
             var textbox = this.MainWindow.FindElement(By.Id("TextBox1"));
             textbox.Click();

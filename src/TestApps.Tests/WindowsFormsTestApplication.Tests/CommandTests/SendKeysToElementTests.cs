@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -13,7 +13,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void SendEmptyKeysToElementTest()
+        public void SendEmptyKeysToElement()
         {
             var textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
             textBox.SendKeys(string.Empty);
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void SendKeysToElementTest()
+        public void SendKeysToElement()
         {
             const string NewText = "new test text";
 

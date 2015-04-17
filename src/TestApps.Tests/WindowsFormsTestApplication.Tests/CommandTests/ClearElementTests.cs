@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -14,7 +14,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void ClearTextBoxTest()
+        public void ClearTextBox()
         {
             var textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
             textBox.Clear();

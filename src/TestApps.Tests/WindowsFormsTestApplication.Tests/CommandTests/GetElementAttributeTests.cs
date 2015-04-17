@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -35,17 +35,17 @@
         [Test]
         public void GetSupportedAttributeByFullPropertyName()
         {
-            var value = this.textBox.GetAttribute("ClassNameProperty");
+            var value = this.textBox.GetAttribute("NameProperty");
 
-            Assert.AreEqual("TextBox", value);
+            Assert.AreEqual("TextBox1", value);
         }
 
         [Test]
         public void GetSupportedAttributeByShortPropertyName()
         {
-            var value = this.textBox.GetAttribute("ClassName");
+            var value = this.textBox.GetAttribute("Name");
 
-            Assert.AreEqual("TextBox", value);
+            Assert.AreEqual("TextBox1", value);
         }
 
         #endregion

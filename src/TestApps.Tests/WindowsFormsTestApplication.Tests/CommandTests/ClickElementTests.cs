@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -14,7 +14,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void ClickButtonWhichSetsTextTest()
+        public void ClickButtonWhichSetsText()
         {
             this.MainWindow.FindElement(By.Id("SetTextButton")).Click();
 

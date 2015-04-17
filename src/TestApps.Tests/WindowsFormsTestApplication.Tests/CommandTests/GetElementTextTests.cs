@@ -1,4 +1,4 @@
-﻿namespace WindowsFormsTestApplication.Tests
+﻿namespace WindowsFormsTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -13,7 +13,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void GetTextBoxTextTest()
+        public void GetTextBoxText()
         {
             var textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
             Assert.AreEqual("TextBox1", textBox.Text);

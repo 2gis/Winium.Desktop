@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication.Tests
+﻿namespace WpfTestApplication.Tests.CommandTests
 {
     #region using
 
@@ -14,7 +14,7 @@
         #region Public Methods and Operators
 
         [Test]
-        public void FindChildElementByClassNameTest()
+        public void FindChildElementByClassName()
         {
             var parent = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var child = parent.FindElement(By.ClassName("TextBox"));
@@ -22,7 +22,7 @@
         }
 
         [Test]
-        public void FindChildElementByIdTest()
+        public void FindChildElementById()
         {
             var parent = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var child = parent.FindElement(By.Id("TextBox1"));
@@ -30,7 +30,7 @@
         }
 
         [Test]
-        public void FindChildElementByNameTest()
+        public void FindChildElementByName()
         {
             var parent = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var child = parent.FindElement(By.Name("IsEnabledTextListBox"));
@@ -38,28 +38,28 @@
         }
 
         [Test]
-        public void FindElementByClassNameTest()
+        public void FindElementByClassName()
         {
             var element = this.Driver.FindElement(By.ClassName("Window"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementByIdTest()
+        public void FindElementById()
         {
             var element = this.Driver.FindElement(By.Id("WpfTestApplicationMainWindow"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementByNameTest()
+        public void FindElementByName()
         {
             var element = this.Driver.FindElement(By.Name("MainWindow"));
             Assert.NotNull(element);
         }
 
         [Test]
-        public void FindElementsTest()
+        public void FindElements()
         {
             var window = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var comboBox = window.FindElement(By.Id("TextComboBox"));
@@ -71,7 +71,7 @@
         }
 
         [Test]
-        public void FindNoElementsTest()
+        public void FindNoElements()
         {
             var window = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var elements = window.FindElements(By.Id("UnexistId"));
