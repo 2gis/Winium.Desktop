@@ -65,9 +65,13 @@
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutorDispatchTable.cs" />
+    <Compile Include="CommandExecutors\ScreenshotExecutor.cs" />
     <Compile Include="CommandExecutors\FindChildElementsExecutor.cs" />
     <Compile Include="CommandExecutors\FindElementsExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementAttributeExecutor.cs" />
+    <Compile Include="CommandExecutors\IsElementEnabledExecutor.cs" />
+    <Compile Include="CommandExecutors\IsElementDisplayedExecutor.cs" />
+    <Compile Include="CommandExecutors\ImplicitlyWaitExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementSizeExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementTextExecutor.cs" />
     <Compile Include="CommandExecutors\ClearElementExecutor.cs" />
@@ -85,6 +89,7 @@
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />
+    <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />
