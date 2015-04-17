@@ -1,11 +1,5 @@
 ﻿namespace Winium.Desktop.Driver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class QuitExecutor : CommandExecutorBase
     {
         #region Methods
