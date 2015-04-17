@@ -8,7 +8,7 @@
 
     #endregion
 
-    public class GetElementAttributeTests : BaseTest
+    public class GetElementAttributeTests : BaseForMainWindowTest
     {
         #region Fields
 
@@ -19,9 +19,9 @@
         #region Public Methods and Operators
 
         [SetUp]
-        public void FindMainWindow()
+        public void FindBaseElement()
         {
-            this.textBox = this.Driver.FindElementById("WpfTestApplicationMainWindow").FindElement(By.Id("TextBox1"));
+            this.textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
         }
 
         [Test]

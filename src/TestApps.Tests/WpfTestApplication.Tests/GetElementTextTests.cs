@@ -8,16 +8,15 @@
 
     #endregion
 
-    public class IsElementDisplayedTests : BaseForMainWindowTest
+    public class GetElementTextTests : BaseForMainWindowTest
     {
         #region Public Methods and Operators
 
         [Test]
-        public void IsDisplaydVisibleElement()
+        public void GetTextBoxTextTest()
         {
-            var element = this.MainWindow.FindElement(By.Id("TextBox1"));
-
-            Assert.IsTrue(element.Displayed);
+            var textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
+            Assert.AreEqual("TextBox1", textBox.Text);
         }
 
         #endregion

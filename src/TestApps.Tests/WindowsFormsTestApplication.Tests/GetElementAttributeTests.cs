@@ -8,7 +8,7 @@
 
     #endregion
 
-    public class GetElementAttributeTests : BaseTest
+    public class GetElementAttributeTests : BaseForMainWindowTest
     {
         #region Fields
 
@@ -21,7 +21,7 @@
         [SetUp]
         public void FindBaseElement()
         {
-            this.textBox = this.Driver.FindElementById("Form1").FindElement(By.Id("TextBox1"));
+            this.textBox = this.MainWindow.FindElement(By.Id("TextBox1"));
         }
 
         [Test]

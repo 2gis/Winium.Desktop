@@ -8,28 +8,16 @@
 
     #endregion
 
-    public class IsElementEnabledTests : BaseTest
+    public class IsElementEnabledTests : BaseForMainWindowTest
     {
-        #region Fields
-
-        private IWebElement mainWindow;
-
-        #endregion
-
         #region Public Methods and Operators
-
-        [SetUp]
-        public void FindBaseElement()
-        {
-            this.mainWindow = this.Driver.FindElementById("WpfTestApplicationMainWindow");
-        }
 
         [Test]
         public void IsDisabledElement()
         {
-            var list = this.mainWindow.FindElement(By.Id("TextListBox"));
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
 
-            var disabledCheckBox = this.mainWindow.FindElement(By.Id("CheckBox1"));
+            var disabledCheckBox = this.MainWindow.FindElement(By.Id("CheckBox1"));
             disabledCheckBox.Click();
 
             Assert.IsFalse(list.Enabled);
@@ -38,7 +26,7 @@
         [Test]
         public void IsEnabledElement()
         {
-            var list = this.mainWindow.FindElement(By.Id("TextListBox"));
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
 
             Assert.IsTrue(list.Enabled);
         }

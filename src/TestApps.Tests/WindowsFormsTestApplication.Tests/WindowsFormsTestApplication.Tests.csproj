@@ -45,12 +45,17 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="BaseForMainWindowTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="FindTests.cs" />
-    <Compile Include="CommandTests.cs" />
+    <Compile Include="ClickElementTests.cs" />
     <Compile Include="GetElementSizeTests.cs" />
     <Compile Include="GetElementAttributeTests.cs" />
     <Compile Include="IsElementEnabledTests.cs" />
+    <Compile Include="GetElementTextTests.cs" />
+    <Compile Include="ClearElementTests.cs" />
+    <Compile Include="SendKeysToActiveElementTests.cs" />
+    <Compile Include="SendKeysToElementTests.cs" />
     <Compile Include="TakeScreenshotTests.cs" />
     <Compile Include="IsElementSelectedTests.cs" />
     <Compile Include="IsElementDisplayedTests.cs" />
