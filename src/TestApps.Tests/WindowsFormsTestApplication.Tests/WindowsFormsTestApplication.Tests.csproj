@@ -51,6 +51,7 @@
     <Compile Include="GetElementSizeTests.cs" />
     <Compile Include="GetElementAttributeTests.cs" />
     <Compile Include="IsElementEnabledTests.cs" />
+    <Compile Include="TakeScreenshotTests.cs" />
     <Compile Include="IsElementSelectedTests.cs" />
     <Compile Include="IsElementDisplayedTests.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
