@@ -39,14 +39,18 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Messaging" />
+    <Reference Include="System.Windows.Forms" />
     <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BaseForMainWindowTest.cs" />
     <Compile Include="BaseTest.cs" />
+    <Compile Include="CommandTests\MouseClickTests.cs" />
     <Compile Include="CommandTests\CloseTests.cs" />
     <Compile Include="CommandTests\FindTests.cs" />
     <Compile Include="CommandTests\ClickElementTests.cs" />
