@@ -13,9 +13,9 @@
 
     public class BaseTest
     {
-        #region Fields
+        #region Public Properties
 
-        protected RemoteWebDriver Driver;
+        public RemoteWebDriver Driver { get; set; }
 
         #endregion
 

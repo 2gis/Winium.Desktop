@@ -1,6 +1,6 @@
 ﻿namespace Winium.Desktop.Driver.CommandExecutors
 {
-    internal class CloseExecutor : CommandExecutorBase
+    internal class QuitExecutor : CommandExecutorBase
     {
         #region Methods
 
