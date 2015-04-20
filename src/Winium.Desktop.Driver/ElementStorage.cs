@@ -95,12 +95,15 @@
 
         public string RegisterElement(CruciatusElement element)
         {
-            var registeredKey = this.registeredElements.FirstOrDefault(x => x.Value == element).Key;
+            var registeredKey =
+                this.registeredElements.FirstOrDefault(
+                    x => x.Value.Properties.RuntimeId == element.Properties.RuntimeId).Key;
 
             if (registeredKey == null)
             {
                 Interlocked.Increment(ref safeInstanceCount);
 
+                // TODO: Maybe use RuntimeId how registeredKey?
                 registeredKey = element.GetHashCode() + "-"
                                 + safeInstanceCount.ToString(string.Empty, CultureInfo.InvariantCulture);
                 this.registeredElements.Add(registeredKey, element);
