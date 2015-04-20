@@ -84,13 +84,10 @@
         /// </exception>
         public CruciatusElement GetRegisteredElement(string registeredKey)
         {
-            CruciatusElement element;
-            if (this.registeredElements.TryGetValue(registeredKey, out element))
+            var element = this.GetRegisteredElementOrNull(registeredKey);
+            if (element != null)
             {
-                if (element != null)
-                {
-                    return element;
-                }
+                return element;
             }
 
             throw new AutomationException("Stale element reference", ResponseStatus.StaleElementReference);
@@ -115,6 +112,17 @@
         public IEnumerable<string> RegisterElements(IEnumerable<CruciatusElement> elements)
         {
             return elements.Select(this.RegisterElement);
+        }
+
+        #endregion
+
+        #region Methods
+
+        internal CruciatusElement GetRegisteredElementOrNull(string registeredKey)
+        {
+            CruciatusElement element;
+            this.registeredElements.TryGetValue(registeredKey, out element);
+            return element;
         }
 
         #endregion
