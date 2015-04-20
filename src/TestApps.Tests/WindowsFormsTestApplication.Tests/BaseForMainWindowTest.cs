@@ -10,9 +10,9 @@
 
     public class BaseForMainWindowTest : BaseTest
     {
-        #region Fields
+        #region Public Properties
 
-        protected IWebElement MainWindow;
+        public IWebElement MainWindow { get; set; }
 
         #endregion
 
