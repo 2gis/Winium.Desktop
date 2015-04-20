@@ -52,6 +52,7 @@
     <Compile Include="CommandTests\ClearElementTests.cs" />
     <Compile Include="CommandTests\ClickElementTests.cs" />
     <Compile Include="CommandTests\MouseClickTests.cs" />
+    <Compile Include="CommandTests\MouseDoubleClickTests.cs" />
     <Compile Include="CommandTests\QuitTests.cs" />
     <Compile Include="CommandTests\CloseTests.cs" />
     <Compile Include="CommandTests\GetElementAttributeTests.cs" />
