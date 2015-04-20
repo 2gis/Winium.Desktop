@@ -65,6 +65,7 @@
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutors\ElementEqualsExecutor.cs" />
+    <Compile Include="CommandExecutors\MouseDoubleClickExecutor.cs" />
     <Compile Include="CommandExecutors\MouseClickExecutor.cs" />
     <Compile Include="CommandExecutors\QuitExecutor.cs" />
     <Compile Include="CommandExecutorDispatchTable.cs" />

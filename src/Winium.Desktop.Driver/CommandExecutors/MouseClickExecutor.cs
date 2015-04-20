@@ -3,9 +3,9 @@
     #region using
 
     using System;
-    using System.Windows.Input;
 
     using Winium.Cruciatus;
+    using Winium.Cruciatus.Core;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -24,12 +24,12 @@
                     CruciatusFactory.Mouse.LeftButtonClick();
                     break;
 
-                case  MouseButton.Right : 
+                case MouseButton.Right:
                     CruciatusFactory.Mouse.RightButtonClick();
                     break;
 
-                default: return this.JsonResponse(ResponseStatus.UnknownCommand, "Mouse button behavior is not implemented");
-
+                default:
+                    return this.JsonResponse(ResponseStatus.UnknownCommand, "Mouse button behavior is not implemented");
             }
 
             return this.JsonResponse();
