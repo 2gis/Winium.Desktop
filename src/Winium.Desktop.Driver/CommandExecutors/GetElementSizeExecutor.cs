@@ -3,10 +3,7 @@
     #region using
 
     using System.Collections.Generic;
-    using System.Windows;
-    using System.Windows.Automation;
 
-    using Winium.Cruciatus.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -21,12 +18,11 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
-            var property = AutomationElementIdentifiers.BoundingRectangleProperty;
-            var boundingRect = element.GetAutomationPropertyValue<Rect>(property);
+            var boundingRect = element.Properties.BoundingRectangle;
 
             var response = new Dictionary<string, object>
                                {
-                                   { "width", boundingRect.Width },
+                                   { "width", boundingRect.Width }, 
                                    { "height", boundingRect.Height }
                                };
             return this.JsonResponse(ResponseStatus.Success, response);

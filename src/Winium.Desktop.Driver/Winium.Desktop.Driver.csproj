@@ -56,9 +56,9 @@
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Winium.Cruciatus, Version=2.0.5551.23217, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Winium.Cruciatus.2.0.0\lib\net45\Winium.Cruciatus.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="Winium.Cruciatus, Version=2.0.5585.27833, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\packages\Winium.Cruciatus.2.1.1\lib\net45\Winium.Cruciatus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
@@ -76,6 +76,7 @@
     <Compile Include="CommandExecutors\GetElementSizeExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementTextExecutor.cs" />
     <Compile Include="CommandExecutors\ClearElementExecutor.cs" />
+    <Compile Include="CommandExecutors\MouseMoveToExecutor.cs" />
     <Compile Include="CommandExecutors\SendKeysToActiveElementExecutor.cs" />
     <Compile Include="CommandExecutors\SendKeysToElementExecutor.cs" />
     <Compile Include="CommandExecutors\ClickElementExecutor.cs" />
