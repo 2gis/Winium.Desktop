@@ -38,7 +38,6 @@
             Assert.IsFalse(listItem3.Selected);
         }
 
-
         #endregion
     }
 }
