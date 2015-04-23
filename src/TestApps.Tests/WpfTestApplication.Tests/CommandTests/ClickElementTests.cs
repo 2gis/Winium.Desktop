@@ -21,6 +21,23 @@
             Assert.AreEqual("CARAMBA", this.MainWindow.FindElement(By.Id("TextBox1")).Text);
         }
 
+        [Test]
+        public void ClickByTwoElementsWithPressedControl()
+        {
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
+
+            var listItem1 = list.FindElement(By.Name("March"));
+            var listItem2 = list.FindElement(By.Name("January"));
+            var listItem3 = list.FindElement(By.Name("February"));
+
+            this.Driver.ExecuteScript("input: ctrl_click", listItem1);
+            this.Driver.ExecuteScript("input: ctrl_click", listItem2);
+
+            Assert.IsTrue(listItem1.Selected);
+            Assert.IsTrue(listItem2.Selected);
+            Assert.IsFalse(listItem3.Selected);
+        }
+
         #endregion
     }
 }
