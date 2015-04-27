@@ -59,7 +59,7 @@
                     element.ClickWithPressedCtrl();
                     return;
                 default:
-                    throw new NotImplementedException(string.Format("Input-command {0} didn't implemented", command));
+                    throw new NotImplementedException(string.Format("Input-command {0} is not implemented", command));
             }
         }
 
