@@ -64,6 +64,7 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
+    <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
     <Compile Include="CommandExecutors\ElementEqualsExecutor.cs" />
@@ -103,6 +104,8 @@
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requester.cs" />
+    <Compile Include="CommandHelpers\OSInfo.cs" />
+    <Compile Include="CommandHelpers\BuildInfo.cs" />
     <Compile Include="UriDispatchTables.cs" />
   </ItemGroup>
   <ItemGroup>
