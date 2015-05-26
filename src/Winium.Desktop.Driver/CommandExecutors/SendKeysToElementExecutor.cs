@@ -7,7 +7,7 @@
         protected override string DoImpl()
         {
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var text = this.ExecutedCommand.Parameters["value"].First.ToString();
+            var text = string.Join(string.Empty, this.ExecutedCommand.Parameters["value"]);
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
             element.SetText(text);
