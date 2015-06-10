@@ -57,10 +57,17 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(elementId);
             
+            // for backward compatibility, delete after refactoring
+            if (command == "ctrl_click") {
+               command = "control+click"; 
+            }
+            
             var commandKeys = command.Split('+');
             command = commandKeys.Last();
             var keys = new List<VirtualKeyCode>();
 
+            // maybe there is a more concise way
+            // key aliases? (ctrl => control) 
             foreach(var key in commandKeys)
             {
                 VirtualKeyCode tmpKey;
