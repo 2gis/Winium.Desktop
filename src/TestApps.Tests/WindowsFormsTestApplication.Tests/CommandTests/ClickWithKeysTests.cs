@@ -6,15 +6,18 @@
     using System.IO;
     using System.Linq;
 
+    using WindowsInput.Native;
+
     using NUnit.Framework;
 
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Interactions;
     using OpenQA.Selenium.Remote;
 
     #endregion
 
     [TestFixture]
-    public class ExecuteScriptTests
+    public class ClickWithKeysTests
     {
         #region Public Properties
 
@@ -41,13 +44,15 @@
             var list = this.MainWindow.FindElement(By.Id("List"));
             var items = list.FindElements(By.ClassName(""));
             var first = items.First();
-            var random = items.ElementAt(new Random().Next(1, items.Count));
+            var randomId = new Random().Next(1, items.Count);
+            var random = items.ElementAt(randomId);
+            var actions = new Actions(this.Driver);
 
-            first.Click();
-            this.Driver.ExecuteScript("input: shift+click", random);
+            actions.Click(first).KeyDown(Keys.Shift).Click(random).KeyUp(Keys.Shift).Perform();
 
-            // Надо бы таки проверять выделение элементов.
-            //Assert.AreEqual("CARAMBA", this.MainWindow.FindElement(By.Id("TextBox1")).Text);
+            var selectedItemsCount = list.FindElements(By.ClassName("")).Count(item => item.Selected);
+            
+            Assert.AreEqual(randomId + 1, selectedItemsCount);
         }
 
         [TearDown]

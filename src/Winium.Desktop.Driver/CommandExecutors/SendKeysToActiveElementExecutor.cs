@@ -2,7 +2,11 @@
 {
     #region using
 
+    using System;
+    using System.Linq;
+
     using Winium.Cruciatus;
+    using Winium.Desktop.Driver.Input;
 
     #endregion
 
@@ -12,9 +16,9 @@
 
         protected override string DoImpl()
         {
-            var text = string.Join(string.Empty, this.ExecutedCommand.Parameters["value"]);
+            var chars = this.ExecutedCommand.Parameters["value"].Select(x => Convert.ToChar(x.ToString()));
 
-            CruciatusFactory.Keyboard.SendText(text);
+            WiniumKeyboard.GetInstance().SendKeys(chars.ToArray());
 
             return this.JsonResponse();
         }
