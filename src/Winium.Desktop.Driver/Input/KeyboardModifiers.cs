@@ -15,7 +15,7 @@
 
     #endregion
 
-    class KeyboardModifiers : IList<string>
+    class KeyboardModifiers : List<string>
     {
         #region Priavte Static Fields
 
@@ -26,12 +26,6 @@
             {Keys.Shift, VirtualKeyCode.SHIFT},
             {Keys.Alt, VirtualKeyCode.MENU},
         };
-
-        #endregion
-
-        #region Private Fields
-
-        private List<string> modifiersList = new List<string>();
 
         #endregion
 
@@ -57,80 +51,6 @@
         public static string GetKeyFromUnicode(char key)
         {
             return KeyboardModifiers.AllowedModifiers.Find(modifier => modifier[0] == key);
-        }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        public void Add(string item)
-        {
-            this.modifiersList.Add(item);
-        }
-
-        public void Clear()
-        {
-            this.modifiersList.Clear(); ;
-        }
-
-        public bool Contains(string item)
-        {
-            return this.modifiersList.Contains(item);
-        }
-
-        public void CopyTo(string[] array, int arrayIndex)
-        {
-            this.modifiersList.CopyTo(array, arrayIndex);
-        }
-
-        public bool Remove(string item)
-        {
-            return this.modifiersList.Remove(item);
-        }
-
-        public int Count => this.modifiersList.Count;
-
-        public bool IsReadOnly => false;
-
-        public int IndexOf(string item)
-        {
-            return this.modifiersList.IndexOf(item);
-        }
-
-        public void Insert(int index, string item)
-        {
-            this.modifiersList.Insert(index, item);
-        }
-
-        public void RemoveAt(int index)
-        {
-            this.modifiersList.RemoveAt(index);
-        }
-
-        public string this[int index]
-        {
-            get
-            {
-                return this.modifiersList[index];
-            }
-            set
-            {
-                this.modifiersList[index] = value;
-            }
-        }
-
-        public IEnumerator<string> GetEnumerator()
-        {
-            return this.modifiersList.GetEnumerator();
-        }
-
-        #endregion
-
-        #region Private Methods and Operators
-
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return this.GetEnumerator();
         }
 
         #endregion
