@@ -3,10 +3,6 @@
     #region using
 
     using System;
-    using System.Linq;
-    using System.Collections.Generic;
-
-    using WindowsInput.Native;
 
     using Newtonsoft.Json.Linq;
 
@@ -56,32 +52,11 @@
             var elementId = args[0]["ELEMENT"].ToString();
 
             var element = this.Automator.Elements.GetRegisteredElement(elementId);
-            
-            // for backward compatibility, delete after refactoring
-            if (command == "ctrl_click") {
-               command = "control+click"; 
-            }
-            
-            var commandKeys = command.Split('+');
-            command = commandKeys.Last();
-            var keys = new List<VirtualKeyCode>();
-
-            // maybe there is a more concise way
-            // key aliases? (ctrl => control) 
-            foreach(var key in commandKeys)
-            {
-                VirtualKeyCode tmpKey;
-
-                if (Enum.TryParse<VirtualKeyCode>(key, true, out tmpKey))
-                {
-                    keys.Add(tmpKey);
-                }
-            }
 
             switch (command)
             {
-                case "click":
-                    element.ClickWithPressedKeys(keys);
+                case "ctrl_click":
+                    element.ClickWithPressedCtrl();
                     return;
                 default:
                     throw new NotImplementedException(string.Format("Input-command {0} is not implemented", command));
