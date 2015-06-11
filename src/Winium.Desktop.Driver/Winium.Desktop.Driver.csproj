@@ -48,9 +48,14 @@
     <Reference Include="PresentationCore" />
     <Reference Include="System" />
     <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
+    <Reference Include="WebDriver, Version=2.46.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.2.46.0\lib\net40\WebDriver.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="WindowsBase" />
     <Reference Include="WindowsInput, Version=1.0.4.0, Culture=neutral, PublicKeyToken=9b287f7dc5073cad, processorArchitecture=MSIL">
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
@@ -99,6 +104,9 @@
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
+    <Compile Include="Input\KeyboardModifiers.cs" />
+    <Compile Include="Input\KeyEvent.cs" />
+    <Compile Include="Input\WiniumKeyboard.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="Program.cs" />

@@ -6,8 +6,6 @@
     using System.IO;
     using System.Linq;
 
-    using WindowsInput.Native;
-
     using NUnit.Framework;
 
     using OpenQA.Selenium;
