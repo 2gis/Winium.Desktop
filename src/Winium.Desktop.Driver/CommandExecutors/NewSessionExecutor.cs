@@ -7,6 +7,7 @@
     using Newtonsoft.Json;
 
     using Winium.Cruciatus;
+    using Winium.Cruciatus.Settings;
     using Winium.Desktop.Driver.Automator;
     using Winium.StoreApps.Common;
 
@@ -25,6 +26,7 @@
             this.Automator.ActualCapabilities = Capabilities.CapabilitiesFromJsonString(serializedCapability);
 
             this.InitializeApplication(this.Automator.ActualCapabilities.DebugConnectToRunningApp);
+            this.InitializeKeyboardEmulator(this.Automator.ActualCapabilities.KeyboardSimulator);
 
             // Gives sometime to load visuals (needed only in case of slow emulation)
             Thread.Sleep(this.Automator.ActualCapabilities.LaunchDelay);
@@ -40,6 +42,20 @@
             {
                 this.Automator.Application.Start();
             }
+        }
+
+        private void InitializeKeyboardEmulator(string keyboardSimulator)
+        {
+            KeyboardSimulatorType keyboardSimulatorType;
+
+            if (!KeyboardSimulatorType.TryParse(keyboardSimulator, out keyboardSimulatorType))
+            {
+                keyboardSimulatorType = KeyboardSimulatorType.BasedOnInputSimulatorLib;
+            }
+
+            CruciatusFactory.Settings.KeyboardSimulatorType = keyboardSimulatorType;
+
+            Logger.Debug("Current keyboard simulator: {0}", keyboardSimulatorType);
         }
 
         #endregion

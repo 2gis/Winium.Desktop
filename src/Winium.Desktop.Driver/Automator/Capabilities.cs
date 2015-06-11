@@ -35,6 +35,9 @@
         [JsonProperty("launchDelay")]
         public int LaunchDelay { get; set; }
 
+        [JsonProperty("keyboardSimulator")]
+        public string KeyboardSimulator { get; set; }
+
         #endregion
 
         #region Public Methods and Operators

@@ -52,6 +52,7 @@
     <Compile Include="BaseTest.cs" />
     <Compile Include="CommandTests\ClickWithKeysTests.cs" />
     <Compile Include="CommandTests\GetActiveElementTests.cs" />
+    <Compile Include="CommandTests\KeyboardSimulatorSelectTests.cs" />
     <Compile Include="CommandTests\MouseDoubleClickTests.cs" />
     <Compile Include="CommandTests\MouseClickTests.cs" />
     <Compile Include="CommandTests\CloseTests.cs" />

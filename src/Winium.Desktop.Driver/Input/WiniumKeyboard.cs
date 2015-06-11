@@ -22,9 +22,7 @@
     class WiniumKeyboard
     {
         #region Private Fields
-
-        private readonly KeyboardSimulatorExt keyboardSimulatorExt =
-            (KeyboardSimulatorExt)CruciatusFactory.GetSpecificKeyboard(KeyboardSimulatorType.BasedOnInputSimulatorLib);
+        
         private readonly KeyboardModifiers modifiers = new KeyboardModifiers();
 
         #endregion
@@ -44,18 +42,18 @@
             this.SendKeys(builder);
         }
 
-        public void PressKey(string keyToPress)
+        public void KeyDown(string keyToPress)
         {
             var key = KeyboardModifiers.GetVirtualKeyCode(keyToPress);
             this.modifiers.Add(keyToPress);
-            this.keyboardSimulatorExt.KeyDown(key);
+            CruciatusFactory.Keyboard.KeyDown(key);
         }
 
-        public void ReleaseKey(string keyToRelease)
+        public void KeyUp(string keyToRelease)
         {
             var key = KeyboardModifiers.GetVirtualKeyCode(keyToRelease);
             this.modifiers.Remove(keyToRelease);
-            this.keyboardSimulatorExt.KeyUp(key);
+            CruciatusFactory.Keyboard.KeyUp(key);
         }
 
         #endregion
@@ -77,7 +75,7 @@
 
             foreach (var modifierKey in tmp)
             {
-                this.ReleaseKey(modifierKey);
+                this.KeyUp(modifierKey);
             }
         }
 
@@ -91,7 +89,7 @@
             {
                 if (keyEvent.IsNewLine())
                 {
-                    this.keyboardSimulatorExt.SendEnter();
+                    CruciatusFactory.Keyboard.SendEnter();
                 }
                 else if (keyEvent.IsModifierRelease())
                 {
@@ -117,18 +115,18 @@
                 str = str.ToUpper();
             }
 
-            this.keyboardSimulatorExt.SendText(str);
+            CruciatusFactory.Keyboard.SendText(str);
         }
 
         private void PressOrReleaseModifier(string modifier)
         {
             if (this.modifiers.Contains(modifier))
             {
-                this.ReleaseKey(modifier);
+                this.KeyUp(modifier);
             }
             else
             {
-                this.PressKey(modifier);
+                this.KeyDown(modifier);
             }
         }
 
