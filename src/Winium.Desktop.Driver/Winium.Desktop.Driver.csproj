@@ -102,9 +102,6 @@
     <Compile Include="ElementStorage.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
-    <Compile Include="Input\KeyEvent.cs" />
-    <Compile Include="Input\KeyboardModifiers.cs" />
-    <Compile Include="Input\WiniumKeyboard.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="Input\KeyboardModifiers.cs" />
