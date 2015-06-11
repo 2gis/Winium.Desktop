@@ -19,7 +19,7 @@
     {
         #region Priavte Static Fields
 
-        private static readonly List<string> AllowedModifiers = new List<string>() { Keys.Control, Keys.LeftControl, Keys.Shift, Keys.LeftShift, Keys.Alt, Keys.LeftAlt };
+        private static readonly List<string> Modifiers = new List<string>() { Keys.Control, Keys.LeftControl, Keys.Shift, Keys.LeftShift, Keys.Alt, Keys.LeftAlt };
         private static readonly Dictionary<string, VirtualKeyCode> ModifiersMap = new Dictionary<string, VirtualKeyCode>()
         {
             {Keys.Control, VirtualKeyCode.CONTROL},
@@ -33,7 +33,7 @@
 
         public static bool IsModifier(string key)
         {
-            return KeyboardModifiers.AllowedModifiers.Contains(key);
+            return KeyboardModifiers.Modifiers.Contains(key);
         }
 
         public static VirtualKeyCode GetVirtualKeyCode(string key)
@@ -50,7 +50,7 @@
 
         public static string GetKeyFromUnicode(char key)
         {
-            return KeyboardModifiers.AllowedModifiers.Find(modifier => modifier[0] == key);
+            return KeyboardModifiers.Modifiers.Find(modifier => modifier[0] == key);
         }
 
         #endregion
