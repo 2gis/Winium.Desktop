@@ -44,15 +44,8 @@
             }
         }
 
-        private void InitializeKeyboardEmulator(string keyboardSimulator)
+        private void InitializeKeyboardEmulator(KeyboardSimulatorType keyboardSimulatorType)
         {
-            KeyboardSimulatorType keyboardSimulatorType;
-
-            if (!KeyboardSimulatorType.TryParse(keyboardSimulator, out keyboardSimulatorType))
-            {
-                keyboardSimulatorType = KeyboardSimulatorType.BasedOnInputSimulatorLib;
-            }
-
             CruciatusFactory.Settings.KeyboardSimulatorType = keyboardSimulatorType;
 
             Logger.Debug("Current keyboard simulator: {0}", keyboardSimulatorType);

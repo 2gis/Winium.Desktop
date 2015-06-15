@@ -5,6 +5,8 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
+    using Winium.Cruciatus.Settings;
+
     #endregion
 
     internal class Capabilities
@@ -36,7 +38,7 @@
         public int LaunchDelay { get; set; }
 
         [JsonProperty("keyboardSimulator")]
-        public string KeyboardSimulator { get; set; }
+        public KeyboardSimulatorType KeyboardSimulator { get; set; }
 
         #endregion
 
