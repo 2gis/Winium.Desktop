@@ -13,6 +13,14 @@
         #region Public Methods and Operators
 
         [Test]
+        public void IsSelectedCheckBox()
+        {
+            var checkbox = this.MainWindow.FindElement(By.Id("CheckBox1"));
+
+            Assert.IsTrue(checkbox.Selected);
+        }
+
+        [Test]
         public void IsSelectedListItem()
         {
             var list = this.MainWindow.FindElement(By.Id("TextListBox"));
@@ -29,6 +37,16 @@
             var tab = this.MainWindow.FindElement(By.Name("TabItem1"));
 
             Assert.IsTrue(tab.Selected);
+        }
+
+        [Test]
+        public void IsUnselectedCheckBox()
+        {
+            var checkbox = this.MainWindow.FindElement(By.Id("CheckBox1"));
+
+            checkbox.Click();
+
+            Assert.IsFalse(checkbox.Selected);
         }
 
         [Test]

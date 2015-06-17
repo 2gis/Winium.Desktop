@@ -19,6 +19,12 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
+            var controlType = element.GetAutomationPropertyValue<ControlType>(AutomationElement.ControlTypeProperty);
+            if (controlType.Equals(ControlType.CheckBox))
+            {
+                return this.JsonResponse(ResponseStatus.Success, element.ToCheckBox().IsToggleOn);
+            }
+
             var property = SelectionItemPattern.IsSelectedProperty;
             var isSelected = element.GetAutomationPropertyValue<bool>(property);
 
