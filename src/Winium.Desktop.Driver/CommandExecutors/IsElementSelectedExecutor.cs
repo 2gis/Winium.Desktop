@@ -24,21 +24,21 @@
 
             try
             {
-                var isTogglePattrenAvailable =
-                    element.GetAutomationPropertyValue<bool>(AutomationElement.IsTogglePatternAvailableProperty);
+                var isSelectedItemPattrenAvailable =
+                    element.GetAutomationPropertyValue<bool>(AutomationElement.IsSelectionItemPatternAvailableProperty);
 
-                if (isTogglePattrenAvailable)
+                if (isSelectedItemPattrenAvailable)
                 {
-                    var toggleStateProperty = TogglePattern.ToggleStateProperty;
-                    var toggleState = element.GetAutomationPropertyValue<ToggleState>(toggleStateProperty);
-
-                    isSelected = toggleState == ToggleState.On;
+                    var selectionItemProperty = SelectionItemPattern.IsSelectedProperty;
+                    isSelected = element.GetAutomationPropertyValue<bool>(selectionItemProperty);
                 }
             }
             catch (CruciatusException)
             {
-                var selectionItemProperty = SelectionItemPattern.IsSelectedProperty;
-                isSelected = element.GetAutomationPropertyValue<bool>(selectionItemProperty);
+                var toggleStateProperty = TogglePattern.ToggleStateProperty;
+                var toggleState = element.GetAutomationPropertyValue<ToggleState>(toggleStateProperty);
+
+                isSelected = toggleState == ToggleState.On;
             }
 
             return this.JsonResponse(ResponseStatus.Success, isSelected);
