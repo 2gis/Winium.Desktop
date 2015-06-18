@@ -20,18 +20,12 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
-            var isSelected = false;
+            bool isSelected;
 
             try
             {
-                var isSelectedItemPattrenAvailable =
-                    element.GetAutomationPropertyValue<bool>(AutomationElement.IsSelectionItemPatternAvailableProperty);
-
-                if (isSelectedItemPattrenAvailable)
-                {
-                    var selectionItemProperty = SelectionItemPattern.IsSelectedProperty;
-                    isSelected = element.GetAutomationPropertyValue<bool>(selectionItemProperty);
-                }
+                var selectionItemProperty = SelectionItemPattern.IsSelectedProperty;
+                isSelected = element.GetAutomationPropertyValue<bool>(selectionItemProperty);
             }
             catch (CruciatusException)
             {
