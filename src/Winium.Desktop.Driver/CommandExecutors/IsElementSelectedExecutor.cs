@@ -4,6 +4,7 @@
 
     using System.Windows.Automation;
 
+    using Winium.Cruciatus.Exceptions;
     using Winium.Cruciatus.Extensions;
     using Winium.StoreApps.Common;
 
@@ -19,14 +20,26 @@
 
             var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
 
-            var controlType = element.GetAutomationPropertyValue<ControlType>(AutomationElement.ControlTypeProperty);
-            if (controlType.Equals(ControlType.CheckBox))
-            {
-                return this.JsonResponse(ResponseStatus.Success, element.ToCheckBox().IsToggleOn);
-            }
+            var isSelected = false;
 
-            var property = SelectionItemPattern.IsSelectedProperty;
-            var isSelected = element.GetAutomationPropertyValue<bool>(property);
+            try
+            {
+                var isTogglePattrenAvailable =
+                    element.GetAutomationPropertyValue<bool>(AutomationElement.IsTogglePatternAvailableProperty);
+
+                if (isTogglePattrenAvailable)
+                {
+                    var toggleStateProperty = TogglePattern.ToggleStateProperty;
+                    var toggleState = element.GetAutomationPropertyValue<ToggleState>(toggleStateProperty);
+
+                    isSelected = toggleState == ToggleState.On;
+                }
+            }
+            catch (CruciatusException)
+            {
+                var selectionItemProperty = SelectionItemPattern.IsSelectedProperty;
+                isSelected = element.GetAutomationPropertyValue<bool>(selectionItemProperty);
+            }
 
             return this.JsonResponse(ResponseStatus.Success, isSelected);
         }
