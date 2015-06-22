@@ -9,6 +9,7 @@
     using Winium.Cruciatus;
     using Winium.Cruciatus.Settings;
     using Winium.Desktop.Driver.Automator;
+    using Winium.Desktop.Driver.Input;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -46,7 +47,7 @@
 
         private void InitializeKeyboardEmulator(KeyboardSimulatorType keyboardSimulatorType)
         {
-            CruciatusFactory.Settings.KeyboardSimulatorType = keyboardSimulatorType;
+            this.Automator.WiniumKeyboard = new WiniumKeyboard(keyboardSimulatorType);
 
             Logger.Debug("Current keyboard simulator: {0}", keyboardSimulatorType);
         }

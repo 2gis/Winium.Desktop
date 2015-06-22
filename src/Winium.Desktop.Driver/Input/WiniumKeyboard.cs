@@ -21,19 +21,18 @@
 
     class WiniumKeyboard
     {
-        #region Private Fields
+        #region Fields
         
         private readonly KeyboardModifiers modifiers = new KeyboardModifiers();
 
         #endregion
 
-        #region Private Static Fields
+        #region Methods and Operators
 
-        private static volatile WiniumKeyboard instance;
-
-        #endregion
-
-        #region Public Methods and Operators
+        public WiniumKeyboard(KeyboardSimulatorType keyboardSimulatorType)
+        {
+            CruciatusFactory.Settings.KeyboardSimulatorType = keyboardSimulatorType;
+        }
 
         public void SendKeys(char[] keysToSend)
         {
@@ -56,19 +55,6 @@
             CruciatusFactory.Keyboard.KeyUp(key);
         }
 
-        #endregion
-
-        #region Public Static Methods and Operators
-
-        public static WiniumKeyboard GetInstance()
-        {
-            return instance ?? (instance = new WiniumKeyboard());
-        }
-
-        #endregion
-
-        #region Protected Methods and Operators
-
         protected void ReleaseModifiers()
         {
             var tmp = this.modifiers.ToList();
@@ -78,10 +64,6 @@
                 this.KeyUp(modifierKey);
             }
         }
-
-        #endregion
-
-        #region Private Methods and Operators
 
         private void SendKeys(List<KeyEvent> events)
         {

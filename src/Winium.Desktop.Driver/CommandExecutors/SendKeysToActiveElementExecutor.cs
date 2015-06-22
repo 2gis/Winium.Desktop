@@ -18,7 +18,7 @@
         {
             var chars = this.ExecutedCommand.Parameters["value"].Select(x => Convert.ToChar(x.ToString()));
 
-            WiniumKeyboard.GetInstance().SendKeys(chars.ToArray());
+            this.Automator.WiniumKeyboard.SendKeys(chars.ToArray());
 
             return this.JsonResponse();
         }

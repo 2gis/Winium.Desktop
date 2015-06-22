@@ -5,6 +5,7 @@
     using System.Collections.Generic;
 
     using Winium.Cruciatus;
+    using Winium.Desktop.Driver.Input;
 
     #endregion
 
@@ -33,6 +34,8 @@
         public Capabilities ActualCapabilities { get; set; }
 
         public Application Application { get; set; }
+
+        public WiniumKeyboard WiniumKeyboard { get; set; }
 
         public ElementStorage Elements { get; private set; }
 

@@ -19,6 +19,7 @@
             this.LaunchDelay = 0;
             this.DebugConnectToRunningApp = false;
             this.InnerPort = 9998;
+            this.KeyboardSimulator = KeyboardSimulatorType.BasedOnInputSimulatorLib;
         }
 
         #endregion
