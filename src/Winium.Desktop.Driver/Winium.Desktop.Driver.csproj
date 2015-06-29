@@ -61,9 +61,9 @@
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Winium.Cruciatus, Version=2.0.5654.22251, Culture=neutral, processorArchitecture=MSIL">
+    <Reference Include="Winium.Cruciatus, Version=2.0.5658.24940, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\packages\Winium.Cruciatus.2.5.0\lib\net45\Winium.Cruciatus.dll</HintPath>
+      <HintPath>..\packages\Winium.Cruciatus.2.6.0\lib\net45\Winium.Cruciatus.dll</HintPath>
     </Reference>
   </ItemGroup>
   <ItemGroup>
