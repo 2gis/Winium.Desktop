@@ -35,11 +35,11 @@
         [JsonProperty("innerPort")]
         public int InnerPort { get; set; }
 
-        [JsonProperty("launchDelay")]
-        public int LaunchDelay { get; set; }
-
         [JsonProperty("keyboardSimulator")]
         public KeyboardSimulatorType KeyboardSimulator { get; set; }
+
+        [JsonProperty("launchDelay")]
+        public int LaunchDelay { get; set; }
 
         #endregion
 

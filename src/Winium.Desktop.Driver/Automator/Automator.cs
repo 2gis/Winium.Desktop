@@ -35,11 +35,11 @@
 
         public Application Application { get; set; }
 
-        public WiniumKeyboard WiniumKeyboard { get; set; }
-
         public ElementStorage Elements { get; private set; }
 
         public string Session { get; private set; }
+
+        public WiniumKeyboard WiniumKeyboard { get; set; }
 
         #endregion
 

@@ -4,42 +4,33 @@
 
     using System;
     using System.Collections.Generic;
-    using System.Diagnostics;
     using System.Linq;
-    using System.Text;
-    using System.Threading.Tasks;
-
-    using WindowsInput.Native;
 
     using OpenQA.Selenium;
 
     using Winium.Cruciatus;
-    using Winium.Cruciatus.Core;
     using Winium.Cruciatus.Settings;
 
     #endregion
 
-    class WiniumKeyboard
+    internal class WiniumKeyboard
     {
         #region Fields
-        
+
         private readonly KeyboardModifiers modifiers = new KeyboardModifiers();
 
         #endregion
 
-        #region Methods and Operators
+        #region Constructors and Destructors
 
         public WiniumKeyboard(KeyboardSimulatorType keyboardSimulatorType)
         {
             CruciatusFactory.Settings.KeyboardSimulatorType = keyboardSimulatorType;
         }
 
-        public void SendKeys(char[] keysToSend)
-        {
-            List<KeyEvent> builder = keysToSend.Select(key => new KeyEvent(key)).ToList();
+        #endregion
 
-            this.SendKeys(builder);
-        }
+        #region Public Methods and Operators
 
         public void KeyDown(string keyToPress)
         {
@@ -55,6 +46,17 @@
             CruciatusFactory.Keyboard.KeyUp(key);
         }
 
+        public void SendKeys(char[] keysToSend)
+        {
+            var builder = keysToSend.Select(key => new KeyEvent(key)).ToList();
+
+            this.SendKeys(builder);
+        }
+
+        #endregion
+
+        #region Methods
+
         protected void ReleaseModifiers()
         {
             var tmp = this.modifiers.ToList();
@@ -65,7 +67,19 @@
             }
         }
 
-        private void SendKeys(List<KeyEvent> events)
+        private void PressOrReleaseModifier(string modifier)
+        {
+            if (this.modifiers.Contains(modifier))
+            {
+                this.KeyUp(modifier);
+            }
+            else
+            {
+                this.KeyDown(modifier);
+            }
+        }
+
+        private void SendKeys(IEnumerable<KeyEvent> events)
         {
             foreach (var keyEvent in events)
             {
@@ -90,7 +104,7 @@
 
         private void Type(char key)
         {
-            String str = Convert.ToString(key);
+            string str = Convert.ToString(key);
 
             if (this.modifiers.Contains(Keys.LeftShift) || this.modifiers.Contains(Keys.Shift))
             {
@@ -98,18 +112,6 @@
             }
 
             CruciatusFactory.Keyboard.SendText(str);
-        }
-
-        private void PressOrReleaseModifier(string modifier)
-        {
-            if (this.modifiers.Contains(modifier))
-            {
-                this.KeyUp(modifier);
-            }
-            else
-            {
-                this.KeyDown(modifier);
-            }
         }
 
         #endregion

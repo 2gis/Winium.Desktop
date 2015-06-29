@@ -5,9 +5,6 @@
     using System;
     using System.Linq;
 
-    using Winium.Cruciatus;
-    using Winium.Desktop.Driver.Input;
-
     #endregion
 
     internal class SendKeysToActiveElementExecutor : CommandExecutorBase

@@ -1,7 +1,7 @@
 namespace WpfTestApplication.Tests
 {
     #region using
-    
+
     using System.Linq;
 
     using NUnit.Framework;
@@ -28,10 +28,10 @@ namespace WpfTestApplication.Tests
             actions.Click(first).KeyDown(Keys.Shift).Click(random).KeyUp(Keys.Shift).Perform();
 
             var selectedItemsCount = list.FindElements(By.ClassName("ListBoxItem")).Count(item => item.Selected);
-            
+
             Assert.AreEqual(4, selectedItemsCount);
         }
-        
+
         #endregion
     }
 }
