@@ -5,6 +5,8 @@
     using Newtonsoft.Json;
     using Newtonsoft.Json.Serialization;
 
+    using Winium.Cruciatus.Settings;
+
     #endregion
 
     internal class Capabilities
@@ -17,6 +19,7 @@
             this.LaunchDelay = 0;
             this.DebugConnectToRunningApp = false;
             this.InnerPort = 9998;
+            this.KeyboardSimulator = KeyboardSimulatorType.BasedOnInputSimulatorLib;
         }
 
         #endregion
@@ -34,6 +37,9 @@
 
         [JsonProperty("launchDelay")]
         public int LaunchDelay { get; set; }
+
+        [JsonProperty("keyboardSimulator")]
+        public KeyboardSimulatorType KeyboardSimulator { get; set; }
 
         #endregion
 
