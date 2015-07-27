@@ -286,6 +286,10 @@
                 DriverCommand.TouchFlick, 
                 new CommandInfo("POST", "/session/{sessionId}/touch/flick"));
             this.commandDictionary.Add(DriverCommand.UploadFile, new CommandInfo("POST", "/session/{sessionId}/file"));
+
+            this.commandDictionary.Add(
+                DriverCommand.GetDataGridCell,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/cell/{row}/{column}"));
         }
 
         #endregion

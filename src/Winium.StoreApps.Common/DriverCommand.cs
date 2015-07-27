@@ -465,6 +465,12 @@ namespace Winium.StoreApps.Common
         /// </summary>
         public static readonly string UploadFile = "uploadFile";
 
+        /// <summary>
+        /// Represents additional driver commnad GetDataGridCell.
+        /// 
+        /// </summary>
+        public static readonly string GetDataGridCell = "getDataGridCell";
+
         #endregion
     }
 }
