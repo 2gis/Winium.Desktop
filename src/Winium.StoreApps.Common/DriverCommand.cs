@@ -9,6 +9,8 @@ namespace Winium.StoreApps.Common
     {
         #region Static Fields
 
+        #region Selenium
+
         /// <summary>
         /// Represents the AcceptAlert command
         /// 
@@ -464,6 +466,18 @@ namespace Winium.StoreApps.Common
         /// 
         /// </summary>
         public static readonly string UploadFile = "uploadFile";
+
+        #endregion
+
+        #region Winium
+
+        /// <summary>
+        /// Represents additional driver commnad GetDataGridCell.
+        /// 
+        /// </summary>
+        public static readonly string GetDataGridCell = "getDataGridCell";
+
+        #endregion
 
         #endregion
     }

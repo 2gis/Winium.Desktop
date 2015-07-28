@@ -40,8 +40,8 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.Windows.Forms" />
-    <Reference Include="WebDriver, Version=2.45.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Selenium.WebDriver.2.45.0\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=2.46.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Selenium.WebDriver.2.46.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -53,6 +53,7 @@
     <Compile Include="CommandTests\ClearElementTests.cs" />
     <Compile Include="CommandTests\ClickElementTests.cs" />
     <Compile Include="CommandTests\GetActiveElementTests.cs" />
+    <Compile Include="CommandTests\GetDataGridCellTests.cs" />
     <Compile Include="CommandTests\MouseClickTests.cs" />
     <Compile Include="CommandTests\MouseDoubleClickTests.cs" />
     <Compile Include="CommandTests\QuitTests.cs" />
