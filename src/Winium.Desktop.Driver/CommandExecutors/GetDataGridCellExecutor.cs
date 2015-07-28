@@ -14,11 +14,10 @@
         protected override string DoImpl()
         {
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-
-            var dataGrid = this.Automator.Elements.GetRegisteredElement(registeredKey).ToDataGrid();
-
             var column = int.Parse(this.ExecutedCommand.Parameters["COLUMN"].ToString());
             var row = int.Parse(this.ExecutedCommand.Parameters["ROW"].ToString());
+
+            var dataGrid = this.Automator.Elements.GetRegisteredElement(registeredKey).ToDataGrid();
 
             var elementId = this.Automator.Elements.RegisterElement(dataGrid.Item(row, column));
             var webElement = new JsonWebElementContent(elementId);
