@@ -28,7 +28,8 @@
 
         public UriDispatchTables(Uri prefix)
         {
-            this.InitializeCommandDictionary();
+            this.InitializeSeleniumCommandDictionary();
+            this.InitializeWiniumCommandDictionary();
             this.ConstructDispatcherTables(prefix);
         }
 
@@ -88,7 +89,7 @@
             this.deleteDispatcherTable.MakeReadOnly(false);
         }
 
-        private void InitializeCommandDictionary()
+        private void InitializeSeleniumCommandDictionary()
         {
             this.commandDictionary.Add(DriverCommand.DefineDriverMapping, new CommandInfo("POST", "/config/drivers"));
             this.commandDictionary.Add(DriverCommand.Status, new CommandInfo("GET", "/status"));
@@ -286,12 +287,15 @@
                 DriverCommand.TouchFlick, 
                 new CommandInfo("POST", "/session/{sessionId}/touch/flick"));
             this.commandDictionary.Add(DriverCommand.UploadFile, new CommandInfo("POST", "/session/{sessionId}/file"));
+        }
 
+        private void InitializeWiniumCommandDictionary()
+        {
             this.commandDictionary.Add(
                 DriverCommand.GetDataGridCell,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
         }
-
+        
         #endregion
     }
 }
