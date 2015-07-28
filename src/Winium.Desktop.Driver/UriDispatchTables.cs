@@ -289,7 +289,7 @@
 
             this.commandDictionary.Add(
                 DriverCommand.GetDataGridCell,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/cell/{row}/{column}"));
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
         }
 
         #endregion

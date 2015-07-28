@@ -39,7 +39,7 @@
         {
             CommandInfoRepository.Instance.TryAddCommand(
                 GetDataGridCellCommand,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/cell/{row}/{column}"));
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
