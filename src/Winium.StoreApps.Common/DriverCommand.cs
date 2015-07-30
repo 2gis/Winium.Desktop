@@ -477,6 +477,18 @@ namespace Winium.StoreApps.Common
         /// </summary>
         public static readonly string GetDataGridCell = "getDataGridCell";
 
+        /// <summary>
+        /// Represents additional driver commnad GetDataGridColumnCount.
+        /// 
+        /// </summary>
+        public static readonly string GetDataGridColumnCount = "getDataGridColumnCount";
+
+        /// <summary>
+        /// Represents additional driver commnad GetDataGridRowCount.
+        /// 
+        /// </summary>
+        public static readonly string GetDataGridRowCount = "getDataGridRowCount";
+
         #endregion
 
         #endregion

@@ -5,10 +5,11 @@
     using NUnit.Framework;
 
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Remote;
 
     #endregion
 
-    public class BaseForMainWindowTest : BaseTest
+    public class BaseForMainWindowTest : BaseTest<RemoteWebDriver>
     {
         #region Public Properties
 
@@ -21,7 +22,7 @@
         [SetUp]
         public void FindMainWindow()
         {
-            this.MainWindow = this.Driver.FindElementById("WpfTestApplicationMainWindow");
+            this.MainWindow = this.Driver.FindElement(By.Id("WpfTestApplicationMainWindow"));
         }
 
         #endregion

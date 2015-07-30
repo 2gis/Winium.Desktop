@@ -69,6 +69,8 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
+    <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
+    <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />

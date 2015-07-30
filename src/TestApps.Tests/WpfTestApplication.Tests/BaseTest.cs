@@ -7,15 +7,17 @@
 
     using NUnit.Framework;
 
+    using OpenQA.Selenium;
     using OpenQA.Selenium.Remote;
 
     #endregion
 
-    public class BaseTest
+    public class BaseTest<TDriver>
+        where TDriver : class, IWebDriver
     {
         #region Public Properties
 
-        public RemoteWebDriver Driver { get; set; }
+        public TDriver Driver { get; set; }
 
         #endregion
 
@@ -26,7 +28,7 @@
         {
             var dc = new DesiredCapabilities();
             dc.SetCapability("app", Path.Combine(Environment.CurrentDirectory, "WpfTestApplication.exe"));
-            this.Driver = new RemoteWebDriver(new Uri("http://localhost:9999"), dc);
+            this.Driver = Activator.CreateInstance(typeof(TDriver), new Uri("http://localhost:9999"), dc) as TDriver;
         }
 
         [TearDown]

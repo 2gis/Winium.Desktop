@@ -5,11 +5,12 @@
     using NUnit.Framework;
 
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Remote;
 
     #endregion
 
     [TestFixture]
-    public class FindTests : BaseTest
+    public class FindTests : BaseTest<RemoteWebDriver>
     {
         #region Public Methods and Operators
 
