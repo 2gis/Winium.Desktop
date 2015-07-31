@@ -1,13 +1,9 @@
-﻿namespace WpfTestApplication.Tests.CommandTests
+﻿namespace WpfTestApplication.Tests
 {
     #region using
 
     using System;
     using System.Collections.Generic;
-    using System.IO;
-    using System.Reflection;
-
-    using NUnit.Framework;
 
     using OpenQA.Selenium;
     using OpenQA.Selenium.Remote;
@@ -19,6 +15,10 @@
         #region Constants
 
         private const string GetDataGridCellCommand = "getDataGridCell";
+
+        private const string GetDataGridColumnCountCommand = "getDataGridColumnCount";
+
+        private const string GetDataGridRowCountCommand = "getDataGridRowCount";
 
         #endregion
 
@@ -38,8 +38,16 @@
             : base(remoteAddress, desiredCapabilities)
         {
             CommandInfoRepository.Instance.TryAddCommand(
-                GetDataGridCellCommand,
+                GetDataGridCellCommand, 
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                GetDataGridColumnCountCommand, 
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/column/count"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                GetDataGridRowCountCommand, 
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/row/count"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
@@ -53,14 +61,10 @@
 
         public RemoteWebElement GetDataGridCell(IWebElement element, int row, int column)
         {
-            var elementId =
-                element.GetType()
-                    .GetProperty("Id", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetProperty)
-                    .GetValue(element, null)
-                    .ToString();
+            var elementId = TestHelper.GetElementId(element);
 
             var response = this.Execute(
-                GetDataGridCellCommand,
+                GetDataGridCellCommand, 
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
 
             var elementDictionary = response.Value as Dictionary<string, object>;
@@ -72,45 +76,26 @@
             return this.CreateElement((string)elementDictionary["ELEMENT"]);
         }
 
-        #endregion
-    }
-
-    public class GetDataGridCellTests
-    {
-        #region Public Properties
-
-        public TestWebDriver Driver { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        [Test]
-        public void GetDataGridCellAndCheckValue()
+        public int GetDataGridColumnCount(IWebElement element)
         {
-            var mainWindow = this.Driver.FindElementById("WpfTestApplicationMainWindow");
-            var tab = mainWindow.FindElement(By.Name("TabItem4"));
-            tab.Click();
+            var elementId = TestHelper.GetElementId(element);
 
-            var dataGrid = tab.FindElement(By.Id("DataGrid"));
+            var response = this.Execute(
+                GetDataGridColumnCountCommand, 
+                new Dictionary<string, object> { { "id", elementId } });
 
-            var dataGridCell = this.Driver.GetDataGridCell(dataGrid, 0, 1);
-
-            Assert.AreEqual("one", dataGridCell.Text);
+            return int.Parse(response.Value.ToString());
         }
 
-        [SetUp]
-        public void SetUp()
+        public int GetDataGridRowCount(IWebElement element)
         {
-            var dc = new DesiredCapabilities();
-            dc.SetCapability("app", Path.Combine(Environment.CurrentDirectory, "WpfTestApplication.exe"));
-            this.Driver = new TestWebDriver(new Uri("http://localhost:9999"), dc);
-        }
+            var elementId = TestHelper.GetElementId(element);
 
-        [TearDown]
-        public void TearDown()
-        {
-            this.Driver.Close();
+            var response = this.Execute(
+                GetDataGridRowCountCommand, 
+                new Dictionary<string, object> { { "id", elementId } });
+
+            return int.Parse(response.Value.ToString());
         }
 
         #endregion

@@ -47,13 +47,15 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="TestHelper.cs" />
+    <Compile Include="TestWebDriver.cs" />
     <Compile Include="BaseForMainWindowTest.cs" />
     <Compile Include="BaseTest.cs" />
     <Compile Include="ActionChainsTests.cs" />
     <Compile Include="CommandTests\ClearElementTests.cs" />
     <Compile Include="CommandTests\ClickElementTests.cs" />
     <Compile Include="CommandTests\GetActiveElementTests.cs" />
-    <Compile Include="CommandTests\GetDataGridCellTests.cs" />
+    <Compile Include="WiniumCommandTests\DataGridCommandsTests.cs" />
     <Compile Include="CommandTests\MouseClickTests.cs" />
     <Compile Include="CommandTests\MouseDoubleClickTests.cs" />
     <Compile Include="CommandTests\QuitTests.cs" />

@@ -4,9 +4,11 @@
 
     using NUnit.Framework;
 
+    using OpenQA.Selenium.Remote;
+
     #endregion
 
-    public class MouseDoubleClickTests : BaseTest
+    public class MouseDoubleClickTests : BaseTest<RemoteWebDriver>
     {
         #region Public Methods and Operators
 

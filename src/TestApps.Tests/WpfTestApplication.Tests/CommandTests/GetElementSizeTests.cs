@@ -5,10 +5,11 @@
     using NUnit.Framework;
 
     using OpenQA.Selenium;
+    using OpenQA.Selenium.Remote;
 
     #endregion
 
-    public class GetElementSizeTests : BaseTest
+    public class GetElementSizeTests : BaseTest<RemoteWebDriver>
     {
         #region Public Methods and Operators
 
