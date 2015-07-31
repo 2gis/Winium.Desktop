@@ -1,4 +1,4 @@
-﻿namespace WpfTestApplication.Tests.AdditionalCommandTests
+﻿namespace WpfTestApplication.Tests.WiniumCommandTests
 {
     #region using
 
@@ -43,7 +43,7 @@
         }
 
         [SetUp]
-        public void SetUp()
+        public new void SetUp()
         {
             var mainWindow = this.Driver.FindElementById("WpfTestApplicationMainWindow");
             var tab = mainWindow.FindElement(By.Name("TabItem4"));

@@ -1,10 +1,9 @@
-﻿namespace WpfTestApplication.Tests.AdditionalCommandTests
+﻿namespace WpfTestApplication.Tests
 {
     #region using
 
     using System;
     using System.Collections.Generic;
-    using System.Reflection;
 
     using OpenQA.Selenium;
     using OpenQA.Selenium.Remote;
@@ -39,15 +38,15 @@
             : base(remoteAddress, desiredCapabilities)
         {
             CommandInfoRepository.Instance.TryAddCommand(
-                GetDataGridCellCommand,
+                GetDataGridCellCommand, 
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
 
             CommandInfoRepository.Instance.TryAddCommand(
-                GetDataGridColumnCountCommand,
+                GetDataGridColumnCountCommand, 
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/column/count"));
 
             CommandInfoRepository.Instance.TryAddCommand(
-                GetDataGridRowCountCommand,
+                GetDataGridRowCountCommand, 
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/row/count"));
         }
 
@@ -65,7 +64,7 @@
             var elementId = TestHelper.GetElementId(element);
 
             var response = this.Execute(
-                GetDataGridCellCommand,
+                GetDataGridCellCommand, 
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
 
             var elementDictionary = response.Value as Dictionary<string, object>;
@@ -82,7 +81,7 @@
             var elementId = TestHelper.GetElementId(element);
 
             var response = this.Execute(
-                GetDataGridColumnCountCommand,
+                GetDataGridColumnCountCommand, 
                 new Dictionary<string, object> { { "id", elementId } });
 
             return int.Parse(response.Value.ToString());
@@ -93,26 +92,10 @@
             var elementId = TestHelper.GetElementId(element);
 
             var response = this.Execute(
-                GetDataGridRowCountCommand,
+                GetDataGridRowCountCommand, 
                 new Dictionary<string, object> { { "id", elementId } });
 
             return int.Parse(response.Value.ToString());
-        }
-
-        #endregion
-    }
-
-    public static class TestHelper
-    {
-        #region Public Methods and Operators
-
-        public static string GetElementId(IWebElement element)
-        {
-            return
-                element.GetType()
-                    .GetProperty("Id", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.GetProperty)
-                    .GetValue(element, null)
-                    .ToString();
         }
 
         #endregion
