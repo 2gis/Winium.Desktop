@@ -38,10 +38,12 @@
         private void InitializeApplication(bool debugDoNotDeploy = false)
         {
             var appPath = this.Automator.ActualCapabilities.App;
+            var appArguments = this.Automator.ActualCapabilities.Arguments;
+
             this.Automator.Application = new Application(appPath);
             if (!debugDoNotDeploy)
             {
-                this.Automator.Application.Start();
+                this.Automator.Application.Start(appArguments);
             }
         }
 
