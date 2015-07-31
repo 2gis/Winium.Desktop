@@ -3,7 +3,9 @@
     #region using
 
     using Winium.Cruciatus;
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
+    using Winium.StoreApps.Common.Exceptions;
 
     #endregion
 
@@ -16,9 +18,16 @@
             var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
             var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
 
-            var elementId = this.Automator.Elements.FindElement(CruciatusFactory.Root, searchStrategy, searchValue);
-            var webElement = new JsonWebElementContent(elementId);
-            return this.JsonResponse(ResponseStatus.Success, webElement);
+            var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
+            var element = CruciatusFactory.Root.FindElement(strategy);
+            if (element == null)
+            {
+                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
+            }
+
+            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(element);
+            var registeredObjects = new JsonWebElementContent(registeredKey);
+            return this.JsonResponse(ResponseStatus.Success, registeredObjects);
         }
 
         #endregion

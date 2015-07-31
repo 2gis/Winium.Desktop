@@ -28,7 +28,7 @@
             if (haveElement)
             {
                 var registeredKey = this.ExecutedCommand.Parameters["element"].ToString();
-                var element = this.Automator.Elements.GetRegisteredElementOrNull(registeredKey);
+                var element = this.Automator.ElementsRegistry.GetRegisteredElementOrNull(registeredKey);
                 if (element != null)
                 {
                     var rect = element.Properties.BoundingRectangle;

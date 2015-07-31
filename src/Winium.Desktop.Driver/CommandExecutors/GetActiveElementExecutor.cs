@@ -13,7 +13,7 @@
 
         protected override string DoImpl()
         {
-            var elementId = this.Automator.Elements.RegisterElement(CruciatusFactory.FocusedElement);
+            var elementId = this.Automator.ElementsRegistry.RegisterElement(CruciatusFactory.FocusedElement);
             var webElement = new JsonWebElementContent(elementId);
             return this.JsonResponse(ResponseStatus.Success, webElement);
         }

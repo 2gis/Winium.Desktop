@@ -14,7 +14,7 @@
         {
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
 
-            var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
+            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             return this.JsonResponse(ResponseStatus.Success, !element.Properties.IsOffscreen);
         }

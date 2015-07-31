@@ -19,7 +19,7 @@
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
             var propertyName = this.ExecutedCommand.Parameters["NAME"].ToString();
 
-            var element = this.Automator.Elements.GetRegisteredElement(registeredKey);
+            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             try
             {

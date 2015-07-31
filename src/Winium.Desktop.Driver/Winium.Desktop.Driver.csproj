@@ -102,7 +102,7 @@
     <Compile Include="CommandExecutors\NewSessionExecutor.cs" />
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
-    <Compile Include="ElementStorage.cs" />
+    <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />
