@@ -26,8 +26,8 @@
             }
 
             var registeredKey = this.Automator.ElementsRegistry.RegisterElement(element);
-            var registeredObjects = new JsonWebElementContent(registeredKey);
-            return this.JsonResponse(ResponseStatus.Success, registeredObjects);
+            var registeredObject = new JsonElementContent(registeredKey);
+            return this.JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

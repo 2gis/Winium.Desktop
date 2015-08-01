@@ -44,7 +44,7 @@
         }
 
         /// <summary>
-        /// Returns FrameworkElement registered with specified key if any exists. Throws if no element is found.
+        /// Returns CruciatusElement registered with specified key if any exists. Throws if no element is found.
         /// </summary>
         /// <exception cref="AutomationException">
         /// Registered element is not found or element has been garbage collected.

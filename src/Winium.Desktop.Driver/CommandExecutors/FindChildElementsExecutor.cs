@@ -24,7 +24,7 @@
             var elements = parent.FindElements(strategy);
 
             var registeredKeys = this.Automator.ElementsRegistry.RegisterElements(elements);
-            var registeredObjects = registeredKeys.Select(e => new JsonWebElementContent(e));
+            var registeredObjects = registeredKeys.Select(e => new JsonElementContent(e));
             return this.JsonResponse(ResponseStatus.Success, registeredObjects);
         }
 

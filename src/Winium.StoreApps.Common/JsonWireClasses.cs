@@ -7,11 +7,11 @@ namespace Winium.StoreApps.Common
 
     #endregion
 
-    public class JsonWebElementContent
+    public class JsonElementContent
     {
         #region Constructors and Destructors
 
-        public JsonWebElementContent(string element)
+        public JsonElementContent(string element)
         {
             this.Element = element;
         }
