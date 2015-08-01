@@ -13,7 +13,7 @@
                     this.Automator.Application.Kill();
                 }
 
-                this.Automator.Elements.Clear();
+                this.Automator.ElementsRegistry.Clear();
             }
 
             return this.JsonResponse();

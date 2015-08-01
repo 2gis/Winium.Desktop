@@ -4,6 +4,7 @@
 
     using System.Linq;
 
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -18,9 +19,13 @@
             var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
             var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
 
-            var elementIds = this.Automator.Elements.FindElements(registeredKey, searchStrategy, searchValue);
+            var parent = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
+            var elements = parent.FindElements(strategy);
 
-            return this.JsonResponse(ResponseStatus.Success, elementIds.Select(e => new JsonWebElementContent(e)));
+            var registeredKeys = this.Automator.ElementsRegistry.RegisterElements(elements);
+            var registeredObjects = registeredKeys.Select(e => new JsonElementContent(e));
+            return this.JsonResponse(ResponseStatus.Success, registeredObjects);
         }
 
         #endregion

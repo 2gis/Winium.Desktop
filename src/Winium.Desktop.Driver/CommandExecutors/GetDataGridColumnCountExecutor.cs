@@ -15,7 +15,7 @@
         {
             var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
 
-            var dataGrid = this.Automator.Elements.GetRegisteredElement(registeredKey).ToDataGrid();
+            var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey).ToDataGrid();
 
             return this.JsonResponse(ResponseStatus.Success, dataGrid.ColumnCount);
         }

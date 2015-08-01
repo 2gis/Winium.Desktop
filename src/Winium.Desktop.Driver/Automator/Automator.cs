@@ -24,7 +24,7 @@
         public Automator(string session)
         {
             this.Session = session;
-            this.Elements = new ElementStorage();
+            this.ElementsRegistry = new ElementsRegistry();
         }
 
         #endregion
@@ -35,7 +35,7 @@
 
         public Application Application { get; set; }
 
-        public ElementStorage Elements { get; private set; }
+        public ElementsRegistry ElementsRegistry { get; private set; }
 
         public string Session { get; private set; }
 

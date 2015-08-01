@@ -13,9 +13,9 @@
 
         protected override string DoImpl()
         {
-            var elementId = this.Automator.Elements.RegisterElement(CruciatusFactory.FocusedElement);
-            var webElement = new JsonWebElementContent(elementId);
-            return this.JsonResponse(ResponseStatus.Success, webElement);
+            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(CruciatusFactory.FocusedElement);
+            var registeredObject = new JsonElementContent(registeredKey);
+            return this.JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

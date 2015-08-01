@@ -2,7 +2,9 @@
 {
     #region using
 
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
+    using Winium.StoreApps.Common.Exceptions;
 
     #endregion
 
@@ -12,13 +14,21 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var parentKey = this.ExecutedCommand.Parameters["ID"].ToString();
             var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
             var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
 
-            var elementId = this.Automator.Elements.FindElement(registeredKey, searchStrategy, searchValue);
-            var webElement = new JsonWebElementContent(elementId);
-            return this.JsonResponse(ResponseStatus.Success, webElement);
+            var parent = this.Automator.ElementsRegistry.GetRegisteredElement(parentKey);
+            var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
+            var element = parent.FindElement(strategy);
+            if (element == null)
+            {
+                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
+            }
+
+            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(element);
+            var registeredObject = new JsonElementContent(registeredKey);
+            return this.JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion
