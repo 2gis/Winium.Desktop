@@ -50,6 +50,17 @@
             Assert.IsTrue(this.DataGridElement.Displayed);
         }
 
+        [Test]
+        public void SelectDataGridCell()
+        {
+            this.Driver.SelectDataGridCell(this.DataGridElement, 1, 1);
+            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 1, 1);
+
+            var dataGridCellToo = this.Driver.SwitchTo().ActiveElement();
+
+            Assert.IsTrue(dataGridCell.Equals(dataGridCellToo));
+        }
+
         [SetUp]
         public new void SetUp()
         {

@@ -69,6 +69,7 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
+    <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\ScrollToDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />

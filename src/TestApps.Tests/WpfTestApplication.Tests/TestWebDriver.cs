@@ -22,6 +22,8 @@
 
         private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
 
+        private const string SelectDataGridCellCommand = "selectDataGridCell";
+
         #endregion
 
         #region Constructors and Destructors
@@ -54,6 +56,10 @@
             CommandInfoRepository.Instance.TryAddCommand(
                 ScrollToDataGridCellCommand,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/scroll/{row}/{column}"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                SelectDataGridCellCommand,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/select/{row}/{column}"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
@@ -104,13 +110,21 @@
             return int.Parse(response.Value.ToString());
         }
 
-
         public void ScrollToDataGridCell(IWebElement element, int row, int column)
         {
             var elementId = TestHelper.GetElementId(element);
 
             this.Execute(
                 ScrollToDataGridCellCommand,
+                new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
+        }
+
+        public void SelectDataGridCell(IWebElement element, int row, int column)
+        {
+            var elementId = TestHelper.GetElementId(element);
+
+            this.Execute(
+                SelectDataGridCellCommand,
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
         }
 
