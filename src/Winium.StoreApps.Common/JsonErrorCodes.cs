@@ -8,10 +8,10 @@
 
     public static class JsonErrorCodes
     {
-        // TODO: in future, ResponseStatus will be changed to HTTPStatus (by w3c)
+        // TODO: in the future ResponseStatus will be removed in favor of HTTPStatus (see https://w3c.github.io/webdriver/webdriver-spec.html#handling-errors)
         #region Static Fields
 
-        private static readonly Dictionary<ResponseStatus, string> Dict = new Dictionary<ResponseStatus, string>();
+        private static readonly Dictionary<ResponseStatus, string> ErrorMap = new Dictionary<ResponseStatus, string>();
 
         #endregion
 
@@ -19,32 +19,32 @@
 
         static JsonErrorCodes()
         {
-            Dict.Add(ResponseStatus.NoSuchElement, "no such element");
-            Dict.Add(ResponseStatus.NoSuchFrame, "no such frame");
-            Dict.Add(ResponseStatus.UnknownCommand, "unknown command");
-            Dict.Add(ResponseStatus.StaleElementReference, "stale element reference");
-            Dict.Add(ResponseStatus.ElementNotVisible, "element not visible");
-            Dict.Add(ResponseStatus.InvalidElementState, "invalid element state");
-            Dict.Add(ResponseStatus.UnknownError, "unknown error");
-            Dict.Add(ResponseStatus.ElementIsNotSelectable, "element not selectable");
-            Dict.Add(ResponseStatus.JavaScriptError, "javascript error");
-            Dict.Add(ResponseStatus.Timeout, "timeout");
-            Dict.Add(ResponseStatus.NoSuchWindow, "no such window");
-            Dict.Add(ResponseStatus.InvalidCookieDomain, "invalid cookie domain");
-            Dict.Add(ResponseStatus.UnableToSetCookie, "unable to set cookie");
-            Dict.Add(ResponseStatus.UnexpectedAlertOpen, "unexpected alert open");
-            Dict.Add(ResponseStatus.NoAlertOpenError, "no such alert");
-            Dict.Add(ResponseStatus.ScriptTimeout, "script timeout");
-            Dict.Add(ResponseStatus.InvalidElementCoordinates, "invalid element coordinates");
-            Dict.Add(ResponseStatus.InvalidSelector, "invalid selector");
-            Dict.Add(ResponseStatus.SessionNotCreatedException, "session not created");
-            Dict.Add(ResponseStatus.MoveTargetOutOfBounds, "move target out of bounds");
+            ErrorMap.Add(ResponseStatus.NoSuchElement, "no such element");
+            ErrorMap.Add(ResponseStatus.NoSuchFrame, "no such frame");
+            ErrorMap.Add(ResponseStatus.UnknownCommand, "unknown command");
+            ErrorMap.Add(ResponseStatus.StaleElementReference, "stale element reference");
+            ErrorMap.Add(ResponseStatus.ElementNotVisible, "element not visible");
+            ErrorMap.Add(ResponseStatus.InvalidElementState, "invalid element state");
+            ErrorMap.Add(ResponseStatus.UnknownError, "unknown error");
+            ErrorMap.Add(ResponseStatus.ElementIsNotSelectable, "element not selectable");
+            ErrorMap.Add(ResponseStatus.JavaScriptError, "javascript error");
+            ErrorMap.Add(ResponseStatus.Timeout, "timeout");
+            ErrorMap.Add(ResponseStatus.NoSuchWindow, "no such window");
+            ErrorMap.Add(ResponseStatus.InvalidCookieDomain, "invalid cookie domain");
+            ErrorMap.Add(ResponseStatus.UnableToSetCookie, "unable to set cookie");
+            ErrorMap.Add(ResponseStatus.UnexpectedAlertOpen, "unexpected alert open");
+            ErrorMap.Add(ResponseStatus.NoAlertOpenError, "no such alert");
+            ErrorMap.Add(ResponseStatus.ScriptTimeout, "script timeout");
+            ErrorMap.Add(ResponseStatus.InvalidElementCoordinates, "invalid element coordinates");
+            ErrorMap.Add(ResponseStatus.InvalidSelector, "invalid selector");
+            ErrorMap.Add(ResponseStatus.SessionNotCreatedException, "session not created");
+            ErrorMap.Add(ResponseStatus.MoveTargetOutOfBounds, "move target out of bounds");
 
             // TODO: No match in ResponseStatus
-            /*Dict.Add(400, "invalid argument");
-            Dict.Add(404, "invalid session id"); 
-            Dict.Add(405, "unknown method"); 
-            Dict.Add(500, "unsupported operation");*/
+            /*ErrorMap.Add(400, "invalid argument");
+            ErrorMap.Add(404, "invalid session id"); 
+            ErrorMap.Add(405, "unknown method"); 
+            ErrorMap.Add(500, "unsupported operation");*/
         }
 
         #endregion
@@ -53,7 +53,7 @@
 
         public static string Parse(ResponseStatus status)
         {
-            return Dict.ContainsKey(status) ? Dict[status] : status.ToString();
+            return ErrorMap.ContainsKey(status) ? ErrorMap[status] : status.ToString();
         }
 
         #endregion
