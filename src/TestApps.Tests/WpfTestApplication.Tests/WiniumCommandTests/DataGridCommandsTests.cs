@@ -39,15 +39,17 @@
         {
             var rowCount = this.Driver.GetDataGridRowCount(this.DataGridElement);
 
-            Assert.AreEqual(5, rowCount);
+            Assert.AreEqual(15, rowCount);
         }
 
         [Test]
         public void ScrollToDataGridCell()
         {
-            this.Driver.ScrollToDataGridCell(this.DataGridElement, 0, 4);
+            this.Driver.ScrollToDataGridCell(this.DataGridElement, 14, 1);
 
-            Assert.IsTrue(this.DataGridElement.Displayed);
+            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 14, 1);
+
+            Assert.IsTrue(dataGridCell.Displayed);
         }
 
         [Test]

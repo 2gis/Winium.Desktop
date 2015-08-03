@@ -18,7 +18,7 @@
 
             var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
 
-            dataGrid.ScrollTo(column, row);
+            dataGrid.ScrollTo(row, column);
 
             return this.JsonResponse();
         }
