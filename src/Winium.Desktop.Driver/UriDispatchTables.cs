@@ -302,6 +302,14 @@
             this.commandDictionary.Add(
                 DriverCommand.GetDataGridRowCount,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/row/count"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ScrollToDataGridCell,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/scroll/{row}/{column}"));
+
+            this.commandDictionary.Add(
+                DriverCommand.SelectDataGridCell,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/select/{row}/{column}"));
         }
         
         #endregion
