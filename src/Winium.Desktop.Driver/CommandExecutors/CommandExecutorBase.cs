@@ -42,21 +42,21 @@
                 this.Automator = Automator.InstanceForSession(session);
                 return CommandResponse.Create(HttpStatusCode.OK, this.DoImpl());
             }
-            catch (AutomationException ex)
+            catch (AutomationException exception)
             {
-                return CommandResponse.Create(HttpStatusCode.OK, this.JsonResponse(ex.Status, ex.Message));
+                return CommandResponse.Create(HttpStatusCode.OK, this.JsonResponse(exception.Status, exception));
             }
             catch (NotImplementedException exception)
             {
                 return CommandResponse.Create(
-                    HttpStatusCode.NotImplemented, 
-                    this.JsonResponse(ResponseStatus.UnknownCommand, exception.Message));
+                    HttpStatusCode.NotImplemented,
+                    this.JsonResponse(ResponseStatus.UnknownCommand, exception));
             }
             catch (Exception exception)
             {
                 return CommandResponse.Create(
-                    HttpStatusCode.OK, 
-                    this.JsonResponse(ResponseStatus.UnknownError, "Unknown error: " + exception.Message));
+                    HttpStatusCode.OK,
+                    this.JsonResponse(ResponseStatus.UnknownError, exception));
             }
         }
 

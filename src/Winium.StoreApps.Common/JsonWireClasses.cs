@@ -3,6 +3,9 @@ namespace Winium.StoreApps.Common
 {
     #region
 
+    using System;
+    using System.Collections.Generic;
+
     using Newtonsoft.Json;
 
     #endregion
@@ -34,7 +37,28 @@ namespace Winium.StoreApps.Common
         {
             this.SessionId = sessionId;
             this.Status = responseCode;
-            this.Value = value;
+
+            this.Value = responseCode == ResponseStatus.Success ? value : this.PrepareErrorResponse(value);
+        }
+
+        private object PrepareErrorResponse(object value)
+        {
+            var result = new Dictionary<string, string> { { "error", JsonErrorCodes.Parse(this.Status) } };
+            
+            string message;
+            var exception = value as Exception;
+            if (exception != null)
+            {
+                message = exception.Message;
+                result.Add("stacktrace", exception.StackTrace);
+            }
+            else
+            {
+                message = value.ToString();
+            }
+
+            result.Add("message", message);
+            return result;
         }
 
         #endregion

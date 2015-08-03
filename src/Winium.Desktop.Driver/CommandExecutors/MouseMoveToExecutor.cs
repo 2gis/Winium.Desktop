@@ -21,6 +21,7 @@
 
             if (!(haveElement || haveOffset))
             {
+                // TODO: in the future '400 : invalid argument' will be used
                 return this.JsonResponse(ResponseStatus.UnknownError, "WRONG PARAMETERS");
             }
 
