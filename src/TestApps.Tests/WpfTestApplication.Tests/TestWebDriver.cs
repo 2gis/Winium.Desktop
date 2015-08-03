@@ -20,6 +20,8 @@
 
         private const string GetDataGridRowCountCommand = "getDataGridRowCount";
 
+        private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
+
         #endregion
 
         #region Constructors and Destructors
@@ -48,6 +50,10 @@
             CommandInfoRepository.Instance.TryAddCommand(
                 GetDataGridRowCountCommand, 
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/row/count"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                ScrollToDataGridCellCommand,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/scroll/{row}/{column}"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
@@ -96,6 +102,16 @@
                 new Dictionary<string, object> { { "id", elementId } });
 
             return int.Parse(response.Value.ToString());
+        }
+
+
+        public void ScrollToDataGridCell(IWebElement element, int row, int column)
+        {
+            var elementId = TestHelper.GetElementId(element);
+
+            this.Execute(
+                ScrollToDataGridCellCommand,
+                new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
         }
 
         #endregion

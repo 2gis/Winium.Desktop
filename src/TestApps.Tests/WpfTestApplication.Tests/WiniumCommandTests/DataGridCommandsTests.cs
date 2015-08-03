@@ -37,9 +37,17 @@
         [Test]
         public void GetDataGridRowCount()
         {
-            var rewCount = this.Driver.GetDataGridRowCount(this.DataGridElement);
+            var rowCount = this.Driver.GetDataGridRowCount(this.DataGridElement);
 
-            Assert.AreEqual(5, rewCount);
+            Assert.AreEqual(5, rowCount);
+        }
+
+        [Test]
+        public void ScrollToDataGridCell()
+        {
+            this.Driver.ScrollToDataGridCell(this.DataGridElement, 0, 4);
+
+            Assert.IsTrue(this.DataGridElement.Displayed);
         }
 
         [SetUp]
