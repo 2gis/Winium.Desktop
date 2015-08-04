@@ -76,7 +76,10 @@
     <Compile Include="CommandExecutors\GetDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\ExpandComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\IsComboBoxExpandedExecutor.cs" />
-    <Compile Include="CommandExecutors\ScrollToComboBoxItemExecutor - Copy.cs" />
+    <Compile Include="CommandExecutors\GetMenuItemExecutor.cs" />
+    <Compile Include="CommandExecutors\SelectMenuItemExecutor.cs" />
+    <Compile Include="CommandExecutors\ScrollToListBoxItemExecutor.cs" />
+    <Compile Include="CommandExecutors\ScrollToComboBoxItemExecutor.cs" />
     <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />

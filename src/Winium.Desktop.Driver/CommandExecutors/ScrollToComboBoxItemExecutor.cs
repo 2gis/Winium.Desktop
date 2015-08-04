@@ -20,9 +20,9 @@
 
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
 
-            var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToComboBox();
+            var comboBox = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToComboBox();
 
-            var element = dataGrid.ScrollTo(strategy);
+            var element = comboBox.ScrollTo(strategy);
 
             var elementKey = this.Automator.ElementsRegistry.RegisterElement(element);
 

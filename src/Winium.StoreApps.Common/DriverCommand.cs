@@ -531,6 +531,24 @@ namespace Winium.StoreApps.Common
         /// </summary>
         public static readonly string ScrollToComboBoxItem = "scrollToComboBoxItem";
 
+        /// <summary>
+        /// Represents additional driver commnad ScrollToListBoxItem.
+        /// 
+        /// </summary>
+        public static readonly string ScrollToListBoxItem = "scrollToListBoxItem";
+
+        /// <summary>
+        /// Represents additional driver commnad GetMenuItem.
+        /// 
+        /// </summary>
+        public static readonly string GetMenuItem = "getMenuItem";
+
+        /// <summary>
+        /// Represents additional driver commnad SelectMenuItem.
+        /// 
+        /// </summary>
+        public static readonly string SelectMenuItem = "selectMenuItem";
+
         #endregion
 
         #endregion
