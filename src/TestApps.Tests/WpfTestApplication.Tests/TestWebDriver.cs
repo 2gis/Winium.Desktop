@@ -26,11 +26,13 @@
 
         private const string GetDataGridRowCountCommand = "getDataGridRowCount";
 
+        private const string GetMenuItemCommand = "getMenuItemCommand";
+
         private const string IsComboBoxExpandedCommand = "isComboBoxExpanded";
 
-        private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
-
         private const string ScrollToComboBoxItem = "scrollToComboBoxItem";
+
+        private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
 
         private const string SelectDataGridCellCommand = "selectDataGridCell";
 
@@ -90,6 +92,10 @@
             CommandInfoRepository.Instance.TryAddCommand(
                 ScrollToComboBoxItem,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/scroll"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                GetMenuItemCommand,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/item/{path}"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
@@ -101,7 +107,7 @@
 
         #region Public Methods and Operators
 
-        public void CoollapseComboBox(IWebElement element)
+        public void CollapseComboBox(IWebElement element)
         {
             var elementId = TestHelper.GetElementId(element);
 
@@ -113,13 +119,6 @@
             var elementId = TestHelper.GetElementId(element);
 
             this.Execute(ExpandComboBoxCommand, new Dictionary<string, object> { { "id", elementId } });
-        }
-
-        public void CollapseComboBox(IWebElement element)
-        {
-            var elementId = TestHelper.GetElementId(element);
-
-            this.Execute(CollapseComboBoxCommand, new Dictionary<string, object> { { "id", elementId } });
         }
 
         public RemoteWebElement GetComboBoxSelctedItem(IWebElement element)
@@ -166,6 +165,15 @@
             return int.Parse(response.Value.ToString());
         }
 
+        public RemoteWebElement GetMenuItem(IWebElement element, string path)
+        {
+            var response = this.Execute(
+                GetMenuItemCommand,
+                new Dictionary<string, object> { { "id", TestHelper.GetElementId(element) }, { "path", path } });
+
+            return this.CreateElementFromResponse(response);
+        }
+
         public bool IsComboBoxExpanded(IWebElement element)
         {
             var elementId = TestHelper.GetElementId(element);
@@ -197,7 +205,7 @@
 
         #endregion
 
-        #region Private Methods
+        #region Methods
 
         private RemoteWebElement CreateElementFromResponse(Response response)
         {
