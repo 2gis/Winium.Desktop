@@ -39,7 +39,7 @@
         {
             this.ComboBoxElement.Click();
 
-            this.Driver.CoollapseComboBox(this.ComboBoxElement);
+            this.Driver.CollapseComboBox(this.ComboBoxElement);
 
             Assert.IsFalse(this.ComboBoxElement.FindElement(By.Name("Month")).Displayed);
         }

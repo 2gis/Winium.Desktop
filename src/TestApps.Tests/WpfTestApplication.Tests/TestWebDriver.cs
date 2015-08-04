@@ -30,8 +30,6 @@
 
         private const string IsComboBoxExpandedCommand = "isComboBoxExpanded";
 
-        private const string ScrollToComboBoxItem = "scrollToComboBoxItem";
-
         private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
 
         private const string SelectDataGridCellCommand = "selectDataGridCell";
@@ -88,10 +86,6 @@
             CommandInfoRepository.Instance.TryAddCommand(
                 GetComboBoxSelctedItemCommand,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/selected/element"));
-
-            CommandInfoRepository.Instance.TryAddCommand(
-                ScrollToComboBoxItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/scroll"));
 
             CommandInfoRepository.Instance.TryAddCommand(
                 GetMenuItemCommand,
