@@ -310,6 +310,26 @@
             this.commandDictionary.Add(
                 DriverCommand.SelectDataGridCell,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/select/{row}/{column}"));
+
+            this.commandDictionary.Add(
+                DriverCommand.IsComboBoxExpanded,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expanded"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ExpandComboBox,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expand"));
+
+            this.commandDictionary.Add(
+                DriverCommand.CollapseComboBox,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/collapse"));
+
+            this.commandDictionary.Add(
+                DriverCommand.GetComboBoxSelectedItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/selected/element"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ScrollToComboBoxItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/scroll"));
         }
         
         #endregion

@@ -55,6 +55,7 @@
     <Compile Include="CommandTests\ClearElementTests.cs" />
     <Compile Include="CommandTests\ClickElementTests.cs" />
     <Compile Include="CommandTests\GetActiveElementTests.cs" />
+    <Compile Include="WiniumCommandTests\ComboBoxCommandsTests.cs" />
     <Compile Include="WiniumCommandTests\DataGridCommandsTests.cs" />
     <Compile Include="CommandTests\MouseClickTests.cs" />
     <Compile Include="CommandTests\MouseDoubleClickTests.cs" />

@@ -69,11 +69,15 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Automator\Capabilities.cs" />
-    <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
-    <Compile Include="CommandExecutors\ScrollToDataGridCellExecutor.cs" />
+    <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
+    <Compile Include="CommandExecutors\GetComboBoxSelectedItemExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridCellExecutor.cs" />
+    <Compile Include="CommandExecutors\ExpandComboBoxExecutor.cs" />
+    <Compile Include="CommandExecutors\IsComboBoxExpandedExecutor.cs" />
+    <Compile Include="CommandExecutors\ScrollToComboBoxItemExecutor - Copy.cs" />
+    <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
@@ -119,6 +123,7 @@
     <Compile Include="Requester.cs" />
     <Compile Include="CommandHelpers\OSInfo.cs" />
     <Compile Include="CommandHelpers\BuildInfo.cs" />
+    <Compile Include="CommandExecutors\ScrollToDataGridCellExecutor.cs" />
     <Compile Include="UriDispatchTables.cs" />
   </ItemGroup>
   <ItemGroup>
