@@ -8,7 +8,7 @@
 
     #endregion
 
-    internal class GetComboBoxSelectedItemExecutor : CommandExecutorBase
+    internal class FindComboBoxSelectedItemExecutor : CommandExecutorBase
     {
         #region Methods
 

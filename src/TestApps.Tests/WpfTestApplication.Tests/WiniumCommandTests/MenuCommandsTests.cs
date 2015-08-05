@@ -22,7 +22,7 @@
         [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfGetNotExistMenuItem()
         {
-            this.Driver.GetMenuItem(this.MenuElement, "Level1$NotExistItem");
+            this.Driver.FindMenuItem(this.MenuElement, "Level1$NotExistItem");
         }
 
         [Test]
@@ -33,9 +33,9 @@
         }
 
         [Test]
-        public void IsComboBoxExpanded()
+        public void FindMenuItem()
         {
-            var menuItem = this.Driver.GetMenuItem(this.MenuElement, "Level1$MultiLevel2$Level3");
+            var menuItem = this.Driver.FindMenuItem(this.MenuElement, "Level1$MultiLevel2$Level3");
             Assert.NotNull(menuItem);
         }
 

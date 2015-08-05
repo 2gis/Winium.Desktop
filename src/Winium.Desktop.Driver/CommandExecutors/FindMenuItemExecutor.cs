@@ -8,7 +8,7 @@
 
     #endregion
 
-    internal class GetMenuItemExecutor : CommandExecutorBase
+    internal class FindMenuItemExecutor : CommandExecutorBase
     {
         #region Methods
 

@@ -40,11 +40,11 @@
         [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfNoItemsSelected()
         {
-            this.Driver.GetComboBoxSelctedItem(this.ComboBoxElement);
+            this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement);
         }
 
         [Test]
-        public void GetSelectedItem()
+        public void FindSelectedItem()
         {
             this.ComboBoxElement.Click();
 
@@ -52,7 +52,7 @@
 
             item.Click();
 
-            Assert.IsTrue(this.Driver.GetComboBoxSelctedItem(this.ComboBoxElement).Equals(item));
+            Assert.IsTrue(this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement).Equals(item));
         }
 
         [Test]
