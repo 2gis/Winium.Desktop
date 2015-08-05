@@ -523,7 +523,7 @@ namespace Winium.StoreApps.Common
         /// Represents additional driver commnad FindComboBoxSelectedItem.
         /// 
         /// </summary>
-        public static readonly string FindComboBoxSelectedItem = "getComboBoxSelectedItem";
+        public static readonly string FindComboBoxSelectedItem = "findComboBoxSelectedItem";
 
         /// <summary>
         /// Represents additional driver commnad ScrollToComboBoxItem.
@@ -541,7 +541,7 @@ namespace Winium.StoreApps.Common
         /// Represents additional driver commnad FindMenuItem.
         /// 
         /// </summary>
-        public static readonly string FindMenuItem = "getMenuItem";
+        public static readonly string FindMenuItem = "findMenuItem";
 
         /// <summary>
         /// Represents additional driver commnad SelectMenuItem.
