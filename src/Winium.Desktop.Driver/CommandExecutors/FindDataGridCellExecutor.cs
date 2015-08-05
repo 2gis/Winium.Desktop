@@ -22,7 +22,6 @@
             var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
 
             CruciatusElement dataGridCell;
-
             try
             {
                 dataGridCell = dataGrid.Item(row, column);

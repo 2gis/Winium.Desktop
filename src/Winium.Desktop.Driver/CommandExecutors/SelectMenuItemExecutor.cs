@@ -17,11 +17,11 @@
             var dataGridKey = this.ExecutedCommand.Parameters["ID"].ToString();
             var headersPath = this.ExecutedCommand.Parameters["PATH"].ToString();
 
-            var munu = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
+            var menu = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
 
             try
             {
-                munu.SelectItem(headersPath);
+                menu.SelectItem(headersPath);
             }
             catch (CruciatusException exception)
             {
