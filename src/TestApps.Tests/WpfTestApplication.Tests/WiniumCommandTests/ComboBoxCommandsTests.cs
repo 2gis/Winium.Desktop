@@ -19,11 +19,13 @@
         #region Public Methods and Operators
 
         [Test]
-        public void IsComboBoxExpanded()
+        public void CollapseComboBox()
         {
             this.ComboBoxElement.Click();
 
-            Assert.IsTrue(this.Driver.IsComboBoxExpanded(this.ComboBoxElement));
+            this.Driver.CollapseComboBox(this.ComboBoxElement);
+
+            Assert.IsFalse(this.ComboBoxElement.FindElement(By.Name("Month")).Displayed);
         }
 
         [Test]
@@ -35,13 +37,10 @@
         }
 
         [Test]
-        public void CollapseComboBox()
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfNoItemsSelected()
         {
-            this.ComboBoxElement.Click();
-
-            this.Driver.CollapseComboBox(this.ComboBoxElement);
-
-            Assert.IsFalse(this.ComboBoxElement.FindElement(By.Name("Month")).Displayed);
+            this.Driver.GetComboBoxSelctedItem(this.ComboBoxElement);
         }
 
         [Test]
@@ -50,10 +49,18 @@
             this.ComboBoxElement.Click();
 
             var item = this.ComboBoxElement.FindElement(By.Name("Month"));
-            
+
             item.Click();
 
             Assert.IsTrue(this.Driver.GetComboBoxSelctedItem(this.ComboBoxElement).Equals(item));
+        }
+
+        [Test]
+        public void IsComboBoxExpanded()
+        {
+            this.ComboBoxElement.Click();
+
+            Assert.IsTrue(this.Driver.IsComboBoxExpanded(this.ComboBoxElement));
         }
 
         [SetUp]

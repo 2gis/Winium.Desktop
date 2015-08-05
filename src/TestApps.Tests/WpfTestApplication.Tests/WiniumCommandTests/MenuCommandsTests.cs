@@ -19,6 +19,20 @@
         #region Public Methods and Operators
 
         [Test]
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfGetNotExistMenuItem()
+        {
+            this.Driver.GetMenuItem(this.MenuElement, "Level1$NotExistItem");
+        }
+
+        [Test]
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfSelectNotExistMenuItem()
+        {
+            this.Driver.SelectMenuItem(this.MenuElement, "Level1$NotExistItem");
+        }
+
+        [Test]
         public void IsComboBoxExpanded()
         {
             var menuItem = this.Driver.GetMenuItem(this.MenuElement, "Level1$MultiLevel2$Level3");

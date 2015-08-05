@@ -19,11 +19,17 @@
         #region Public Methods and Operators
 
         [Test]
-        public void FindDataGridCell()
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfCellUnavailableForSelection()
         {
-            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 0, 1);
+            this.Driver.SelectDataGridCell(this.DataGridElement, 14, 1);
+        }
 
-            Assert.AreEqual("one", dataGridCell.Text);
+        [Test]
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfDataGridCellNotExist()
+        {
+            this.Driver.FindDataGridCell(this.DataGridElement, 99, 9);
         }
 
         [Test]
@@ -31,6 +37,14 @@
         public void ExpectNotSurchElementExceptionIfDataGridCellUnavailable()
         {
             this.Driver.FindDataGridCell(this.DataGridElement, 14, 1);
+        }
+
+        [Test]
+        public void FindDataGridCell()
+        {
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 0, 1);
+
+            Assert.AreEqual("one", dataGridCell.Text);
         }
 
         [Test]

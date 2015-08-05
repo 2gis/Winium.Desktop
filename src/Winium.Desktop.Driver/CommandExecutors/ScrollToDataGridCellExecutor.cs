@@ -2,7 +2,9 @@
 {
     #region using
 
+    using Winium.Cruciatus.Exceptions;
     using Winium.Cruciatus.Extensions;
+    using Winium.StoreApps.Common;
 
     #endregion
 
@@ -18,7 +20,14 @@
 
             var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
 
-            dataGrid.ScrollTo(row, column);
+            try
+            {
+                dataGrid.ScrollTo(row, column);
+            }
+            catch (CruciatusException exception)
+            {
+                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+            }
 
             return this.JsonResponse();
         }

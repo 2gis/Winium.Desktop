@@ -18,9 +18,9 @@
 
         private const string ExpandComboBoxCommand = "expandComboBox";
 
-        private const string GetComboBoxSelctedItemCommand = "getComboBoxSelctedItem";
+        private const string FindDataGridCellCommand = "findDataGridCell";
 
-        private const string FindDataGridCellCommand = "getDataGridCell";
+        private const string GetComboBoxSelctedItemCommand = "getComboBoxSelctedItem";
 
         private const string GetDataGridColumnCountCommand = "getDataGridColumnCount";
 
@@ -33,6 +33,8 @@
         private const string ScrollToDataGridCellCommand = "scrollToDataGridCell";
 
         private const string SelectDataGridCellCommand = "selectDataGridCell";
+
+        private const string SelectMenuItemCommand = "selectMenuItem";
 
         #endregion
 
@@ -90,6 +92,10 @@
             CommandInfoRepository.Instance.TryAddCommand(
                 GetMenuItemCommand,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/item/{path}"));
+
+            CommandInfoRepository.Instance.TryAddCommand(
+                SelectMenuItemCommand,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/select/{path}"));
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
@@ -115,17 +121,6 @@
             this.Execute(ExpandComboBoxCommand, new Dictionary<string, object> { { "id", elementId } });
         }
 
-        public RemoteWebElement GetComboBoxSelctedItem(IWebElement element)
-        {
-            var elementId = TestHelper.GetElementId(element);
-
-            var response = this.Execute(
-                GetComboBoxSelctedItemCommand,
-                new Dictionary<string, object> { { "id", elementId } });
-
-            return this.CreateElementFromResponse(response);
-        }
-
         public RemoteWebElement FindDataGridCell(IWebElement element, int row, int column)
         {
             var elementId = TestHelper.GetElementId(element);
@@ -133,6 +128,17 @@
             var response = this.Execute(
                 FindDataGridCellCommand,
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
+
+            return this.CreateElementFromResponse(response);
+        }
+
+        public RemoteWebElement GetComboBoxSelctedItem(IWebElement element)
+        {
+            var elementId = TestHelper.GetElementId(element);
+
+            var response = this.Execute(
+                GetComboBoxSelctedItemCommand,
+                new Dictionary<string, object> { { "id", elementId } });
 
             return this.CreateElementFromResponse(response);
         }
@@ -195,6 +201,13 @@
             this.Execute(
                 SelectDataGridCellCommand,
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
+        }
+
+        public void SelectMenuItem(IWebElement element, string path)
+        {
+            this.Execute(
+                SelectMenuItemCommand,
+                new Dictionary<string, object> { { "id", TestHelper.GetElementId(element) }, { "path", path } });
         }
 
         #endregion

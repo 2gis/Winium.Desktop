@@ -2,8 +2,8 @@
 {
     #region using
 
+    using Winium.Cruciatus.Exceptions;
     using Winium.Cruciatus.Extensions;
-    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -19,7 +19,14 @@
 
             var munu = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
 
-            munu.SelectItem(headersPath);
+            try
+            {
+                munu.SelectItem(headersPath);
+            }
+            catch (CruciatusException exception)
+            {
+                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+            }
 
             return this.JsonResponse();
         }
