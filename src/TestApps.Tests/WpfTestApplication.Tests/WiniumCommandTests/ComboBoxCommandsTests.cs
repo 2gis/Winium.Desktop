@@ -19,11 +19,13 @@
         #region Public Methods and Operators
 
         [Test]
-        public void IsComboBoxExpanded()
+        public void CollapseComboBox()
         {
             this.ComboBoxElement.Click();
 
-            Assert.IsTrue(this.Driver.IsComboBoxExpanded(this.ComboBoxElement));
+            this.Driver.CollapseComboBox(this.ComboBoxElement);
+
+            Assert.IsFalse(this.ComboBoxElement.FindElement(By.Name("Month")).Displayed);
         }
 
         [Test]
@@ -35,25 +37,29 @@
         }
 
         [Test]
-        public void CollapseComboBox()
+        public void ExpectNotSurchElementExceptionIfNoItemsSelected()
         {
-            this.ComboBoxElement.Click();
-
-            this.Driver.CollapseComboBox(this.ComboBoxElement);
-
-            Assert.IsFalse(this.ComboBoxElement.FindElement(By.Name("Month")).Displayed);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement));
         }
 
         [Test]
-        public void GetSelectedItem()
+        public void FindSelectedItem()
         {
             this.ComboBoxElement.Click();
 
             var item = this.ComboBoxElement.FindElement(By.Name("Month"));
-            
+
             item.Click();
 
-            Assert.IsTrue(this.Driver.GetComboBoxSelctedItem(this.ComboBoxElement).Equals(item));
+            Assert.IsTrue(this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement).Equals(item));
+        }
+
+        [Test]
+        public void IsComboBoxExpanded()
+        {
+            this.ComboBoxElement.Click();
+
+            Assert.IsTrue(this.Driver.IsComboBoxExpanded(this.ComboBoxElement));
         }
 
         [SetUp]

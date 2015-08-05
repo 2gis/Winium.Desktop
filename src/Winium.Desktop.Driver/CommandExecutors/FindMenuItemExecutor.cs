@@ -3,12 +3,12 @@
     #region using
 
     using Winium.Cruciatus.Extensions;
-    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
+    using Winium.StoreApps.Common.Exceptions;
 
     #endregion
 
-    internal class GetMenuItemExecutor : CommandExecutorBase
+    internal class FindMenuItemExecutor : CommandExecutorBase
     {
         #region Methods
 
@@ -20,6 +20,10 @@
             var munu = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
 
             var element = munu.GetItem(headersPath);
+            if (element == null)
+            {
+                throw new AutomationException("No menu item was found", ResponseStatus.NoSuchElement);
+            }
 
             var elementKey = this.Automator.ElementsRegistry.RegisterElement(element);
 

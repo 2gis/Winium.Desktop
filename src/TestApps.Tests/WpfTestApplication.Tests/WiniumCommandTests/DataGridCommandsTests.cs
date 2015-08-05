@@ -19,9 +19,27 @@
         #region Public Methods and Operators
 
         [Test]
-        public void GetDataGridCell()
+        public void ExpectNotSurchElementExceptionIfCellUnavailableForSelection()
         {
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 0, 1);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.SelectDataGridCell(this.DataGridElement, 14, 1));
+        }
+
+        [Test]
+        public void ExpectNotSurchElementExceptionIfDataGridCellNotExist()
+        {
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindDataGridCell(this.DataGridElement, 99, 9));
+        }
+
+        [Test]
+        public void ExpectNotSurchElementExceptionIfDataGridCellUnavailable()
+        {
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindDataGridCell(this.DataGridElement, 14, 1));
+        }
+
+        [Test]
+        public void FindDataGridCell()
+        {
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 0, 1);
 
             Assert.AreEqual("one", dataGridCell.Text);
         }
@@ -47,7 +65,7 @@
         {
             this.Driver.ScrollToDataGridCell(this.DataGridElement, 14, 1);
 
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 14, 1);
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 14, 1);
 
             Assert.IsTrue(dataGridCell.Displayed);
         }
@@ -56,7 +74,7 @@
         public void SelectDataGridCell()
         {
             this.Driver.SelectDataGridCell(this.DataGridElement, 1, 1);
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 1, 1);
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 1, 1);
 
             var dataGridCellToo = this.Driver.SwitchTo().ActiveElement();
 

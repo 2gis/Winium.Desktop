@@ -2,12 +2,14 @@
 {
     #region using
 
+    using Winium.Cruciatus.Elements;
+    using Winium.Cruciatus.Exceptions;
     using Winium.Cruciatus.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
 
-    internal class GetDataGridCellExecutor : CommandExecutorBase
+    internal class FindDataGridCellExecutor : CommandExecutorBase
     {
         #region Methods
 
@@ -19,7 +21,17 @@
 
             var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
 
-            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(dataGrid.Item(row, column));
+            CruciatusElement dataGridCell;
+            try
+            {
+                dataGridCell = dataGrid.Item(row, column);
+            }
+            catch (CruciatusException exception)
+            {
+                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+            }
+
+            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(dataGridCell);
             var registeredObject = new JsonElementContent(registeredKey);
 
             return this.JsonResponse(ResponseStatus.Success, registeredObject);

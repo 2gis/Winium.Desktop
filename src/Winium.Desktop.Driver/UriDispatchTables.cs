@@ -292,7 +292,7 @@
         private void InitializeWiniumCommandDictionary()
         {
             this.commandDictionary.Add(
-                DriverCommand.GetDataGridCell,
+                DriverCommand.FindDataGridCell,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
 
             this.commandDictionary.Add(
@@ -324,7 +324,7 @@
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/collapse"));
 
             this.commandDictionary.Add(
-                DriverCommand.GetComboBoxSelectedItem,
+                DriverCommand.FindComboBoxSelectedItem,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/selected/element"));
 
             this.commandDictionary.Add(
@@ -336,7 +336,7 @@
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/listbox/scroll"));
 
             this.commandDictionary.Add(
-                DriverCommand.GetMenuItem,
+                DriverCommand.FindMenuItem,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/item/{path}"));
 
             this.commandDictionary.Add(

@@ -472,10 +472,10 @@ namespace Winium.StoreApps.Common
         #region Winium
 
         /// <summary>
-        /// Represents additional driver commnad GetDataGridCell.
+        /// Represents additional driver commnad FindDataGridCell.
         /// 
         /// </summary>
-        public static readonly string GetDataGridCell = "getDataGridCell";
+        public static readonly string FindDataGridCell = "findDataGridCell";
 
         /// <summary>
         /// Represents additional driver commnad GetDataGridColumnCount.
@@ -520,10 +520,10 @@ namespace Winium.StoreApps.Common
         public static readonly string CollapseComboBox = "collapseComboBox";
 
         /// <summary>
-        /// Represents additional driver commnad GetComboBoxSelctedItem.
+        /// Represents additional driver commnad FindComboBoxSelectedItem.
         /// 
         /// </summary>
-        public static readonly string GetComboBoxSelectedItem = "getComboBoxSelectedItem";
+        public static readonly string FindComboBoxSelectedItem = "findComboBoxSelectedItem";
 
         /// <summary>
         /// Represents additional driver commnad ScrollToComboBoxItem.
@@ -538,10 +538,10 @@ namespace Winium.StoreApps.Common
         public static readonly string ScrollToListBoxItem = "scrollToListBoxItem";
 
         /// <summary>
-        /// Represents additional driver commnad GetMenuItem.
+        /// Represents additional driver commnad FindMenuItem.
         /// 
         /// </summary>
-        public static readonly string GetMenuItem = "getMenuItem";
+        public static readonly string FindMenuItem = "findMenuItem";
 
         /// <summary>
         /// Represents additional driver commnad SelectMenuItem.

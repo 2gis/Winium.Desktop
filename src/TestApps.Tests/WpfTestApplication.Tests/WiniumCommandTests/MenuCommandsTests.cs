@@ -19,9 +19,23 @@
         #region Public Methods and Operators
 
         [Test]
-        public void IsComboBoxExpanded()
+        public void ExpectNotSurchElementExceptionIfGetNotExistMenuItem()
         {
-            var menuItem = this.Driver.GetMenuItem(this.MenuElement, "Level1$MultiLevel2$Level3");
+            Assert.Throws<NoSuchElementException>(
+                () => this.Driver.FindMenuItem(this.MenuElement, "Level1$NotExistItem"));
+        }
+
+        [Test]
+        public void ExpectNotSurchElementExceptionIfSelectNotExistMenuItem()
+        {
+            Assert.Throws<NoSuchElementException>(
+                () => this.Driver.SelectMenuItem(this.MenuElement, "Level1$NotExistItem"));
+        }
+
+        [Test]
+        public void FindMenuItem()
+        {
+            var menuItem = this.Driver.FindMenuItem(this.MenuElement, "Level1$MultiLevel2$Level3");
             Assert.NotNull(menuItem);
         }
 
