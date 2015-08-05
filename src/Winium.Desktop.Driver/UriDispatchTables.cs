@@ -96,14 +96,14 @@
             this.commandDictionary.Add(DriverCommand.NewSession, new CommandInfo("POST", "/session"));
             this.commandDictionary.Add(DriverCommand.GetSessionList, new CommandInfo("GET", "/sessions"));
             this.commandDictionary.Add(
-                DriverCommand.GetSessionCapabilities, 
+                DriverCommand.GetSessionCapabilities,
                 new CommandInfo("GET", "/session/{sessionId}"));
             this.commandDictionary.Add(DriverCommand.Quit, new CommandInfo("DELETE", "/session/{sessionId}"));
             this.commandDictionary.Add(
-                DriverCommand.GetCurrentWindowHandle, 
+                DriverCommand.GetCurrentWindowHandle,
                 new CommandInfo("GET", "/session/{sessionId}/window_handle"));
             this.commandDictionary.Add(
-                DriverCommand.GetWindowHandles, 
+                DriverCommand.GetWindowHandles,
                 new CommandInfo("GET", "/session/{sessionId}/window_handles"));
             this.commandDictionary.Add(DriverCommand.GetCurrentUrl, new CommandInfo("GET", "/session/{sessionId}/url"));
             this.commandDictionary.Add(DriverCommand.Get, new CommandInfo("POST", "/session/{sessionId}/url"));
@@ -111,180 +111,180 @@
             this.commandDictionary.Add(DriverCommand.GoBack, new CommandInfo("POST", "/session/{sessionId}/back"));
             this.commandDictionary.Add(DriverCommand.Refresh, new CommandInfo("POST", "/session/{sessionId}/refresh"));
             this.commandDictionary.Add(
-                DriverCommand.ExecuteScript, 
+                DriverCommand.ExecuteScript,
                 new CommandInfo("POST", "/session/{sessionId}/execute"));
             this.commandDictionary.Add(
-                DriverCommand.ExecuteAsyncScript, 
+                DriverCommand.ExecuteAsyncScript,
                 new CommandInfo("POST", "/session/{sessionId}/execute_async"));
             this.commandDictionary.Add(
-                DriverCommand.Screenshot, 
+                DriverCommand.Screenshot,
                 new CommandInfo("GET", "/session/{sessionId}/screenshot"));
             this.commandDictionary.Add(
-                DriverCommand.SwitchToFrame, 
+                DriverCommand.SwitchToFrame,
                 new CommandInfo("POST", "/session/{sessionId}/frame"));
             this.commandDictionary.Add(
-                DriverCommand.SwitchToParentFrame, 
+                DriverCommand.SwitchToParentFrame,
                 new CommandInfo("POST", "/session/{sessionId}/frame/parent"));
             this.commandDictionary.Add(
-                DriverCommand.SwitchToWindow, 
+                DriverCommand.SwitchToWindow,
                 new CommandInfo("POST", "/session/{sessionId}/window"));
             this.commandDictionary.Add(
-                DriverCommand.GetAllCookies, 
+                DriverCommand.GetAllCookies,
                 new CommandInfo("GET", "/session/{sessionId}/cookie"));
             this.commandDictionary.Add(DriverCommand.AddCookie, new CommandInfo("POST", "/session/{sessionId}/cookie"));
             this.commandDictionary.Add(
-                DriverCommand.DeleteAllCookies, 
+                DriverCommand.DeleteAllCookies,
                 new CommandInfo("DELETE", "/session/{sessionId}/cookie"));
             this.commandDictionary.Add(
-                DriverCommand.DeleteCookie, 
+                DriverCommand.DeleteCookie,
                 new CommandInfo("DELETE", "/session/{sessionId}/cookie/{name}"));
             this.commandDictionary.Add(
-                DriverCommand.GetPageSource, 
+                DriverCommand.GetPageSource,
                 new CommandInfo("GET", "/session/{sessionId}/source"));
             this.commandDictionary.Add(DriverCommand.GetTitle, new CommandInfo("GET", "/session/{sessionId}/title"));
             this.commandDictionary.Add(
-                DriverCommand.FindElement, 
+                DriverCommand.FindElement,
                 new CommandInfo("POST", "/session/{sessionId}/element"));
             this.commandDictionary.Add(
-                DriverCommand.FindElements, 
+                DriverCommand.FindElements,
                 new CommandInfo("POST", "/session/{sessionId}/elements"));
             this.commandDictionary.Add(
-                DriverCommand.GetActiveElement, 
+                DriverCommand.GetActiveElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/active"));
             this.commandDictionary.Add(
-                DriverCommand.FindChildElement, 
+                DriverCommand.FindChildElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/element"));
             this.commandDictionary.Add(
-                DriverCommand.FindChildElements, 
+                DriverCommand.FindChildElements,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/elements"));
             this.commandDictionary.Add(
-                DriverCommand.DescribeElement, 
+                DriverCommand.DescribeElement,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}"));
             this.commandDictionary.Add(
-                DriverCommand.ClickElement, 
+                DriverCommand.ClickElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/click"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementText, 
+                DriverCommand.GetElementText,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/text"));
             this.commandDictionary.Add(
-                DriverCommand.SubmitElement, 
+                DriverCommand.SubmitElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/submit"));
             this.commandDictionary.Add(
-                DriverCommand.SendKeysToElement, 
+                DriverCommand.SendKeysToElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/value"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementTagName, 
+                DriverCommand.GetElementTagName,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/name"));
             this.commandDictionary.Add(
-                DriverCommand.ClearElement, 
+                DriverCommand.ClearElement,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/clear"));
             this.commandDictionary.Add(
-                DriverCommand.IsElementSelected, 
+                DriverCommand.IsElementSelected,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/selected"));
             this.commandDictionary.Add(
-                DriverCommand.IsElementEnabled, 
+                DriverCommand.IsElementEnabled,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/enabled"));
             this.commandDictionary.Add(
-                DriverCommand.IsElementDisplayed, 
+                DriverCommand.IsElementDisplayed,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/displayed"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementLocation, 
+                DriverCommand.GetElementLocation,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/location"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementLocationOnceScrolledIntoView, 
+                DriverCommand.GetElementLocationOnceScrolledIntoView,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/location_in_view"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementSize, 
+                DriverCommand.GetElementSize,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/size"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementValueOfCssProperty, 
+                DriverCommand.GetElementValueOfCssProperty,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/css/{propertyName}"));
             this.commandDictionary.Add(
-                DriverCommand.GetElementAttribute, 
+                DriverCommand.GetElementAttribute,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/attribute/{name}"));
             this.commandDictionary.Add(
-                DriverCommand.ElementEquals, 
+                DriverCommand.ElementEquals,
                 new CommandInfo("GET", "/session/{sessionId}/element/{id}/equals/{other}"));
             this.commandDictionary.Add(DriverCommand.Close, new CommandInfo("DELETE", "/session/{sessionId}/window"));
             this.commandDictionary.Add(
-                DriverCommand.GetWindowSize, 
+                DriverCommand.GetWindowSize,
                 new CommandInfo("GET", "/session/{sessionId}/window/{windowHandle}/size"));
             this.commandDictionary.Add(
-                DriverCommand.SetWindowSize, 
+                DriverCommand.SetWindowSize,
                 new CommandInfo("POST", "/session/{sessionId}/window/{windowHandle}/size"));
             this.commandDictionary.Add(
-                DriverCommand.GetWindowPosition, 
+                DriverCommand.GetWindowPosition,
                 new CommandInfo("GET", "/session/{sessionId}/window/{windowHandle}/position"));
             this.commandDictionary.Add(
-                DriverCommand.SetWindowPosition, 
+                DriverCommand.SetWindowPosition,
                 new CommandInfo("POST", "/session/{sessionId}/window/{windowHandle}/position"));
             this.commandDictionary.Add(
-                DriverCommand.MaximizeWindow, 
+                DriverCommand.MaximizeWindow,
                 new CommandInfo("POST", "/session/{sessionId}/window/{windowHandle}/maximize"));
             this.commandDictionary.Add(
-                DriverCommand.GetOrientation, 
+                DriverCommand.GetOrientation,
                 new CommandInfo("GET", "/session/{sessionId}/orientation"));
             this.commandDictionary.Add(
-                DriverCommand.SetOrientation, 
+                DriverCommand.SetOrientation,
                 new CommandInfo("POST", "/session/{sessionId}/orientation"));
             this.commandDictionary.Add(
-                DriverCommand.DismissAlert, 
+                DriverCommand.DismissAlert,
                 new CommandInfo("POST", "/session/{sessionId}/dismiss_alert"));
             this.commandDictionary.Add(
-                DriverCommand.AcceptAlert, 
+                DriverCommand.AcceptAlert,
                 new CommandInfo("POST", "/session/{sessionId}/accept_alert"));
             this.commandDictionary.Add(
-                DriverCommand.GetAlertText, 
+                DriverCommand.GetAlertText,
                 new CommandInfo("GET", "/session/{sessionId}/alert_text"));
             this.commandDictionary.Add(
-                DriverCommand.SetAlertValue, 
+                DriverCommand.SetAlertValue,
                 new CommandInfo("POST", "/session/{sessionId}/alert_text"));
             this.commandDictionary.Add(
-                DriverCommand.SetTimeout, 
+                DriverCommand.SetTimeout,
                 new CommandInfo("POST", "/session/{sessionId}/timeouts"));
             this.commandDictionary.Add(
-                DriverCommand.ImplicitlyWait, 
+                DriverCommand.ImplicitlyWait,
                 new CommandInfo("POST", "/session/{sessionId}/timeouts/implicit_wait"));
             this.commandDictionary.Add(
-                DriverCommand.SetAsyncScriptTimeout, 
+                DriverCommand.SetAsyncScriptTimeout,
                 new CommandInfo("POST", "/session/{sessionId}/timeouts/async_script"));
             this.commandDictionary.Add(DriverCommand.MouseClick, new CommandInfo("POST", "/session/{sessionId}/click"));
             this.commandDictionary.Add(
-                DriverCommand.MouseDoubleClick, 
+                DriverCommand.MouseDoubleClick,
                 new CommandInfo("POST", "/session/{sessionId}/doubleclick"));
             this.commandDictionary.Add(
-                DriverCommand.MouseDown, 
+                DriverCommand.MouseDown,
                 new CommandInfo("POST", "/session/{sessionId}/buttondown"));
             this.commandDictionary.Add(DriverCommand.MouseUp, new CommandInfo("POST", "/session/{sessionId}/buttonup"));
             this.commandDictionary.Add(
-                DriverCommand.MouseMoveTo, 
+                DriverCommand.MouseMoveTo,
                 new CommandInfo("POST", "/session/{sessionId}/moveto"));
             this.commandDictionary.Add(
-                DriverCommand.SendKeysToActiveElement, 
+                DriverCommand.SendKeysToActiveElement,
                 new CommandInfo("POST", "/session/{sessionId}/keys"));
             this.commandDictionary.Add(
-                DriverCommand.TouchSingleTap, 
+                DriverCommand.TouchSingleTap,
                 new CommandInfo("POST", "/session/{sessionId}/touch/click"));
             this.commandDictionary.Add(
-                DriverCommand.TouchPress, 
+                DriverCommand.TouchPress,
                 new CommandInfo("POST", "/session/{sessionId}/touch/down"));
             this.commandDictionary.Add(
-                DriverCommand.TouchRelease, 
+                DriverCommand.TouchRelease,
                 new CommandInfo("POST", "/session/{sessionId}/touch/up"));
             this.commandDictionary.Add(
-                DriverCommand.TouchMove, 
+                DriverCommand.TouchMove,
                 new CommandInfo("POST", "/session/{sessionId}/touch/move"));
             this.commandDictionary.Add(
-                DriverCommand.TouchScroll, 
+                DriverCommand.TouchScroll,
                 new CommandInfo("POST", "/session/{sessionId}/touch/scroll"));
             this.commandDictionary.Add(
-                DriverCommand.TouchDoubleTap, 
+                DriverCommand.TouchDoubleTap,
                 new CommandInfo("POST", "/session/{sessionId}/touch/doubleclick"));
             this.commandDictionary.Add(
-                DriverCommand.TouchLongPress, 
+                DriverCommand.TouchLongPress,
                 new CommandInfo("POST", "/session/{sessionId}/touch/longclick"));
             this.commandDictionary.Add(
-                DriverCommand.TouchFlick, 
+                DriverCommand.TouchFlick,
                 new CommandInfo("POST", "/session/{sessionId}/touch/flick"));
             this.commandDictionary.Add(DriverCommand.UploadFile, new CommandInfo("POST", "/session/{sessionId}/file"));
         }
@@ -310,8 +310,40 @@
             this.commandDictionary.Add(
                 DriverCommand.SelectDataGridCell,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/select/{row}/{column}"));
+
+            this.commandDictionary.Add(
+                DriverCommand.IsComboBoxExpanded,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expanded"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ExpandComboBox,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expand"));
+
+            this.commandDictionary.Add(
+                DriverCommand.CollapseComboBox,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/collapse"));
+
+            this.commandDictionary.Add(
+                DriverCommand.GetComboBoxSelectedItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/selected/element"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ScrollToComboBoxItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/scroll"));
+
+            this.commandDictionary.Add(
+                DriverCommand.ScrollToListBoxItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/listbox/scroll"));
+
+            this.commandDictionary.Add(
+                DriverCommand.GetMenuItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/item/{path}"));
+
+            this.commandDictionary.Add(
+                DriverCommand.SelectMenuItem,
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/select/{path}"));
         }
-        
+
         #endregion
     }
 }

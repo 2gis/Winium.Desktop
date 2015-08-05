@@ -501,6 +501,54 @@ namespace Winium.StoreApps.Common
         /// </summary>
         public static readonly string SelectDataGridCell = "selectDataGridCell";
 
+        /// <summary>
+        /// Represents additional driver commnad IsComboBoxExpanded.
+        /// 
+        /// </summary>
+        public static readonly string IsComboBoxExpanded = "isComboBoxExpanded";
+
+        /// <summary>
+        /// Represents additional driver commnad ExpandComboBox.
+        /// 
+        /// </summary>
+        public static readonly string ExpandComboBox = "expandComboBox";
+
+        /// <summary>
+        /// Represents additional driver commnad CollapseComboBox.
+        /// 
+        /// </summary>
+        public static readonly string CollapseComboBox = "collapseComboBox";
+
+        /// <summary>
+        /// Represents additional driver commnad GetComboBoxSelctedItem.
+        /// 
+        /// </summary>
+        public static readonly string GetComboBoxSelectedItem = "getComboBoxSelectedItem";
+
+        /// <summary>
+        /// Represents additional driver commnad ScrollToComboBoxItem.
+        /// 
+        /// </summary>
+        public static readonly string ScrollToComboBoxItem = "scrollToComboBoxItem";
+
+        /// <summary>
+        /// Represents additional driver commnad ScrollToListBoxItem.
+        /// 
+        /// </summary>
+        public static readonly string ScrollToListBoxItem = "scrollToListBoxItem";
+
+        /// <summary>
+        /// Represents additional driver commnad GetMenuItem.
+        /// 
+        /// </summary>
+        public static readonly string GetMenuItem = "getMenuItem";
+
+        /// <summary>
+        /// Represents additional driver commnad SelectMenuItem.
+        /// 
+        /// </summary>
+        public static readonly string SelectMenuItem = "selectMenuItem";
+
         #endregion
 
         #endregion
