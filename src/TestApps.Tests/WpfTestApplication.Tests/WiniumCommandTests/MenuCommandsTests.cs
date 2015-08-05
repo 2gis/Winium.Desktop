@@ -19,17 +19,17 @@
         #region Public Methods and Operators
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfGetNotExistMenuItem()
         {
-            this.Driver.FindMenuItem(this.MenuElement, "Level1$NotExistItem");
+            Assert.Throws<NoSuchElementException>(
+                () => this.Driver.FindMenuItem(this.MenuElement, "Level1$NotExistItem"));
         }
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfSelectNotExistMenuItem()
         {
-            this.Driver.SelectMenuItem(this.MenuElement, "Level1$NotExistItem");
+            Assert.Throws<NoSuchElementException>(
+                () => this.Driver.SelectMenuItem(this.MenuElement, "Level1$NotExistItem"));
         }
 
         [Test]

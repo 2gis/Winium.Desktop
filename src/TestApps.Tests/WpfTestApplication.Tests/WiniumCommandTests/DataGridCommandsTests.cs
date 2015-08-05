@@ -19,24 +19,21 @@
         #region Public Methods and Operators
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfCellUnavailableForSelection()
         {
-            this.Driver.SelectDataGridCell(this.DataGridElement, 14, 1);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.SelectDataGridCell(this.DataGridElement, 14, 1));
         }
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfDataGridCellNotExist()
         {
-            this.Driver.FindDataGridCell(this.DataGridElement, 99, 9);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindDataGridCell(this.DataGridElement, 99, 9));
         }
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfDataGridCellUnavailable()
         {
-            this.Driver.FindDataGridCell(this.DataGridElement, 14, 1);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindDataGridCell(this.DataGridElement, 14, 1));
         }
 
         [Test]

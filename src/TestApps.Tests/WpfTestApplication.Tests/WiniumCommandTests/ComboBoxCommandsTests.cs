@@ -37,10 +37,9 @@
         }
 
         [Test]
-        [ExpectedException(typeof(NoSuchElementException))]
         public void ExpectNotSurchElementExceptionIfNoItemsSelected()
         {
-            this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement);
+            Assert.Throws<NoSuchElementException>(() => this.Driver.FindComboBoxSelctedItem(this.ComboBoxElement));
         }
 
         [Test]
