@@ -2,6 +2,7 @@
 {
     #region using
 
+    using Winium.Cruciatus.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -16,7 +17,7 @@
 
             var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
-            return this.JsonResponse(ResponseStatus.Success, element.Properties.IsEnabled);
+            return this.JsonResponse(ResponseStatus.Success, element.ToComboBox().IsExpanded);
         }
 
         #endregion
