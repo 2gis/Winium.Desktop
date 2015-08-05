@@ -19,11 +19,18 @@
         #region Public Methods and Operators
 
         [Test]
-        public void GetDataGridCell()
+        public void FindDataGridCell()
         {
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 0, 1);
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 0, 1);
 
             Assert.AreEqual("one", dataGridCell.Text);
+        }
+
+        [Test]
+        [ExpectedException(typeof(NoSuchElementException))]
+        public void ExpectNotSurchElementExceptionIfDataGridCellUnavailable()
+        {
+            this.Driver.FindDataGridCell(this.DataGridElement, 14, 1);
         }
 
         [Test]
@@ -47,7 +54,7 @@
         {
             this.Driver.ScrollToDataGridCell(this.DataGridElement, 14, 1);
 
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 14, 1);
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 14, 1);
 
             Assert.IsTrue(dataGridCell.Displayed);
         }
@@ -56,7 +63,7 @@
         public void SelectDataGridCell()
         {
             this.Driver.SelectDataGridCell(this.DataGridElement, 1, 1);
-            var dataGridCell = this.Driver.GetDataGridCell(this.DataGridElement, 1, 1);
+            var dataGridCell = this.Driver.FindDataGridCell(this.DataGridElement, 1, 1);
 
             var dataGridCellToo = this.Driver.SwitchTo().ActiveElement();
 

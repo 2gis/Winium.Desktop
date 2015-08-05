@@ -20,7 +20,7 @@
 
         private const string GetComboBoxSelctedItemCommand = "getComboBoxSelctedItem";
 
-        private const string GetDataGridCellCommand = "getDataGridCell";
+        private const string FindDataGridCellCommand = "getDataGridCell";
 
         private const string GetDataGridColumnCountCommand = "getDataGridColumnCount";
 
@@ -52,7 +52,7 @@
             : base(remoteAddress, desiredCapabilities)
         {
             CommandInfoRepository.Instance.TryAddCommand(
-                GetDataGridCellCommand,
+                FindDataGridCellCommand,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
 
             CommandInfoRepository.Instance.TryAddCommand(
@@ -126,12 +126,12 @@
             return this.CreateElementFromResponse(response);
         }
 
-        public RemoteWebElement GetDataGridCell(IWebElement element, int row, int column)
+        public RemoteWebElement FindDataGridCell(IWebElement element, int row, int column)
         {
             var elementId = TestHelper.GetElementId(element);
 
             var response = this.Execute(
-                GetDataGridCellCommand,
+                FindDataGridCellCommand,
                 new Dictionary<string, object> { { "id", elementId }, { "row", row }, { "column", column } });
 
             return this.CreateElementFromResponse(response);

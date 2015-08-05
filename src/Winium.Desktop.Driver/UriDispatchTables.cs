@@ -292,7 +292,7 @@
         private void InitializeWiniumCommandDictionary()
         {
             this.commandDictionary.Add(
-                DriverCommand.GetDataGridCell,
+                DriverCommand.FindDataGridCell,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
 
             this.commandDictionary.Add(

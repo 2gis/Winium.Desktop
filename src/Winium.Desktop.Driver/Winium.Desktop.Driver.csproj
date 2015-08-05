@@ -73,7 +73,6 @@
     <Compile Include="CommandExecutors\GetComboBoxSelectedItemExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />
-    <Compile Include="CommandExecutors\GetDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\ExpandComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\IsComboBoxExpandedExecutor.cs" />
     <Compile Include="CommandExecutors\GetMenuItemExecutor.cs" />
@@ -81,6 +80,7 @@
     <Compile Include="CommandExecutors\ScrollToListBoxItemExecutor.cs" />
     <Compile Include="CommandExecutors\ScrollToComboBoxItemExecutor.cs" />
     <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
+    <Compile Include="CommandExecutors\FindDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
