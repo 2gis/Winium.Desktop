@@ -325,7 +325,7 @@
 
             this.commandDictionary.Add(
                 DriverCommand.FindComboBoxSelectedItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/item/selected"));
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/items/selected"));
 
             this.commandDictionary.Add(
                 DriverCommand.ScrollToComboBoxItem,
