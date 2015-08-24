@@ -153,7 +153,9 @@
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">
   </Target>
-  <Target Name="AfterBuild">
-  </Target>
   -->
+  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
+    <MakeDir Directories="$(OutDir)Merge" />
+    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll"/>
+  </Target>
 </Project>
