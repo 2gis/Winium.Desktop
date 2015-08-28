@@ -14,4 +14,4 @@ Invoke-NUnit $testFiles -Verbose
 
 # Artifacts
 New-Item -ItemType directory -Path $artifactsDir | Out-Null
-Copy-Item -Path ($driverMerged, $errorLog, $outputLog) -Destination $artifactsDir
+Copy-Item -Path ($errorLog, $outputLog) -Destination $artifactsDir
