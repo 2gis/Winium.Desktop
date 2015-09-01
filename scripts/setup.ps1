@@ -17,7 +17,7 @@ $errorLog = 'error.log'
 $outputLog = 'output.log'
 $assemblyInfoPath = Join-Path $PSScriptRoot '..\src\Winium.Desktop.Driver\Properties\AssemblyInfo.cs'
 $changelogPath = Join-Path $PSScriptRoot '..\CHANGELOG.md'
-$githubProjectName = 'Winium.Desktop.Driver'
+$githubProjectName = 'Winium.Desktop'
 
 $msbuildProperties = @{
     'Configuration' = $configuration
