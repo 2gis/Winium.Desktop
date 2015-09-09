@@ -2,6 +2,7 @@
 {
     #region using
 
+    using System;
     using System.Collections.Generic;
 
     using Winium.Cruciatus;
@@ -15,7 +16,9 @@
 
         private static readonly object LockObject = new object();
 
-        private static volatile Automator instance;
+        private static Dictionary<string, Automator> automators = new Dictionary<string, Automator>();
+
+        public static IEnumerable<Automator> Automators { get { return automators.Values; } }
 
         #endregion
 
@@ -45,6 +48,24 @@
 
         #region Public Methods and Operators
 
+        public void CloseApplication()
+        {
+            if (!ActualCapabilities.DebugConnectToRunningApp)
+            {
+                if (!Application.Close())
+                {
+                    Application.Kill();
+                }
+
+                ElementsRegistry.Clear();
+            }
+
+            lock (LockObject)
+            {
+                automators.Remove(Session);
+            }
+        }
+
         public static T GetValue<T>(IReadOnlyDictionary<string, object> parameters, string key) where T : class
         {
             object valueObject;
@@ -55,24 +76,18 @@
 
         public static Automator InstanceForSession(string sessionId)
         {
-            if (instance == null)
+            if (sessionId == null)
+                sessionId = Guid.NewGuid().ToString();
+
+            if (automators.ContainsKey(sessionId))
+                return automators[sessionId];
+
+            lock (LockObject)
             {
-                lock (LockObject)
-                {
-                    if (instance == null)
-                    {
-                        if (sessionId == null)
-                        {
-                            sessionId = "AwesomeSession";
-                        }
-
-                        // TODO: Add actual support for sessions. Temporary return single Automator for any season
-                        instance = new Automator(sessionId);
-                    }
-                }
+                var newAutomator = new Automator(sessionId);
+                automators.Add(sessionId, newAutomator);
+                return newAutomator;
             }
-
-            return instance;
         }
 
         #endregion
