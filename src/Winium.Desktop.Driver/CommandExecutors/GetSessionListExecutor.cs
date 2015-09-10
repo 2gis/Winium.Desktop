@@ -3,14 +3,13 @@
     #region using
 
     using System.Linq;
-    using Winium.StoreApps.Common;
     using Winium.Desktop.Driver.Automator;
+    using Winium.StoreApps.Common;
 
     #endregion
 
     internal class GetSessionListExecutor : CommandExecutorBase
     {
-
         #region Methods
 
         protected override string DoImpl()

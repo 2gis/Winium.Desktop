@@ -18,8 +18,6 @@
 
         private static Dictionary<string, Automator> automators = new Dictionary<string, Automator>();
 
-        public static IEnumerable<Automator> Automators { get { return automators.Values; } }
-
         #endregion
 
         #region Constructors and Destructors
@@ -33,6 +31,14 @@
         #endregion
 
         #region Public Properties
+
+        public static IEnumerable<Automator> Automators
+        {
+            get
+            {
+                return automators.Values;
+            }
+        }
 
         public Capabilities ActualCapabilities { get; set; }
 
@@ -48,24 +54,6 @@
 
         #region Public Methods and Operators
 
-        public void CloseApplication()
-        {
-            if (!ActualCapabilities.DebugConnectToRunningApp)
-            {
-                if (!Application.Close())
-                {
-                    Application.Kill();
-                }
-
-                ElementsRegistry.Clear();
-            }
-
-            lock (LockObject)
-            {
-                automators.Remove(Session);
-            }
-        }
-
         public static T GetValue<T>(IReadOnlyDictionary<string, object> parameters, string key) where T : class
         {
             object valueObject;
@@ -77,16 +65,38 @@
         public static Automator InstanceForSession(string sessionId)
         {
             if (sessionId == null)
+            {
                 sessionId = Guid.NewGuid().ToString();
+            }
 
             if (automators.ContainsKey(sessionId))
+            {
                 return automators[sessionId];
+            }
 
             lock (LockObject)
             {
                 var newAutomator = new Automator(sessionId);
                 automators.Add(sessionId, newAutomator);
                 return newAutomator;
+            }
+        }
+
+        public void CloseApplication()
+        {
+            if (!this.ActualCapabilities.DebugConnectToRunningApp)
+            {
+                if (!Application.Close())
+                {
+                    Application.Kill();
+                }
+
+                ElementsRegistry.Clear();
+            }
+
+            lock (LockObject)
+            {
+                automators.Remove(this.Session);
             }
         }
 
