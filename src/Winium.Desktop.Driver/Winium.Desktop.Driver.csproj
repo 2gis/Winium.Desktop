@@ -71,6 +71,8 @@
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\FindComboBoxSelectedItemExecutor.cs" />
+    <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
+    <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />
     <Compile Include="CommandExecutors\ExpandComboBoxExecutor.cs" />
@@ -156,6 +158,6 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
     <MakeDir Directories="$(OutDir)Merge" />
-    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll"/>
+    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll" />
   </Target>
 </Project>
