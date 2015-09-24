@@ -3,6 +3,7 @@
     #region using
 
     using System;
+    using System.IO;
 
     #endregion
 
@@ -31,6 +32,11 @@
             else
             {
                 Logger.TargetConsole(options.Verbose);
+            }
+
+            if (options.Silent)
+            {
+                Console.SetOut(TextWriter.Null);
             }
 
             try
