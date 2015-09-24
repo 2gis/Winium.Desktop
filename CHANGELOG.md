@@ -1,6 +1,7 @@
 ﻿# Change Log
 
-<!--## Unreleased-->
+<!--## Unreleased
+- Support GetCurrentWindowHandle and GetWindowHandles-->
 
 ## v1.3.0
 
