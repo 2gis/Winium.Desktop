@@ -24,7 +24,7 @@
         [Option("verbose", Required = false, HelpText = "log verbosely")]
         public bool Verbose { get; set; }
 
-        [Option("silent", Required = false, HelpText = "log verbosely")]
+        [Option("silent", Required = false, HelpText = "log nothing")]
         public bool Silent { get; set; }
 
         #endregion
