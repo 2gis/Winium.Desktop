@@ -3,7 +3,6 @@
     #region using
 
     using System;
-    using System.IO;
 
     #endregion
 
@@ -29,14 +28,13 @@
             {
                 Logger.TargetFile(options.LogPath, options.Verbose);
             }
-            else
+            else if (!options.Silent)
             {
                 Logger.TargetConsole(options.Verbose);
             }
-
-            if (options.Silent)
+            else
             {
-                Console.SetOut(TextWriter.Null);
+                Logger.TargetNull();
             }
 
             try

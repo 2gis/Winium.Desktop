@@ -61,6 +61,12 @@
             LogManager.ReconfigExistingLoggers();
         }
 
+        public static void TargetNull()
+        {
+            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(new NullTarget());
+            LogManager.ReconfigExistingLoggers();
+        }
+
         public static void Trace([Localizable(false)] string message, params object[] args)
         {
             Log.Trace(message, args);
