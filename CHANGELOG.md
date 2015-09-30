@@ -1,7 +1,9 @@
 ﻿# Change Log
 
 <!--## Unreleased
-- Support GetCurrentWindowHandle and GetWindowHandles-->
+- Support GetCurrentWindowHandle and GetWindowHandles
+- Add driver option --silent to disable logging
+-->
 
 ## v1.3.0
 

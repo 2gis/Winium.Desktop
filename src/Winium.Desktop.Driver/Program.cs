@@ -28,9 +28,13 @@
             {
                 Logger.TargetFile(options.LogPath, options.Verbose);
             }
-            else
+            else if (!options.Silent)
             {
                 Logger.TargetConsole(options.Verbose);
+            }
+            else
+            {
+                Logger.TargetNull();
             }
 
             try
