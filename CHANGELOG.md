@@ -5,7 +5,16 @@
 - Add driver option --silent to disable logging
 -->
 
-## v1.3.0
+## v1.4.0
+
+- Add `XPath` strategy for locating elements
+- Add `GetCurrentWindowHandle` command
+- Add `GetWindowHandles` command
+- Add `--silent` option to a driver CLI (suppresses output)
+- Fix logger timestamp format
+
+
+## v1.3.0
 
 - Fix error response format
 - Add `args` capability for launching application with arguments
@@ -23,4 +32,5 @@
 New features:
 - Support Action Chains from bindings
 - Add new script command for setting value to element using ValuePattern
+
 
