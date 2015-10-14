@@ -45,6 +45,10 @@
             {
                 this.Automator.Application.Start(appArguments);
             }
+            else
+            {
+                this.Automator.Application.ConnectToRunningProcess();
+            }
         }
 
         private void InitializeKeyboardEmulator(KeyboardSimulatorType keyboardSimulatorType)

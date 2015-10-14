@@ -22,7 +22,11 @@
             var windows = CruciatusFactory.Root.FindElements(By.AutomationProperty(typeProperty, ControlType.Window));
 
             var handleProperty = AutomationElement.NativeWindowHandleProperty;
-            var handles = windows.Select(element => element.GetAutomationPropertyValue<int>(handleProperty));
+            var processIdProperty = AutomationElement.ProcessIdProperty;
+            int processId = Automator.Application.ProcessId;
+            var handles = windows
+                .Where(element => element.GetAutomationPropertyValue<int>(processIdProperty) == processId)
+                .Select(element => element.GetAutomationPropertyValue<int>(handleProperty));
 
             return this.JsonResponse(ResponseStatus.Success, handles);
         }
