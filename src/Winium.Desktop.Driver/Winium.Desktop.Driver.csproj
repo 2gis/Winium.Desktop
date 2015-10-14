@@ -61,8 +61,8 @@
       <HintPath>..\packages\InputSimulator.1.0.4.0\lib\net20\WindowsInput.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="Winium.Cruciatus, Version=2.7.0.22816, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Winium.Cruciatus.2.7.0\lib\net45\Winium.Cruciatus.dll</HintPath>
+    <Reference Include="Winium.Cruciatus, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Winium.Cruciatus.2.8.0\lib\net45\Winium.Cruciatus.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
@@ -71,6 +71,8 @@
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\FindComboBoxSelectedItemExecutor.cs" />
+    <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
+    <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridColumnCountExecutor.cs" />
     <Compile Include="CommandExecutors\ExpandComboBoxExecutor.cs" />
@@ -158,6 +160,6 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
     <MakeDir Directories="$(OutDir)Merge" />
-    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll"/>
+    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll" />
   </Target>
 </Project>

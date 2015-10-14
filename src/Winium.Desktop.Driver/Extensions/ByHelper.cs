@@ -23,6 +23,8 @@
                     return By.Name(value);
                 case "class name":
                     return By.AutomationProperty(AutomationElementIdentifiers.ClassNameProperty, value);
+                case "xpath":
+                    return By.XPath(value);
                 default:
                     throw new NotImplementedException(
                         string.Format("'{0}' is not valid or implemented searching strategy.", strategy));

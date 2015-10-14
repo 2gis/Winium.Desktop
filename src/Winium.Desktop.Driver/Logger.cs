@@ -13,7 +13,7 @@
     {
         #region Constants
 
-        private const string LayoutFormat = "${date:format=HH\\:MM\\:ss} [${level:uppercase=true}] ${message}";
+        private const string LayoutFormat = "${date:format=HH\\:mm\\:ss} [${level:uppercase=true}] ${message}";
 
         #endregion
 
@@ -58,6 +58,12 @@
             var target = new FileTarget { Layout = LayoutFormat, FileName = fileName };
 
             NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Info);
+            LogManager.ReconfigExistingLoggers();
+        }
+
+        public static void TargetNull()
+        {
+            NLog.Config.SimpleConfigurator.ConfigureForTargetLogging(new NullTarget());
             LogManager.ReconfigExistingLoggers();
         }
 
