@@ -10,7 +10,6 @@
 
     public class ClearElementTests : BaseForMainWindowTest
     {
-
         #region Public Methods and Operators
 
         [Test]

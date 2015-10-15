@@ -161,6 +161,10 @@
             foreach (string variableName in matched.BoundVariables.Keys)
             {
                 commandToExecute.Parameters[variableName] = matched.BoundVariables[variableName];
+                if (variableName == "SESSIONID")
+                {
+                    commandToExecute.SessionId = matched.BoundVariables[variableName];
+                }
             }
 
             var commandResponse = this.ProcessCommand(commandToExecute);
