@@ -2,6 +2,7 @@
 {
     #region using
 
+    using System;
     using System.Collections.Generic;
 
     using Winium.Cruciatus;
@@ -15,7 +16,7 @@
 
         private static readonly object LockObject = new object();
 
-        private static volatile Automator instance;
+        private static Dictionary<string, Automator> automators = new Dictionary<string, Automator>();
 
         #endregion
 
@@ -30,6 +31,14 @@
         #endregion
 
         #region Public Properties
+
+        public static IEnumerable<Automator> Automators
+        {
+            get
+            {
+                return automators.Values;
+            }
+        }
 
         public Capabilities ActualCapabilities { get; set; }
 
@@ -55,24 +64,40 @@
 
         public static Automator InstanceForSession(string sessionId)
         {
-            if (instance == null)
+            if (sessionId == null)
             {
-                lock (LockObject)
-                {
-                    if (instance == null)
-                    {
-                        if (sessionId == null)
-                        {
-                            sessionId = "AwesomeSession";
-                        }
-
-                        // TODO: Add actual support for sessions. Temporary return single Automator for any season
-                        instance = new Automator(sessionId);
-                    }
-                }
+                sessionId = Guid.NewGuid().ToString();
             }
 
-            return instance;
+            if (automators.ContainsKey(sessionId))
+            {
+                return automators[sessionId];
+            }
+
+            lock (LockObject)
+            {
+                var newAutomator = new Automator(sessionId);
+                automators.Add(sessionId, newAutomator);
+                return newAutomator;
+            }
+        }
+
+        public void CloseApplication()
+        {
+            if (!this.ActualCapabilities.DebugConnectToRunningApp)
+            {
+                if (!Application.Close())
+                {
+                    Application.Kill();
+                }
+
+                ElementsRegistry.Clear();
+            }
+
+            lock (LockObject)
+            {
+                automators.Remove(this.Session);
+            }
         }
 
         #endregion
