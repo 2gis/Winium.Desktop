@@ -112,6 +112,8 @@
     <Compile Include="CommandExecutors\FindElementExecutor.cs" />
     <Compile Include="CommandExecutors\NewSessionExecutor.cs" />
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
+    <Compile Include="CommandExecutors\GetSessionCapabilitiesExecutor.cs" />
+    <Compile Include="CommandExecutors\GetSessionListExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
