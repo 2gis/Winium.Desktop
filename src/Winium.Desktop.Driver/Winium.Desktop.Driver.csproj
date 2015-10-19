@@ -62,7 +62,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Winium.Cruciatus, Version=2.7.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Winium.Cruciatus.2.8.0\lib\net45\Winium.Cruciatus.dll</HintPath>
+      <HintPath>..\packages\Winium.Cruciatus.2.9.0\lib\net45\Winium.Cruciatus.dll</HintPath>
       <Private>True</Private>
     </Reference>
   </ItemGroup>
