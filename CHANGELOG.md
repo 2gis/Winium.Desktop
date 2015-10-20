@@ -5,7 +5,13 @@
 - Add driver option --silent to disable logging
 -->
 
-## v1.4.0
+## v1.5.0
+
+- Add `SwitchToWindow` command
+- Fix XPath attribute value if this ControlType
+
+
+## v1.4.0
 
 - Add `XPath` strategy for locating elements
 - Add `GetCurrentWindowHandle` command
@@ -32,5 +38,6 @@
 New features:
 - Support Action Chains from bindings
 - Add new script command for setting value to element using ValuePattern
+
 
 
