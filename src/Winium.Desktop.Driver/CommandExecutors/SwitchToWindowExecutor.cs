@@ -3,9 +3,10 @@
     #region using
 
     using System.Windows.Automation;
-
     using Winium.Cruciatus;
     using Winium.Cruciatus.Core;
+    using Winium.StoreApps.Common;
+    using Winium.StoreApps.Common.Exceptions;
 
     #endregion
 
@@ -19,6 +20,10 @@
 
             var handleProperty = AutomationElement.NativeWindowHandleProperty;
             var window = CruciatusFactory.Root.FindElement(By.AutomationProperty(handleProperty, windowHandle));
+            if (window == null)
+            {
+                throw new AutomationException("Window cannot be found", ResponseStatus.NoSuchElement);
+            }
 
             window.SetFocus();
 
