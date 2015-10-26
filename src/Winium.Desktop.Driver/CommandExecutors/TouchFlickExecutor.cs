@@ -56,7 +56,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
             }
 
             var registeredKey = this.ExecutedCommand.Parameters["element"].ToString();
-            var element = this.Automator.ElementsRegistry.GetRegisteredElementOrNull(registeredKey);
+            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             var xOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["xoffset"]);
             var yOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["yoffset"]);
