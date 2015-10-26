@@ -113,6 +113,14 @@
     <Compile Include="CommandExecutors\NewSessionExecutor.cs" />
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchDoubleTapExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchFlickExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchLongPressExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchMoveExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchPressExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchReleaseExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchScrollExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchSingleTapExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
