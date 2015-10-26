@@ -25,7 +25,21 @@
             var x = Convert.ToInt32(this.ExecutedCommand.Parameters["x"]);
             var y = Convert.ToInt32(this.ExecutedCommand.Parameters["y"]);
 
-            return TouchSimulator.TouchDown(x, y)
+            bool success;
+
+            if (this.ExecutedCommand.Parameters.ContainsKey("element"))
+            {
+                var registeredKey = this.ExecutedCommand.Parameters["element"].ToString();
+                var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+
+                success = TouchSimulator.TouchDown(element, x, y);
+            }
+            else
+            {
+                success = TouchSimulator.TouchDown(x, y);
+            }
+
+            return success
                 ? this.JsonResponse()
                 : this.JsonResponse(ResponseStatus.UnknownError, "Touch input failed");
         }
