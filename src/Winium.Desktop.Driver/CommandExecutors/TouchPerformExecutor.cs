@@ -84,8 +84,13 @@
 
                     var rect = element.Properties.BoundingRectangle;
 
-                    point.X = (int)rect.Left;
-                    point.Y = (int)rect.Top;
+                    point.X = _jsonTouchAction.Options.ContainsKey("x")
+                                  ? rect.Left
+                                  : (rect.Left + (rect.Width / 2));
+
+                    point.Y = _jsonTouchAction.Options.ContainsKey("y")
+                                  ? rect.Top
+                                  : (rect.Top + (rect.Height / 2));
                 }
 
                 if (_jsonTouchAction.Options.ContainsKey("x"))
