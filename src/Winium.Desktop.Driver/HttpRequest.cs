@@ -59,7 +59,11 @@
         private static string ReadContent(TextReader textReader, int contentLength)
         {
             var readBuffer = new char[contentLength];
-            textReader.Read(readBuffer, 0, readBuffer.Length);
+            var bytesRead = 0;
+            while (bytesRead < contentLength)
+            {
+                bytesRead += textReader.Read(readBuffer, bytesRead, contentLength - bytesRead);
+            }
             return readBuffer.Aggregate(string.Empty, (current, ch) => current + ch);
         }
 
