@@ -118,6 +118,7 @@
     <Compile Include="CommandExecutors\TouchFlickExecutor.cs" />
     <Compile Include="CommandExecutors\TouchLongPressExecutor.cs" />
     <Compile Include="CommandExecutors\TouchMoveExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchPerformExecutor.cs" />
     <Compile Include="CommandExecutors\TouchPressExecutor.cs" />
     <Compile Include="CommandExecutors\TouchReleaseExecutor.cs" />
     <Compile Include="CommandExecutors\TouchScrollExecutor.cs" />
