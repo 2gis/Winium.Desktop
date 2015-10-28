@@ -462,6 +462,18 @@ namespace Winium.StoreApps.Common
         public static readonly string TouchSingleTap = "touchSingleTap";
 
         /// <summary>
+        /// Represents the TouchPerform command.
+        /// 
+        /// </summary>
+        public static readonly string TouchPerform = "touchPerform";
+
+        /// <summary>
+        /// Represents the TouchMultiPerform command.
+        /// 
+        /// </summary>
+        public static readonly string TouchMultiPerform = "touchMultiPerform";
+
+        /// <summary>
         /// Represents the UploadFile command.
         /// 
         /// </summary>
