@@ -127,6 +127,8 @@
     <Compile Include="CommandExecutors\TouchReleaseExecutor.cs" />
     <Compile Include="CommandExecutors\TouchScrollExecutor.cs" />
     <Compile Include="CommandExecutors\TouchSingleTapExecutor.cs" />
+    <Compile Include="CommandHelpers\JsonTouchAction.cs" />
+    <Compile Include="CommandHelpers\TouchAction.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
