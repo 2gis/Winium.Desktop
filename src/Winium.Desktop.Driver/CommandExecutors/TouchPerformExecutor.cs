@@ -114,8 +114,10 @@
             var havePrevious = false;
             string previousAction = null;
 
-            foreach (var action in actions)
+            for (var i = 0; i < actions.Count; i ++)
             {
+                var action = actions[i];
+
                 Point point;
 
                 switch (action.Action)
@@ -126,8 +128,13 @@
                         havePrevious = false;
                         break;
                     case TouchAction.MoveTo:
+                        int? duration = null;
+                        if (i > 0 && actions[i - 1].Action == TouchAction.Wait)
+                        {
+                            duration = actions[i - 1].MiliSeconds;
+                        }
                         point = action.GetLocation();
-                        TouchSimulator.TouchUpdate((int)point.X, (int)point.Y);
+                        TouchSimulator.MoveTo(previousX, previousY, (int)point.X, (int)point.Y, duration);
                         previousX = (int)point.X;
                         previousY = (int)point.Y;
                         havePrevious = true;
@@ -153,6 +160,10 @@
                         havePrevious = false;
                         break;
                     case TouchAction.Wait:
+                        if (actions.Count > i + 1 && actions[i + 1].Action == TouchAction.MoveTo)
+                        {
+                            break;
+                        }
                         if (havePrevious)
                         {
                             var startTime = DateTime.Now;
