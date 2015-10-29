@@ -134,9 +134,11 @@
                             duration = actions[i - 1].MiliSeconds;
                         }
                         point = action.GetLocation();
-                        TouchSimulator.MoveTo(previousX, previousY, (int)point.X, (int)point.Y, duration);
-                        previousX = (int)point.X;
-                        previousY = (int)point.Y;
+                        var x = (int)point.X;
+                        var y = (int)point.Y;
+                        TouchSimulator.MoveTo(previousX, previousY, previousX + x, previousY + y, duration);
+                        previousX += x;
+                        previousY += y;
                         havePrevious = true;
                         break;
                     case TouchAction.Press:
