@@ -158,7 +158,11 @@
                         break;
                     case TouchAction.Tap:
                         point = action.GetLocation();
-                        TouchSimulator.Tap((int)point.X, (int)point.Y);
+                        for (var n = 1; n <= action.Count; n++)
+                        {
+                            TouchSimulator.Tap((int)point.X, (int)point.Y);
+                            Thread.Sleep(250);
+                        }
                         havePrevious = false;
                         break;
                     case TouchAction.Wait:
