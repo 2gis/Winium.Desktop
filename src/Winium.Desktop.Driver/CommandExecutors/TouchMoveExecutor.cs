@@ -5,6 +5,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
     using System;
 
     using Winium.Cruciatus.Core;
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -22,8 +23,8 @@ namespace Winium.Desktop.Driver.CommandExecutors
                 return this.JsonResponse(ResponseStatus.UnknownError, "WRONG PARAMETERS");
             }
 
-            var x = Convert.ToInt32(this.ExecutedCommand.Parameters["x"]);
-            var y = Convert.ToInt32(this.ExecutedCommand.Parameters["y"]);
+            var x = this.ExecutedCommand.GetParameterAsInt("x");
+            var y = this.ExecutedCommand.GetParameterAsInt("y");
 
             bool success;
 

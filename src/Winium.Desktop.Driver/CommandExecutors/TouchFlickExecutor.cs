@@ -8,6 +8,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
 
     using Winium.Cruciatus;
     using Winium.Cruciatus.Core;
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -35,8 +36,8 @@ namespace Winium.Desktop.Driver.CommandExecutors
                 return this.JsonResponse(ResponseStatus.UnknownError, "WRONG PARAMETERS");
             }
 
-            var xSpeed = Convert.ToInt32(this.ExecutedCommand.Parameters["xspeed"]);
-            var ySpeed = Convert.ToInt32(this.ExecutedCommand.Parameters["yspeed"]);
+            var xSpeed = this.ExecutedCommand.GetParameterAsInt("xspeed");
+            var ySpeed = this.ExecutedCommand.GetParameterAsInt("yspeed");
 
             return TouchSimulator.Flick(xSpeed, ySpeed)
                 ? this.JsonResponse()
@@ -58,10 +59,10 @@ namespace Winium.Desktop.Driver.CommandExecutors
             var registeredKey = this.ExecutedCommand.Parameters["element"].ToString();
             var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
-            var xOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["xoffset"]);
-            var yOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["yoffset"]);
+            var xOffset = this.ExecutedCommand.GetParameterAsInt("xoffset");
+            var yOffset = this.ExecutedCommand.GetParameterAsInt("yoffset");
 
-            var pixelsPerSecond = Convert.ToInt32(this.ExecutedCommand.Parameters["speed"]);
+            var pixelsPerSecond = this.ExecutedCommand.GetParameterAsInt("speed");
 
             return TouchSimulator.FlickElement(element, xOffset, yOffset, pixelsPerSecond)
                 ? this.JsonResponse() 

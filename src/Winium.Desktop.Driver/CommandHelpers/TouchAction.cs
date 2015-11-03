@@ -49,7 +49,7 @@
 
             if (this.Action == Wait)
             {
-                this.MiliSeconds = Convert.ToInt32(jsonTouchAction.Options["ms"]);
+                this.MiliSeconds = jsonTouchAction.GetOptionAsInt("ms");
                 return;
             }
 
@@ -67,7 +67,7 @@
             if (this.Action == LongPress)
             {
                 this.MiliSeconds = jsonTouchAction.Options.ContainsKey("duration")
-                    ? Convert.ToInt32(jsonTouchAction.Options["duration"])
+                    ? jsonTouchAction.GetOptionAsInt("duration")
                     : 1000;
             }
         }
@@ -94,12 +94,12 @@
 
             if (_jsonTouchAction.Options.ContainsKey("x"))
             {
-                point.X += Convert.ToInt32(_jsonTouchAction.Options["x"]);
+                point.X += _jsonTouchAction.GetOptionAsInt("x");
             }
 
             if (_jsonTouchAction.Options.ContainsKey("y"))
             {
-                point.Y += Convert.ToInt32(_jsonTouchAction.Options["y"]);
+                point.Y += _jsonTouchAction.GetOptionAsInt("y");
             }
 
             return point;

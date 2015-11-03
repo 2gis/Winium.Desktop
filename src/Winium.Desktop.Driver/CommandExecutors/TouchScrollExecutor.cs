@@ -8,6 +8,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
 
     using Winium.Cruciatus;
     using Winium.Cruciatus.Core;
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -42,8 +43,8 @@ namespace Winium.Desktop.Driver.CommandExecutors
                 rect.Left + (rect.Width / 2), 
                 rect.Top + (rect.Height / 2));
 
-            var xOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["xoffset"]);
-            var yOffset = Convert.ToInt32(this.ExecutedCommand.Parameters["yoffset"]);
+            var xOffset = this.ExecutedCommand.GetParameterAsInt("xoffset");
+            var yOffset = this.ExecutedCommand.GetParameterAsInt("yoffset");
 
             var endPoint = new Point(
                 startPoint.X + xOffset,

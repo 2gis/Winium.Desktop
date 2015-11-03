@@ -6,6 +6,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
 
     using Winium.Cruciatus.Core;
     using Winium.Cruciatus.Elements;
+    using Winium.Desktop.Driver.Extensions;
     using Winium.StoreApps.Common;
 
     #endregion
@@ -39,12 +40,12 @@ namespace Winium.Desktop.Driver.CommandExecutors
 
             if (havePoint)
             {
-                x = Convert.ToInt32(this.ExecutedCommand.Parameters["x"]);
-                y = Convert.ToInt32(this.ExecutedCommand.Parameters["y"]);
+                x = this.ExecutedCommand.GetParameterAsInt("x");
+                y = this.ExecutedCommand.GetParameterAsInt("y");
             }
 
             var duration = this.ExecutedCommand.Parameters.ContainsKey("duration")
-                               ? Convert.ToInt32(this.ExecutedCommand.Parameters["duration"])
+                               ? this.ExecutedCommand.GetParameterAsInt("duration")
                                : 1000;
 
             if (haveElement && havePoint)

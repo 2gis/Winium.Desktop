@@ -133,6 +133,7 @@
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
+    <Compile Include="Extensions\CommandHelper.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="Input\KeyboardModifiers.cs" />
