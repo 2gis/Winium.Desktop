@@ -27,22 +27,25 @@ namespace Winium.Desktop.Driver.CommandExecutors
 
             var result = RotationManager.SetOrientation(orientation);
 
+            string message;
+
             switch (result)
             {
                 case 0:
                     return this.JsonResponse();
                 case 1:
-                    return this.JsonResponse(
-                        ResponseStatus.UnableToSetDisplayOrientation,
-                        "A device restart is required");
+                    message = "A device restart is required";
+                    break;
                 case -2:
-                    return this.JsonResponse(
-                        ResponseStatus.UnableToSetDisplayOrientation,
-                        this.ExecutedCommand.Parameters.ContainsKey("orientation") + " not supported by device");
+                    message = this.ExecutedCommand.Parameters["orientation"] + " not supported by device";
+                    break;
                 default:
-                    return this.JsonResponse(
-                        ResponseStatus.UnableToSetDisplayOrientation, "Unknown error: " + result);
+                    message = "Unknown error: " + result;
+                    break;
             }
+
+            Logger.Warn(message);
+            return this.JsonResponse(ResponseStatus.UnableToSetDisplayOrientation, message);
         }
 
         #endregion
