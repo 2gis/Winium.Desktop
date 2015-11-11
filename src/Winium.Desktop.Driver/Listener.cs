@@ -90,7 +90,24 @@
                     // Get a stream object for reading and writing
                     using (var stream = client.GetStream())
                     {
-                        var acceptedRequest = HttpRequest.ReadFromStreamWithoutClosing(stream);
+                        stream.ReadTimeout = 60 * 1000;
+
+                        HttpRequest acceptedRequest;
+
+                        try
+                        {
+                            acceptedRequest = HttpRequest.ReadFromStreamWithoutClosing(stream);
+                        }
+                        catch (IOException ex)
+                        {
+                            Logger.Error("Error occured while reading request: {0}", ex);
+
+                            client.Close();
+                            Logger.Debug("Client closed\n");
+
+                            continue;
+                        }
+
                         Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
 
                         var response = this.HandleRequest(acceptedRequest);

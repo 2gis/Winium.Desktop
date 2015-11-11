@@ -50,6 +50,10 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="TCD.System.TouchInjection, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\TCD.System.TouchInjection.1.0.0\lib\net45\TCD.System.TouchInjection.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WebDriver, Version=2.46.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -71,6 +75,7 @@
     <Compile Include="Automator\Capabilities.cs" />
     <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\FindComboBoxSelectedItemExecutor.cs" />
+    <Compile Include="CommandExecutors\GetElementLocationExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
@@ -113,10 +118,22 @@
     <Compile Include="CommandExecutors\NewSessionExecutor.cs" />
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchDoubleTapExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchFlickExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchLongPressExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchMoveExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchPerformExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchPressExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchReleaseExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchScrollExecutor.cs" />
+    <Compile Include="CommandExecutors\TouchSingleTapExecutor.cs" />
+    <Compile Include="CommandHelpers\JsonTouchAction.cs" />
+    <Compile Include="CommandHelpers\TouchAction.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
+    <Compile Include="Extensions\CommandHelper.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="Input\KeyboardModifiers.cs" />

@@ -286,7 +286,14 @@
             this.commandDictionary.Add(
                 DriverCommand.TouchFlick,
                 new CommandInfo("POST", "/session/{sessionId}/touch/flick"));
+            this.commandDictionary.Add(
+                DriverCommand.TouchPerform,
+                new CommandInfo("POST", "/session/{sessionId}/touch/perform"));
+            this.commandDictionary.Add(
+                DriverCommand.TouchMultiPerform,
+                new CommandInfo("POST", "/session/{sessionId}/touch/multi/perform"));
             this.commandDictionary.Add(DriverCommand.UploadFile, new CommandInfo("POST", "/session/{sessionId}/file"));
+
         }
 
         private void InitializeWiniumCommandDictionary()
