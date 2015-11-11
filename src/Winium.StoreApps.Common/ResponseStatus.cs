@@ -50,8 +50,6 @@
 
         SessionNotCreatedException = 33, 
 
-        MoveTargetOutOfBounds = 34,
-
-        UnableToSetDisplayOrientation = 35
+        MoveTargetOutOfBounds = 34
     }
 }

@@ -45,7 +45,7 @@ namespace Winium.Desktop.Driver.CommandExecutors
             }
 
             Logger.Warn(message);
-            return this.JsonResponse(ResponseStatus.UnableToSetDisplayOrientation, message);
+            return this.JsonResponse(ResponseStatus.UnknownError, message);
         }
 
         #endregion
