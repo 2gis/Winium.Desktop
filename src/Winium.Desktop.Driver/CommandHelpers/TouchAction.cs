@@ -60,8 +60,9 @@
 
             if (this.Action == Tap)
             {
-                int count;
-                this.Count = int.TryParse(jsonTouchAction.Options["count"], out count) ? count : 1;
+                this.Count = jsonTouchAction.Options.ContainsKey("count")
+                    ? Convert.ToInt32(jsonTouchAction.Options["count"])
+                    : 1;
             }
 
             if (this.Action == LongPress)
