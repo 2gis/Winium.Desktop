@@ -76,7 +76,9 @@
 
         protected string JsonResponse(ResponseStatus status, object value)
         {
-            return JsonConvert.SerializeObject(new JsonResponse(this.Automator.Session, status, value));
+            return JsonConvert.SerializeObject(
+                new JsonResponse(this.Automator.Session, status, value),
+                Formatting.Indented);
         }
 
         #endregion
