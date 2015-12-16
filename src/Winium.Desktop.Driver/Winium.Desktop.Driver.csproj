@@ -85,6 +85,7 @@
     <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\FindDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\SetOrientationExecutor.cs" />
+    <Compile Include="CommandExecutors\SetTimeoutExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
