@@ -92,6 +92,8 @@
     <Compile Include="CommandExecutors\GetActiveElementExecutor.cs" />
     <Compile Include="CommandExecutors\MouseDoubleClickExecutor.cs" />
     <Compile Include="CommandExecutors\MouseClickExecutor.cs" />
+    <Compile Include="CommandExecutors\MouseDownExecutor.cs" />
+    <Compile Include="CommandExecutors\MouseUpExecutor.cs" />
     <Compile Include="CommandExecutors\QuitExecutor.cs" />
     <Compile Include="CommandExecutorDispatchTable.cs" />
     <Compile Include="CommandExecutors\ScreenshotExecutor.cs" />
