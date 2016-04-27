@@ -63,6 +63,7 @@ self.driver = webdriver.Remote(command_executor='http://localhost:9999',
 	                               desired_capabilities={'app': 'C:\\testApp.exe', 'processname': 'testApp'})
 ## Fix error exceptions when getting some attributes of gui element.
 Add some code blocks in Winium.Desktop.Driver/CommandExecutors/GetElementAttributeExecutor.cs to fix following issues:
+
 1. Fix issue error when parse runtimeId attribute of element(return Int32[] array) by convert them into string
 2. Fix issue error when parse Oriented attribute of element(return enum) by convert it to string
 

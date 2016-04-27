@@ -44,53 +44,6 @@
                 }
             }
             return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
-            //if (this.Automator.Application.HasExited())
-            //{
-            //    try
-            //    {
-            //        // Add parse process name pass from request
-            //        var processName = (this.ExecutedCommand.Parameters["desiredCapabilities"]["processname"]).ToString();
-            //        //if (processName != null && processName != string.Empty)
-            //        //{
-            //            // Update launched process by process name if it's exited
-            //            var result = this.Automator.Application.UpdateRunApplicationProcessBy(processName);
-            //            if (!result)
-            //            {
-            //                return this.JsonResponse(ResponseStatus.UnableToGetLaunchedApplication, this.Automator.ActualCapabilities);
-            //            }
-            //        //}
-            //    }
-            //    catch (Exception)
-            //    {
-            //        return this.JsonResponse();
-            //    }
-            //}
-            //return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
-
-            //if (!this.Automator.Application.HasExited())
-            //{
-            //    return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
-            //}
-            //else
-            //{
-            //    try
-            //    {
-            //        // Add parse process name pass from request
-            //        var processName = (this.ExecutedCommand.Parameters["desiredCapabilities"]["processname"]).ToString();
-
-            //        // Update launched process by process name if it's exited
-            //        var result = this.Automator.Application.UpdateRunApplicationProcessBy(processName);
-            //        if (result)
-            //        {
-            //            return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
-            //        }
-            //        return this.JsonResponse(ResponseStatus.UnableToGetLaunchedApplication, this.Automator.ActualCapabilities);
-            //    }
-            //    catch (Exception)
-            //    {
-            //        return this.JsonResponse();
-            //    }
-            //}
         }
 
         private void InitializeApplication(bool debugDoNotDeploy = false)
