@@ -32,17 +32,6 @@
             // Gives sometime to load visuals (needed only in case of slow emulation)
             Thread.Sleep(this.Automator.ActualCapabilities.LaunchDelay);
             
-            // Update running application process pointing to the real process instead of the launcher in such cases
-            if (this.Automator.Application.HasExited())
-            {
-                // Add parse process name pass from request
-                var realProcessName = this.ExecutedCommand.Parameters["desiredCapabilities"]["realProcessName"];
-                // Update launched process by process name if it's exited
-                if (realProcessName != null)
-                {
-                    this.Automator.Application.UpdateProcessByName(realProcessName.ToString());
-                }
-            }
             return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
         }
 

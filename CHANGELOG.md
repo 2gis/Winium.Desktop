@@ -8,8 +8,7 @@
 
 ## v1.6.0
 
-- Allow switching process name to `realProcessName` for an apps starting
-with a launcher. That can fix exception Process Not Found in close/quit function
+- Fix exception Process Not Found in close/quit function
 - Fix throw exceptions in getting some gui element's attributes
 
 

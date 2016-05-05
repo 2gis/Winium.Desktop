@@ -116,6 +116,7 @@
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
+    <Compile Include="CommonHelpers\CommonHelpers.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
