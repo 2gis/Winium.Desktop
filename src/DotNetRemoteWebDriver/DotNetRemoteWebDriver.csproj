@@ -95,6 +95,7 @@
     <Compile Include="CommandExecutors\FindElementExecutor.cs" />
     <Compile Include="CommandExecutors\NewSessionExecutor.cs" />
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
+    <Compile Include="CommandExecutors\SwitchToFrameExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
     <Compile Include="CommandInfo.cs" />
     <Compile Include="CommandLineOptions.cs" />
