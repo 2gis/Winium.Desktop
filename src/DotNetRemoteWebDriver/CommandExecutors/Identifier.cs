@@ -18,8 +18,8 @@ namespace DotNetRemoteWebDriver.CommandExecutors
                 {"class name", By.ClassName},
                 {"css selector", By.CssSelector},
                 {"id", By.Id},
-                {"linktext", By.LinkText},
-                {"partiallinktext", By.PartialLinkText},
+                {"link text", By.LinkText},
+                {"partial link text", By.PartialLinkText},
                 {"xpath", By.XPath}
             };
         }
