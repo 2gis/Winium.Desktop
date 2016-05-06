@@ -50,6 +50,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
     <Reference Include="WebDriver, Version=2.53.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -139,4 +140,8 @@
     <MakeDir Directories="$(OutDir)Merge" />
     <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll" />
   </Target>
+  <PropertyGroup>
+    <PostBuildEvent>mkdir merged 2&gt; nul
+$(SolutionDir)packages\ILMerge.2.14.1208\tools\ilmerge.exe DotNetRemoteWebDriver.exe CommandLine.dll NLog.dll Newtonsoft.json.dll WebDriver.dll /out:merged/DotNetRemoteWebDriver.exe</PostBuildEvent>
+  </PropertyGroup>
 </Project>
