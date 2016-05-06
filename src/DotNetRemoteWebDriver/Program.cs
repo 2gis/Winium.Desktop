@@ -20,7 +20,7 @@ namespace DotNetRemoteWebDriver
         [STAThread]
         private static void Main(string[] args)
         {
-            var listeningPort = 9999;
+            var listeningPort = 4444;
 
             var options = new CommandLineOptions();
             if (Parser.Default.ParseArguments(args, options))

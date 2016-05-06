@@ -1,31 +1,14 @@
-﻿#region using
-
-using System;
-using Winium.Cruciatus;
-
-#endregion
+﻿using System;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class ImplicitlyWaitExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
-            var timeout = ExecutedCommand.Parameters["ms"];
-
-            CruciatusFactory.Settings.SearchTimeout = Convert.ToInt32(timeout);
-
+            var timeout = int.Parse(ExecutedCommand.Parameters["ms"].ToString());
+            Automator.Driver.Manage().Timeouts().ImplicitlyWait(TimeSpan.FromMilliseconds(timeout));
             return JsonResponse();
         }
-
-        #endregion
     }
 }

@@ -1,29 +1,13 @@
-﻿#region using
-
-using System;
-using DotNetRemoteWebDriver.Automator;
-using DotNetRemoteWebDriver.Input;
+﻿using System;
 using Newtonsoft.Json;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using Winium.Cruciatus;
-using Winium.Cruciatus.Settings;
-
-#endregion
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class NewSessionExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
             // So this method should instantiate a driver of the given browser type and return
@@ -57,33 +41,5 @@ namespace DotNetRemoteWebDriver.CommandExecutors
 
             return JsonResponse(ResponseStatus.Success, actualCapabilities);
         }
-
-        private void InitializeApplication(bool debugDoNotDeploy = false)
-        {
-            var appPath = Automator.ActualCapabilities.App;
-            var appArguments = Automator.ActualCapabilities.Arguments;
-
-            Automator.Application = new Application(appPath);
-            if (!debugDoNotDeploy)
-            {
-                Automator.Application.Start(appArguments);
-            }
-        }
-
-        private void InitializeKeyboardEmulator(KeyboardSimulatorType keyboardSimulatorType)
-        {
-            Automator.WiniumKeyboard = new WiniumKeyboard(keyboardSimulatorType);
-
-            Logger.Debug("Current keyboard simulator: {0}", keyboardSimulatorType);
-        }
-
-        private Capabilities ParseCapabilities()
-        {
-            var requestedCaps = ExecutedCommand.Parameters["desiredCapabilities"];
-            var caps = JsonConvert.SerializeObject(requestedCaps);
-            return Automator.ActualCapabilities = Capabilities.CapabilitiesFromJsonString(caps);
-        }
-
-        #endregion
     }
 }

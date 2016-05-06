@@ -1,40 +1,18 @@
-﻿#region using
-
-using DotNetRemoteWebDriver.Exceptions;
-using DotNetRemoteWebDriver.Extensions;
-using Winium.Cruciatus;
-
-#endregion
+﻿using DotNetRemoteWebDriver.Exceptions;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class FindElementExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
-            var searchValue = ExecutedCommand.Parameters["value"].ToString();
-            var searchStrategy = ExecutedCommand.Parameters["using"].ToString();
-
-            var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
-            var element = CruciatusFactory.Root.FindElement(strategy);
+            var element = Automator.Driver.FindElement(Identifier.From(ExecutedCommand.Parameters));
             if (element == null)
-            {
                 throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
-            }
 
-            var registeredKey = Automator.ElementsRegistry.RegisterElement(element);
+            var registeredKey = Automator.ElementsRegistry.Register(element);
             var registeredObject = new JsonElementContent(registeredKey);
             return JsonResponse(ResponseStatus.Success, registeredObject);
         }
-
-        #endregion
     }
 }

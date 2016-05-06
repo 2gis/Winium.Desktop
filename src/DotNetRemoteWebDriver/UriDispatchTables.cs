@@ -6,28 +6,17 @@ namespace DotNetRemoteWebDriver
 {
     internal class UriDispatchTables
     {
-        #region Constructors and Destructors
-
         public UriDispatchTables(Uri prefix)
         {
             InitializeSeleniumCommandDictionary();
-            InitializeWiniumCommandDictionary();
             ConstructDispatcherTables(prefix);
         }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         public UriTemplateMatch Match(string httpMethod, Uri uriToMatch)
         {
             var table = FindDispatcherTable(httpMethod);
             return table?.MatchSingle(uriToMatch);
         }
-
-        #endregion
-
-        #region Fields
 
         private readonly Dictionary<string, CommandInfo> _commandDictionary = new Dictionary<string, CommandInfo>();
 
@@ -37,27 +26,15 @@ namespace DotNetRemoteWebDriver
 
         private UriTemplateTable _postDispatcherTable;
 
-        #endregion
-
-        #region Methods
-
         internal UriTemplateTable FindDispatcherTable(string httpMethod)
         {
             UriTemplateTable tableToReturn = null;
-            switch (httpMethod)
-            {
-                case CommandInfo.GetCommand:
-                    tableToReturn = _getDispatcherTable;
-                    break;
-
-                case CommandInfo.PostCommand:
-                    tableToReturn = _postDispatcherTable;
-                    break;
-
-                case CommandInfo.DeleteCommand:
-                    tableToReturn = _deleteDispatcherTable;
-                    break;
-            }
+            if (httpMethod == CommandInfo.GetCommand)
+                tableToReturn = _getDispatcherTable;
+            else if (httpMethod == CommandInfo.PostCommand)
+                tableToReturn = _postDispatcherTable;
+            else if (httpMethod == CommandInfo.DeleteCommand)
+                tableToReturn = _deleteDispatcherTable;
 
             return tableToReturn;
         }
@@ -282,62 +259,5 @@ namespace DotNetRemoteWebDriver
                 new CommandInfo("POST", "/session/{sessionId}/touch/flick"));
             _commandDictionary.Add(DriverCommand.UploadFile, new CommandInfo("POST", "/session/{sessionId}/file"));
         }
-
-        private void InitializeWiniumCommandDictionary()
-        {
-            _commandDictionary.Add(
-                DriverCommand.FindDataGridCell,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
-
-            _commandDictionary.Add(
-                DriverCommand.GetDataGridColumnCount,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/column/count"));
-
-            _commandDictionary.Add(
-                DriverCommand.GetDataGridRowCount,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/row/count"));
-
-            _commandDictionary.Add(
-                DriverCommand.ScrollToDataGridCell,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/scroll/{row}/{column}"));
-
-            _commandDictionary.Add(
-                DriverCommand.SelectDataGridCell,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/select/{row}/{column}"));
-
-            _commandDictionary.Add(
-                DriverCommand.IsComboBoxExpanded,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expanded"));
-
-            _commandDictionary.Add(
-                DriverCommand.ExpandComboBox,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/expand"));
-
-            _commandDictionary.Add(
-                DriverCommand.CollapseComboBox,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/collapse"));
-
-            _commandDictionary.Add(
-                DriverCommand.FindComboBoxSelectedItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/items/selected"));
-
-            _commandDictionary.Add(
-                DriverCommand.ScrollToComboBoxItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/combobox/scroll"));
-
-            _commandDictionary.Add(
-                DriverCommand.ScrollToListBoxItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/listbox/scroll"));
-
-            _commandDictionary.Add(
-                DriverCommand.FindMenuItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/item/{path}"));
-
-            _commandDictionary.Add(
-                DriverCommand.SelectMenuItem,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/select/{path}"));
-        }
-
-        #endregion
     }
 }

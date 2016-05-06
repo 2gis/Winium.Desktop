@@ -1,28 +1,13 @@
-﻿#region using
-
-using Winium.Cruciatus;
-using Winium.Cruciatus.Core;
-
-#endregion
+﻿using OpenQA.Selenium.Interactions;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class MouseDoubleClickExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
-            CruciatusFactory.Mouse.DoubleClick(MouseButton.Left);
+            new Actions(Automator.Driver).DoubleClick().Perform();
             return JsonResponse();
         }
-
-        #endregion
     }
 }

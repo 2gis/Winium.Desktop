@@ -1,27 +1,15 @@
-﻿#region using
-
-using Winium.Cruciatus;
-
-#endregion
-
-namespace DotNetRemoteWebDriver.CommandExecutors
+﻿namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class SubmitElementExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
-            CruciatusFactory.Keyboard.SendEnter();
+            if (IsElementRequest)
+                RequestedElement.Submit();
+            else
+                Automator.Driver.Keyboard.SendKeys("{ENTER}");
+            
             return JsonResponse();
         }
-
-        #endregion
     }
 }

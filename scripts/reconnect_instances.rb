@@ -53,15 +53,15 @@ end
 
 browser = [
   {
-    url: 'http://localhost:9999/',
+    url: 'http://localhost:4444/',
     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.firefox
   },
   {
-    url: 'http://localhost:9999/',
+    url: 'http://localhost:4444/',
     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.internet_explorer
   },
   {
-    url: 'http://localhost:9999/',
+    url: 'http://localhost:4444/',
     desired_capabilities: Selenium::WebDriver::Remote::Capabilities.chrome
   }
 ]

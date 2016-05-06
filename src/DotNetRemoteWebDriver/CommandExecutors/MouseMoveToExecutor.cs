@@ -1,22 +1,9 @@
-﻿#region using
-
-using System;
-using Winium.Cruciatus;
-
-#endregion
+﻿using OpenQA.Selenium.Interactions;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class MouseMoveToExecutor : CommandExecutorBase
     {
-        #region Methods
-
         protected override string DoImpl()
         {
             var haveElement = ExecutedCommand.Parameters.ContainsKey("element");
@@ -29,35 +16,37 @@ namespace DotNetRemoteWebDriver.CommandExecutors
                 return JsonResponse(ResponseStatus.UnknownError, "WRONG PARAMETERS");
             }
 
-            var resultPoint = CruciatusFactory.Mouse.CurrentCursorPos;
+            var offset = haveOffset
+                ? new[]
+                {
+                    int.Parse(ExecutedCommand.Parameters.ContainsKey("xoffset").ToString()),
+                    int.Parse(ExecutedCommand.Parameters.ContainsKey("yoffset").ToString())
+                }
+                : new[] {0, 0};
+
+            var element = haveElement
+                ? Automator.ElementsRegistry.Get(ExecutedCommand.Parameters["element"].ToString())
+                : null;
+
+            var position = new[] {0, 0};
+
             if (haveElement)
             {
-                var registeredKey = ExecutedCommand.Parameters["element"].ToString();
-                var element = Automator.ElementsRegistry.GetRegisteredElementOrNull(registeredKey);
-                if (element != null)
-                {
-                    var rect = element.Properties.BoundingRectangle;
-                    resultPoint.X = rect.TopLeft.X;
-                    resultPoint.Y = rect.TopLeft.Y;
-                    if (!haveOffset)
-                    {
-                        resultPoint.X += rect.Width/2;
-                        resultPoint.Y += rect.Height/2;
-                    }
-                }
+                var location = element.Location;
+                var middle = new[] {(int) (element.Size.Width*0.5), (int) (element.Size.Height*0.5)};
+                position[0] += location.X + middle[0];
+                position[1] += location.Y + middle[1];
             }
 
-            if (haveOffset)
-            {
-                resultPoint.X += Convert.ToInt32(ExecutedCommand.Parameters["xoffset"]);
-                resultPoint.Y += Convert.ToInt32(ExecutedCommand.Parameters["yoffset"]);
-            }
+            var actions = new Actions(Automator.Driver);
+            if (haveElement)
+                actions.MoveToElement(element, offset[0], offset[1]);
+            else
+                actions.MoveByOffset(offset[0], offset[1]);
 
-            CruciatusFactory.Mouse.SetCursorPos(resultPoint.X, resultPoint.Y);
+            actions.Perform();
 
             return JsonResponse();
         }
-
-        #endregion
     }
 }

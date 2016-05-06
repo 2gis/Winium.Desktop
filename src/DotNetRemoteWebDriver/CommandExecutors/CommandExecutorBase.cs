@@ -2,8 +2,10 @@
 
 using System;
 using System.Net;
+using System.Windows.Media.Converters;
 using DotNetRemoteWebDriver.Exceptions;
 using Newtonsoft.Json;
+using OpenQA.Selenium;
 
 #endregion
 
@@ -65,6 +67,12 @@ namespace DotNetRemoteWebDriver.CommandExecutors
         #endregion
 
         #region Methods
+
+        /// <summary>Is the request applied to a specific element?</summary>
+        protected bool IsElementRequest => ExecutedCommand.Parameters.ContainsKey("ID");
+
+        /// <summary>Get the requested element instance</summary>
+        protected IWebElement RequestedElement => Automator.ElementsRegistry.Get(ExecutedCommand.Parameters["ID"]?.ToString());
 
         protected abstract string DoImpl();
 
