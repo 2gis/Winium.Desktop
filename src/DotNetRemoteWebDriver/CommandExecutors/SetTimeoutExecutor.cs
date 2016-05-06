@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -14,8 +19,8 @@
 
         protected override string DoImpl()
         {
-            var type = this.ExecutedCommand.Parameters["type"].ToString();
-            var timeout = this.ExecutedCommand.Parameters["ms"];
+            var type = ExecutedCommand.Parameters["type"].ToString();
+            var timeout = ExecutedCommand.Parameters["ms"];
 
             if (type == "implicit")
             {
@@ -23,11 +28,11 @@
             }
             else
             {
-                var msg = string.Format("Winium does not implement timeout type '{0}'.", type);
+                var msg = string.Format("DotNetRemoteWebDriver does not implement timeout type '{0}'.", type);
                 throw new NotImplementedException(msg);
             }
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

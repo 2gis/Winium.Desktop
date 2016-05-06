@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Collections.Generic;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Collections.Generic;
+    
 
     #endregion
 
@@ -12,18 +18,18 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             var boundingRect = element.Properties.BoundingRectangle;
 
             var response = new Dictionary<string, object>
-                               {
-                                   { "width", boundingRect.Width },
-                                   { "height", boundingRect.Height }
-                               };
-            return this.JsonResponse(ResponseStatus.Success, response);
+            {
+                {"width", boundingRect.Width},
+                {"height", boundingRect.Height}
+            };
+            return JsonResponse(ResponseStatus.Success, response);
         }
 
         #endregion

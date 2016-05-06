@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.Automator
+﻿#region using
+
+using Newtonsoft.Json;
+using Newtonsoft.Json.Serialization;
+using Winium.Cruciatus.Settings;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Automator
 {
     #region using
 
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Serialization;
-
-    using Winium.Cruciatus.Settings;
+    
 
     #endregion
 
@@ -15,12 +20,12 @@
 
         internal Capabilities()
         {
-            this.App = string.Empty;
-            this.Arguments = string.Empty;
-            this.LaunchDelay = 0;
-            this.DebugConnectToRunningApp = false;
-            this.InnerPort = 9998;
-            this.KeyboardSimulator = KeyboardSimulatorType.BasedOnInputSimulatorLib;
+            App = string.Empty;
+            Arguments = string.Empty;
+            LaunchDelay = 0;
+            DebugConnectToRunningApp = false;
+            InnerPort = 9998;
+            KeyboardSimulator = KeyboardSimulatorType.BasedOnInputSimulatorLib;
         }
 
         #endregion
@@ -54,13 +59,10 @@
             var capabilities = JsonConvert.DeserializeObject<Capabilities>(
                 jsonString,
                 new JsonSerializerSettings
-                    {
-                        Error =
-                            delegate(object sender, ErrorEventArgs args)
-                                {
-                                    args.ErrorContext.Handled = true;
-                                }
-                    });
+                {
+                    Error =
+                        delegate(object sender, ErrorEventArgs args) { args.ErrorContext.Handled = true; }
+                });
 
             return capabilities;
         }

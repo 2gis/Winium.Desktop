@@ -1,12 +1,17 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using DotNetRemoteWebDriver.Extensions;
+using Winium.Cruciatus.Elements;
+using Winium.Cruciatus.Exceptions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using DotNetRemoteWebDriver.Extensions;
-
-    using Winium.Cruciatus.Elements;
-    using Winium.Cruciatus.Exceptions;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -16,13 +21,13 @@
 
         protected override string DoImpl()
         {
-            var dataGridKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
-            var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
+            var dataGridKey = ExecutedCommand.Parameters["ID"].ToString();
+            var searchStrategy = ExecutedCommand.Parameters["using"].ToString();
+            var searchValue = ExecutedCommand.Parameters["value"].ToString();
 
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
 
-            var listBox = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToListBox();
+            var listBox = Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToListBox();
 
             CruciatusElement element;
             try
@@ -31,12 +36,12 @@
             }
             catch (CruciatusException exception)
             {
-                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+                return JsonResponse(ResponseStatus.NoSuchElement, exception);
             }
 
-            var elementKey = this.Automator.ElementsRegistry.RegisterElement(element);
+            var elementKey = Automator.ElementsRegistry.RegisterElement(element);
 
-            return this.JsonResponse(ResponseStatus.Success, new JsonElementContent(elementKey));
+            return JsonResponse(ResponseStatus.Success, new JsonElementContent(elementKey));
         }
 
         #endregion

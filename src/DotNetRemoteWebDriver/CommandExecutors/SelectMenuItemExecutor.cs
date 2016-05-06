@@ -1,9 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus.Exceptions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus.Exceptions;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -13,10 +19,10 @@
 
         protected override string DoImpl()
         {
-            var dataGridKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var headersPath = this.ExecutedCommand.Parameters["PATH"].ToString();
+            var dataGridKey = ExecutedCommand.Parameters["ID"].ToString();
+            var headersPath = ExecutedCommand.Parameters["PATH"].ToString();
 
-            var menu = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
+            var menu = Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToMenu();
 
             try
             {
@@ -24,10 +30,10 @@
             }
             catch (CruciatusException exception)
             {
-                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+                return JsonResponse(ResponseStatus.NoSuchElement, exception);
             }
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

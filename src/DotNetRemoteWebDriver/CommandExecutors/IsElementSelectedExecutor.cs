@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Windows.Automation;
+using Winium.Cruciatus.Exceptions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Windows.Automation;
-
-    using Winium.Cruciatus.Exceptions;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -15,9 +20,9 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             bool isSelected;
 
@@ -34,7 +39,7 @@
                 isSelected = toggleState == ToggleState.On;
             }
 
-            return this.JsonResponse(ResponseStatus.Success, isSelected);
+            return JsonResponse(ResponseStatus.Success, isSelected);
         }
 
         #endregion

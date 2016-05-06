@@ -6,17 +6,17 @@
 
         protected override string DoImpl()
         {
-            if (!this.Automator.ActualCapabilities.DebugConnectToRunningApp)
+            if (!Automator.ActualCapabilities.DebugConnectToRunningApp)
             {
-                if (!this.Automator.Application.Close())
+                if (!Automator.Application.Close())
                 {
-                    this.Automator.Application.Kill();
+                    Automator.Application.Kill();
                 }
 
-                this.Automator.ElementsRegistry.Clear();
+                Automator.ElementsRegistry.Clear();
             }
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using DotNetRemoteWebDriver.Exceptions;
+using DotNetRemoteWebDriver.Extensions;
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using DotNetRemoteWebDriver.Exceptions;
-    using DotNetRemoteWebDriver.Extensions;
-
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -15,8 +20,8 @@
 
         protected override string DoImpl()
         {
-            var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
-            var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
+            var searchValue = ExecutedCommand.Parameters["value"].ToString();
+            var searchStrategy = ExecutedCommand.Parameters["using"].ToString();
 
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
             var element = CruciatusFactory.Root.FindElement(strategy);
@@ -25,9 +30,9 @@
                 throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
             }
 
-            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(element);
+            var registeredKey = Automator.ElementsRegistry.RegisterElement(element);
             var registeredObject = new JsonElementContent(registeredKey);
-            return this.JsonResponse(ResponseStatus.Success, registeredObject);
+            return JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

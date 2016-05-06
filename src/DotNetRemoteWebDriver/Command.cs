@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System.Collections.Generic;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region
 
-    using System.Collections.Generic;
-
-    using Newtonsoft.Json;
-    using Newtonsoft.Json.Linq;
+    
 
     #endregion
 
@@ -19,8 +24,8 @@
 
         public Command(string name, IDictionary<string, JToken> parameters)
         {
-            this.Name = name;
-            if (parameters != null) this.Parameters = parameters;
+            Name = name;
+            if (parameters != null) Parameters = parameters;
         }
 
         public Command(string name, string jsonParameters)
@@ -30,7 +35,7 @@
 
         public Command(string name)
         {
-            this.Name = name;
+            Name = name;
         }
 
         public Command()

@@ -1,13 +1,19 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System;
+using System.Collections.Specialized;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using System.Net.Sockets;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System;
-    using System.Collections.Specialized;
-    using System.Globalization;
-    using System.IO;
-    using System.Net;
-    using System.Net.Sockets;
+    
 
     #endregion
 
@@ -16,6 +22,15 @@
         #region Static Fields
 
         private static string urnPrefix;
+
+        #endregion
+
+        #region Constructors and Destructors
+
+        public Listener(int listenerPort)
+        {
+            Port = listenerPort;
+        }
 
         #endregion
 
@@ -29,23 +44,11 @@
 
         #endregion
 
-        #region Constructors and Destructors
-
-        public Listener(int listenerPort)
-        {
-            this.Port = listenerPort;
-        }
-
-        #endregion
-
         #region Public Properties
 
         public static string UrnPrefix
         {
-            get
-            {
-                return urnPrefix;
-            }
+            get { return urnPrefix; }
 
             set
             {
@@ -69,14 +72,14 @@
         {
             try
             {
-                this.listener = new TcpListener(IPAddress.Any, this.Port);
+                listener = new TcpListener(IPAddress.Any, Port);
 
-                this.Prefix = new Uri(string.Format(CultureInfo.InvariantCulture, "http://localhost:{0}", this.Port));
-                this.dispatcher = new UriDispatchTables(new Uri(this.Prefix, UrnPrefix));
-                this.executorDispatcher = new CommandExecutorDispatchTable();
+                Prefix = new Uri(string.Format(CultureInfo.InvariantCulture, "http://localhost:{0}", Port));
+                dispatcher = new UriDispatchTables(new Uri(Prefix, UrnPrefix));
+                executorDispatcher = new CommandExecutorDispatchTable();
 
                 // Start listening for client requests.
-                this.listener.Start();
+                listener.Start();
 
                 // Enter the listening loop
                 while (true)
@@ -84,7 +87,7 @@
                     Logger.Debug("Waiting for a connection...");
 
                     // Perform a blocking call to accept requests. 
-                    var client = this.listener.AcceptTcpClient();
+                    var client = listener.AcceptTcpClient();
 
                     // Get a stream object for reading and writing
                     using (var stream = client.GetStream())
@@ -92,7 +95,7 @@
                         var acceptedRequest = HttpRequest.ReadFromStreamWithoutClosing(stream);
                         Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
 
-                        var response = this.HandleRequest(acceptedRequest);
+                        var response = HandleRequest(acceptedRequest);
                         using (var writer = new StreamWriter(stream))
                         {
                             try
@@ -127,13 +130,13 @@
             finally
             {
                 // Stop listening for new clients.
-                this.listener.Stop();
+                listener.Stop();
             }
         }
 
         public void StopListening()
         {
-            this.listener.Stop();
+            listener.Stop();
         }
 
         #endregion
@@ -146,8 +149,8 @@
             var method = firstHeaderTokens[0];
             var resourcePath = firstHeaderTokens[1];
 
-            var uriToMatch = new Uri(this.Prefix, resourcePath);
-            var matched = this.dispatcher.Match(method, uriToMatch);
+            var uriToMatch = new Uri(Prefix, resourcePath);
+            var matched = dispatcher.Match(method, uriToMatch);
 
             if (matched == null)
             {
@@ -161,11 +164,11 @@
                 commandToExecute.Parameters[variableName] = matched.BoundVariables[variableName];
 
             string sessionId;
-            if (this.TryGetSession(matched.BoundVariables, out sessionId))
+            if (TryGetSession(matched.BoundVariables, out sessionId))
                 commandToExecute.SessionId = sessionId;
 
 
-            var commandResponse = this.ProcessCommand(commandToExecute);
+            var commandResponse = ProcessCommand(commandToExecute);
             return HttpResponseHelper.ResponseString(commandResponse.HttpStatusCode, commandResponse.Content);
         }
 
@@ -178,7 +181,7 @@
         private CommandResponse ProcessCommand(Command command)
         {
             Logger.Info("COMMAND {0}\r\n{1}", command.Name, command.Parameters.ToString());
-            var executor = this.executorDispatcher.GetExecutor(command.Name);
+            var executor = executorDispatcher.GetExecutor(command.Name);
             executor.ExecutedCommand = command;
             var respnose = executor.Do();
             Logger.Debug("RESPONSE:\r\n{0}", respnose);

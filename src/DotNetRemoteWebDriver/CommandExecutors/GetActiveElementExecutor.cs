@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -12,9 +18,9 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(CruciatusFactory.FocusedElement);
+            var registeredKey = Automator.ElementsRegistry.RegisterElement(CruciatusFactory.FocusedElement);
             var registeredObject = new JsonElementContent(registeredKey);
-            return this.JsonResponse(ResponseStatus.Success, registeredObject);
+            return JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

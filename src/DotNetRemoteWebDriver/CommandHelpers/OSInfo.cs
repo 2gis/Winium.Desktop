@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandHelpers
+﻿#region using
+
+using System;
+using Newtonsoft.Json;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandHelpers
 {
     #region using
 
-    using System;
-
-    using Newtonsoft.Json;
+    
 
     #endregion
 
@@ -24,28 +29,19 @@
         [JsonProperty("arch")]
         public string Architecture
         {
-            get
-            {
-                return architecture ?? (architecture = Environment.Is64BitOperatingSystem ? "x64" : "x86");
-            }
+            get { return architecture ?? (architecture = Environment.Is64BitOperatingSystem ? "x64" : "x86"); }
         }
 
         [JsonProperty("name")]
         public string Name
         {
-            get
-            {
-                return "windows";
-            }
+            get { return "windows"; }
         }
 
         [JsonProperty("version")]
         public string Version
         {
-            get
-            {
-                return version ?? (version = Environment.OSVersion.VersionString);
-            }
+            get { return version ?? (version = Environment.OSVersion.VersionString); }
         }
 
         #endregion

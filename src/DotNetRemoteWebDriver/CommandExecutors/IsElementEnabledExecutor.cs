@@ -1,8 +1,7 @@
 ﻿namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
 
-    
+    #region using
 
     #endregion
 
@@ -12,11 +11,11 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
-            return this.JsonResponse(ResponseStatus.Success, element.Properties.IsEnabled);
+            return JsonResponse(ResponseStatus.Success, element.Properties.IsEnabled);
         }
 
         #endregion

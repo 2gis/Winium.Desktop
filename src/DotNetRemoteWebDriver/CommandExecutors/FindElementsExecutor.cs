@@ -1,12 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Linq;
+using DotNetRemoteWebDriver.Extensions;
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Linq;
-
-    using DotNetRemoteWebDriver.Extensions;
-
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -16,15 +20,15 @@
 
         protected override string DoImpl()
         {
-            var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
-            var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
+            var searchValue = ExecutedCommand.Parameters["value"].ToString();
+            var searchStrategy = ExecutedCommand.Parameters["using"].ToString();
 
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
             var elements = CruciatusFactory.Root.FindElements(strategy);
 
-            var registeredKeys = this.Automator.ElementsRegistry.RegisterElements(elements);
+            var registeredKeys = Automator.ElementsRegistry.RegisterElements(elements);
             var registeredObjects = registeredKeys.Select(e => new JsonElementContent(e));
-            return this.JsonResponse(ResponseStatus.Success, registeredObjects);
+            return JsonResponse(ResponseStatus.Success, registeredObjects);
         }
 
         #endregion

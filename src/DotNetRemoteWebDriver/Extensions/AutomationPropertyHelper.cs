@@ -1,14 +1,19 @@
-﻿namespace DotNetRemoteWebDriver.Extensions
+﻿#region using
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using System.Windows.Automation;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Exceptions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Extensions
 {
     #region using
 
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-    using System.Windows.Automation;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Exceptions;
+    
 
     #endregion
 
@@ -25,9 +30,9 @@
         static AutomationPropertyHelper()
         {
             Properties =
-                typeof(AutomationElementIdentifiers).GetFields(BindingFlags.Public | BindingFlags.Static)
-                    .Where(f => f.FieldType == typeof(AutomationProperty))
-                    .ToDictionary(f => f.Name, f => (AutomationProperty)f.GetValue(null));
+                typeof (AutomationElementIdentifiers).GetFields(BindingFlags.Public | BindingFlags.Static)
+                    .Where(f => f.FieldType == typeof (AutomationProperty))
+                    .ToDictionary(f => f.Name, f => (AutomationProperty) f.GetValue(null));
         }
 
         #endregion

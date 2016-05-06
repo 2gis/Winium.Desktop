@@ -1,15 +1,18 @@
-﻿namespace DotNetRemoteWebDriver.Automator
+﻿#region using
+
+using System;
+using System.Collections.Generic;
+using DotNetRemoteWebDriver.Input;
+using OpenQA.Selenium.Remote;
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Automator
 {
     #region using
 
-    using System;
-    using System.Collections.Generic;
-
-    using DotNetRemoteWebDriver.Input;
-
-    using OpenQA.Selenium.Remote;
-
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -25,8 +28,8 @@
 
         public Automator(string session)
         {
-            this.Session = session;
-            this.ElementsRegistry = new ElementsRegistry();
+            Session = session;
+            ElementsRegistry = new ElementsRegistry();
         }
 
         #endregion
@@ -57,7 +60,7 @@
             return valueObject as T;
         }
 
-        private readonly static Dictionary<string, Automator> _aliveSessions = new Dictionary<string, Automator>();
+        private static readonly Dictionary<string, Automator> _aliveSessions = new Dictionary<string, Automator>();
 
         public static Automator InstanceForSession(string sessionId)
         {
@@ -70,7 +73,7 @@
                 return session;
             }
 
-            if(!_aliveSessions.TryGetValue(sessionId, out session))
+            if (!_aliveSessions.TryGetValue(sessionId, out session))
                 throw new Exception("No active session with id: " + sessionId);
 
             return session;

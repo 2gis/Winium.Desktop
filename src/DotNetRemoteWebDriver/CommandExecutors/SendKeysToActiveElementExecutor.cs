@@ -1,9 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using System.Linq;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-    using System.Linq;
+    
 
     #endregion
 
@@ -13,11 +19,11 @@
 
         protected override string DoImpl()
         {
-            var chars = this.ExecutedCommand.Parameters["value"].Select(x => Convert.ToChar(x.ToString()));
+            var chars = ExecutedCommand.Parameters["value"].Select(x => Convert.ToChar(x.ToString()));
 
-            this.Automator.WiniumKeyboard.SendKeys(chars.ToArray());
+            Automator.WiniumKeyboard.SendKeys(chars.ToArray());
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

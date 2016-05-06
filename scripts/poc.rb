@@ -1,5 +1,11 @@
 require 'selenium-webdriver'
 
+# This is a small script showing how different browsers can be instantiated
+# and reconnected to using the .Net remote web driver.
+# Notice how the standard remote web bridge is inherited in order to create
+# a bridge that can, instead of instantiating a new session, reuse the previous
+# session id and continue executing in that session.
+
 # wraps the original remote bridge to allow to reconnect to a previously
 # created bridge session
 class KeepAliveBridge < Selenium::WebDriver::Remote::Bridge

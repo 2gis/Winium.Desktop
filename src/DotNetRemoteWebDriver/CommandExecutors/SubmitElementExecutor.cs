@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -13,7 +19,7 @@
         protected override string DoImpl()
         {
             CruciatusFactory.Keyboard.SendEnter();
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

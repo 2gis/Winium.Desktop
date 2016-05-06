@@ -1,14 +1,17 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using System.Net;
+using DotNetRemoteWebDriver.Exceptions;
+using Newtonsoft.Json;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-    using System.Net;
-
-    using DotNetRemoteWebDriver.Automator;
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Newtonsoft.Json;
+    
 
     #endregion
 
@@ -22,7 +25,7 @@
 
         #region Properties
 
-        protected Automator Automator { get; set; }
+        protected Automator.Automator Automator { get; set; }
 
         #endregion
 
@@ -30,32 +33,32 @@
 
         public CommandResponse Do()
         {
-            if (this.ExecutedCommand == null)
+            if (ExecutedCommand == null)
             {
                 throw new NullReferenceException("ExecutedCommand property must be set before calling Do");
             }
 
             try
             {
-                var session = this.ExecutedCommand.SessionId;
-                this.Automator = Automator.InstanceForSession(session);
-                return CommandResponse.Create(HttpStatusCode.OK, this.DoImpl());
+                var session = ExecutedCommand.SessionId;
+                Automator = DotNetRemoteWebDriver.Automator.Automator.InstanceForSession(session);
+                return CommandResponse.Create(HttpStatusCode.OK, DoImpl());
             }
             catch (AutomationException exception)
             {
-                return CommandResponse.Create(HttpStatusCode.OK, this.JsonResponse(exception.Status, exception));
+                return CommandResponse.Create(HttpStatusCode.OK, JsonResponse(exception.Status, exception));
             }
             catch (NotImplementedException exception)
             {
                 return CommandResponse.Create(
                     HttpStatusCode.NotImplemented,
-                    this.JsonResponse(ResponseStatus.UnknownCommand, exception));
+                    JsonResponse(ResponseStatus.UnknownCommand, exception));
             }
             catch (Exception exception)
             {
                 return CommandResponse.Create(
                     HttpStatusCode.OK,
-                    this.JsonResponse(ResponseStatus.UnknownError, exception));
+                    JsonResponse(ResponseStatus.UnknownError, exception));
             }
         }
 
@@ -70,13 +73,13 @@
         /// </summary>
         protected string JsonResponse()
         {
-            return this.JsonResponse(ResponseStatus.Success, null);
+            return JsonResponse(ResponseStatus.Success, null);
         }
 
         protected string JsonResponse(ResponseStatus status, object value)
         {
             return JsonConvert.SerializeObject(
-                new JsonResponse(this.Automator.Session, status, value),
+                new JsonResponse(Automator.Session, status, value),
                 Formatting.Indented);
         }
 

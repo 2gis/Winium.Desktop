@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Linq;
+using DotNetRemoteWebDriver.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Linq;
-
-    using DotNetRemoteWebDriver.Extensions;
+    
 
     #endregion
 
@@ -14,17 +19,17 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var searchValue = this.ExecutedCommand.Parameters["value"].ToString();
-            var searchStrategy = this.ExecutedCommand.Parameters["using"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
+            var searchValue = ExecutedCommand.Parameters["value"].ToString();
+            var searchStrategy = ExecutedCommand.Parameters["using"].ToString();
 
-            var parent = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var parent = Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
             var strategy = ByHelper.GetStrategy(searchStrategy, searchValue);
             var elements = parent.FindElements(strategy);
 
-            var registeredKeys = this.Automator.ElementsRegistry.RegisterElements(elements);
+            var registeredKeys = Automator.ElementsRegistry.RegisterElements(elements);
             var registeredObjects = registeredKeys.Select(e => new JsonElementContent(e));
-            return this.JsonResponse(ResponseStatus.Success, registeredObjects);
+            return JsonResponse(ResponseStatus.Success, registeredObjects);
         }
 
         #endregion

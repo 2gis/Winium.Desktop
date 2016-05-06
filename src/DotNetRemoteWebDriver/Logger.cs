@@ -1,12 +1,17 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System.ComponentModel;
+using NLog;
+using NLog.Config;
+using NLog.Targets;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System.ComponentModel;
-
-    using NLog;
-    using NLog.Config;
-    using NLog.Targets;
+    
 
     #endregion
 
@@ -48,7 +53,7 @@
 
         public static void TargetConsole(bool verbose)
         {
-            var target = new ConsoleTarget { Layout = LayoutFormat };
+            var target = new ConsoleTarget {Layout = LayoutFormat};
 
             SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Fatal);
             LogManager.ReconfigExistingLoggers();
@@ -56,7 +61,7 @@
 
         public static void TargetFile(string fileName, bool verbose)
         {
-            var target = new FileTarget { Layout = LayoutFormat, FileName = fileName };
+            var target = new FileTarget {Layout = LayoutFormat, FileName = fileName};
 
             SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Info);
             LogManager.ReconfigExistingLoggers();

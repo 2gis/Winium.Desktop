@@ -1,27 +1,23 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Linq;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Linq;
+    
 
     #endregion
 
     public class HttpRequest
     {
-        #region Public Properties
-
-        public Dictionary<string, string> Headers { get; set; }
-
-        public string MessageBody { get; private set; }
-
-        public string StartingLine { get; private set; }
-
-        #endregion
-
         #region Public Methods and Operators
 
         public static HttpRequest ReadFromStreamWithoutClosing(Stream stream)
@@ -38,6 +34,16 @@
 
             return request;
         }
+
+        #endregion
+
+        #region Public Properties
+
+        public Dictionary<string, string> Headers { get; set; }
+
+        public string MessageBody { get; private set; }
+
+        public string StartingLine { get; private set; }
 
         #endregion
 

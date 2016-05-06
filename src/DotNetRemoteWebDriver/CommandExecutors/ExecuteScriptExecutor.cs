@@ -1,17 +1,20 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows.Automation;
+using DotNetRemoteWebDriver.Exceptions;
+using Newtonsoft.Json.Linq;
+using Winium.Cruciatus.Elements;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Windows.Automation;
-
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Newtonsoft.Json.Linq;
-
-    using Winium.Cruciatus.Elements;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -37,7 +40,7 @@
 
         protected override string DoImpl()
         {
-            var script = this.ExecutedCommand.Parameters["script"].ToString();
+            var script = ExecutedCommand.Parameters["script"].ToString();
 
             var prefix = string.Empty;
             string command;
@@ -56,30 +59,30 @@
             switch (prefix)
             {
                 case "input":
-                    this.ExecuteInputScript(command);
+                    ExecuteInputScript(command);
                     break;
                 case "automation":
-                    this.ExecuteAutomationScript(command);
+                    ExecuteAutomationScript(command);
                     break;
                 default:
                     var msg = string.Format(HelpUnknownScriptMsg, prefix, command, HelpUrlScript);
                     throw new AutomationException(msg, ResponseStatus.JavaScriptError);
             }
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         private void ExecuteAutomationScript(string command)
         {
-            var args = (JArray)this.ExecutedCommand.Parameters["args"];
+            var args = (JArray) ExecutedCommand.Parameters["args"];
             var elementId = args[0]["ELEMENT"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(elementId);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(elementId);
 
             switch (command)
             {
                 case "ValuePattern.SetValue":
-                    this.ValuePatternSetValue(element, args);
+                    ValuePatternSetValue(element, args);
                     break;
                 default:
                     var msg = string.Format(HelpUnknownScriptMsg, "automation:", command, HelpUrlAutomationScript);
@@ -89,10 +92,10 @@
 
         private void ExecuteInputScript(string command)
         {
-            var args = (JArray)this.ExecutedCommand.Parameters["args"];
+            var args = (JArray) ExecutedCommand.Parameters["args"];
             var elementId = args[0]["ELEMENT"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(elementId);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(elementId);
 
             switch (command)
             {

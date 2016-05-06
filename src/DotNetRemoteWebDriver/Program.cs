@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System;
+using CommandLine;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System;
-
-    using CommandLine;
+    
 
     #endregion
 

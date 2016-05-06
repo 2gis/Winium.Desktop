@@ -1,8 +1,14 @@
+#region using
+
+using Winium.Cruciatus.Core;
+
+#endregion
+
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus.Core;
+    
 
     #endregion
 
@@ -14,7 +20,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
         {
             var orientation = RotationManager.GetCurrentOrientation();
 
-            return this.JsonResponse(ResponseStatus.Success, orientation.ToString());
+            return JsonResponse(ResponseStatus.Success, orientation.ToString());
         }
 
         #endregion

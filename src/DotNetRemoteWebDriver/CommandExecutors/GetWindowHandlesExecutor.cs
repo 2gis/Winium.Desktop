@@ -1,13 +1,18 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Linq;
+using System.Windows.Automation;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Core;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Linq;
-    using System.Windows.Automation;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Core;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -23,7 +28,7 @@
             var handleProperty = AutomationElement.NativeWindowHandleProperty;
             var handles = windows.Select(element => element.GetAutomationPropertyValue<int>(handleProperty));
 
-            return this.JsonResponse(ResponseStatus.Success, handles);
+            return JsonResponse(ResponseStatus.Success, handles);
         }
 
         #endregion

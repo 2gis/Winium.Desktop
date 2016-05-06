@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
+    
 
     #endregion
 
@@ -12,7 +18,7 @@
 
         protected override string DoImpl()
         {
-            var msg = string.Format("'{0}' is not valid or implemented command.", this.ExecutedCommand.Name);
+            var msg = string.Format("'{0}' is not valid or implemented command.", ExecutedCommand.Name);
             throw new NotImplementedException(msg);
         }
 

@@ -1,8 +1,7 @@
 ﻿namespace DotNetRemoteWebDriver.CommandExecutors
 {
-    #region using
 
-    
+    #region using
 
     #endregion
 
@@ -12,9 +11,9 @@
 
         protected override string DoImpl()
         {
-            var url = this.ExecutedCommand.Parameters["url"].ToString();
-            this.Automator.Driver.Navigate().GoToUrl(url);
-            return this.JsonResponse();
+            var url = ExecutedCommand.Parameters["url"].ToString();
+            Automator.Driver.Navigate().GoToUrl(url);
+            return JsonResponse();
         }
 
         #endregion

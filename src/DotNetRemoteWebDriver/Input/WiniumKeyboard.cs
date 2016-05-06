@@ -1,15 +1,19 @@
-﻿namespace DotNetRemoteWebDriver.Input
+﻿#region using
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using OpenQA.Selenium;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Settings;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Input
 {
     #region using
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-
-    using OpenQA.Selenium;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Settings;
+    
 
     #endregion
 
@@ -35,14 +39,14 @@
         public void KeyDown(string keyToPress)
         {
             var key = KeyboardModifiers.GetVirtualKeyCode(keyToPress);
-            this.modifiers.Add(keyToPress);
+            modifiers.Add(keyToPress);
             CruciatusFactory.Keyboard.KeyDown(key);
         }
 
         public void KeyUp(string keyToRelease)
         {
             var key = KeyboardModifiers.GetVirtualKeyCode(keyToRelease);
-            this.modifiers.Remove(keyToRelease);
+            modifiers.Remove(keyToRelease);
             CruciatusFactory.Keyboard.KeyUp(key);
         }
 
@@ -50,7 +54,7 @@
         {
             var builder = keysToSend.Select(key => new KeyEvent(key)).ToList();
 
-            this.SendKeys(builder);
+            SendKeys(builder);
         }
 
         #endregion
@@ -59,23 +63,23 @@
 
         protected void ReleaseModifiers()
         {
-            var tmp = this.modifiers.ToList();
+            var tmp = modifiers.ToList();
 
             foreach (var modifierKey in tmp)
             {
-                this.KeyUp(modifierKey);
+                KeyUp(modifierKey);
             }
         }
 
         private void PressOrReleaseModifier(string modifier)
         {
-            if (this.modifiers.Contains(modifier))
+            if (modifiers.Contains(modifier))
             {
-                this.KeyUp(modifier);
+                KeyUp(modifier);
             }
             else
             {
-                this.KeyDown(modifier);
+                KeyDown(modifier);
             }
         }
 
@@ -89,15 +93,15 @@
                 }
                 else if (keyEvent.IsModifierRelease())
                 {
-                    this.ReleaseModifiers();
+                    ReleaseModifiers();
                 }
                 else if (keyEvent.IsModifier())
                 {
-                    this.PressOrReleaseModifier(keyEvent.GetKey());
+                    PressOrReleaseModifier(keyEvent.GetKey());
                 }
                 else
                 {
-                    this.Type(keyEvent.GetCharacter());
+                    Type(keyEvent.GetCharacter());
                 }
             }
         }
@@ -106,7 +110,7 @@
         {
             var str = Convert.ToString(key);
 
-            if (this.modifiers.Contains(Keys.LeftShift) || this.modifiers.Contains(Keys.Shift))
+            if (modifiers.Contains(Keys.LeftShift) || modifiers.Contains(Keys.Shift))
             {
                 str = str.ToUpper();
             }

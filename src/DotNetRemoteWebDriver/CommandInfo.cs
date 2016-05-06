@@ -2,6 +2,16 @@
 {
     public class CommandInfo
     {
+        #region Constructors and Destructors
+
+        public CommandInfo(string method, string resourcePath)
+        {
+            ResourcePath = resourcePath;
+            Method = method;
+        }
+
+        #endregion
+
         #region Constants
 
         public const string DeleteCommand = "DELETE";
@@ -9,16 +19,6 @@
         public const string GetCommand = "GET";
 
         public const string PostCommand = "POST";
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        public CommandInfo(string method, string resourcePath)
-        {
-            this.ResourcePath = resourcePath;
-            this.Method = method;
-        }
 
         #endregion
 

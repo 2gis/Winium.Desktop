@@ -6,8 +6,8 @@
 
         protected override string DoImpl()
         {
-            this.Automator.Driver.Quit();
-            return this.JsonResponse();
+            Automator.Driver.Quit();
+            return JsonResponse();
         }
 
         #endregion

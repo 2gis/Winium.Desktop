@@ -1,18 +1,30 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Reflection;
+using DotNetRemoteWebDriver.CommandExecutors;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System;
-    using System.Collections.Generic;
-    using System.Linq;
-    using System.Reflection;
-
-    using DotNetRemoteWebDriver.CommandExecutors;
+    
 
     #endregion
 
     internal class CommandExecutorDispatchTable
     {
+        private static readonly string ExecutorsNamespace;
+
+        static CommandExecutorDispatchTable()
+        {
+            ExecutorsNamespace = typeof (CommandExecutorBase).Namespace;
+        }
+
         #region Fields
 
         private Dictionary<string, Type> commandExecutorsRepository;
@@ -23,7 +35,7 @@
 
         public CommandExecutorDispatchTable()
         {
-            this.ConstructDispatcherTable();
+            ConstructDispatcherTable();
         }
 
         #endregion
@@ -33,15 +45,15 @@
         public CommandExecutorBase GetExecutor(string commandName)
         {
             Type executorType;
-            if (this.commandExecutorsRepository.TryGetValue(commandName, out executorType))
+            if (commandExecutorsRepository.TryGetValue(commandName, out executorType))
             {
             }
             else
             {
-                executorType = typeof(NotImplementedExecutor);
+                executorType = typeof (NotImplementedExecutor);
             }
 
-            return (CommandExecutorBase)Activator.CreateInstance(executorType);
+            return (CommandExecutorBase) Activator.CreateInstance(executorType);
         }
 
         #endregion
@@ -50,24 +62,21 @@
 
         private void ConstructDispatcherTable()
         {
-            this.commandExecutorsRepository = new Dictionary<string, Type>();
-
-            // TODO: bad const
-            const string ExecutorsNamespace = "Winium.Desktop.Driver.CommandExecutors";
+            commandExecutorsRepository = new Dictionary<string, Type>();
 
             var q =
                 (from t in Assembly.GetExecutingAssembly().GetTypes()
-                 where t.IsClass && t.Namespace == ExecutorsNamespace
-                 select t).ToArray();
+                    where t.IsClass && t.Namespace == ExecutorsNamespace
+                    select t).ToArray();
 
-            var fields = typeof(DriverCommand).GetFields(BindingFlags.Public | BindingFlags.Static);
+            var fields = typeof (DriverCommand).GetFields(BindingFlags.Public | BindingFlags.Static);
             foreach (var field in fields)
             {
                 var localField = field;
                 var executor = q.FirstOrDefault(x => x.Name.Equals(localField.Name + "Executor"));
                 if (executor != null)
                 {
-                    this.commandExecutorsRepository.Add(localField.GetValue(null).ToString(), executor);
+                    commandExecutorsRepository.Add(localField.GetValue(null).ToString(), executor);
                 }
             }
         }

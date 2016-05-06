@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -12,11 +18,11 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
 
-            var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey).ToDataGrid();
+            var dataGrid = Automator.ElementsRegistry.GetRegisteredElement(registeredKey).ToDataGrid();
 
-            return this.JsonResponse(ResponseStatus.Success, dataGrid.RowCount);
+            return JsonResponse(ResponseStatus.Success, dataGrid.RowCount);
         }
 
         #endregion

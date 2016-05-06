@@ -3,12 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 14
 VisualStudioVersion = 14.0.25123.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRemoteWebDriver", "Winium.Desktop.Driver\DotNetRemoteWebDriver.csproj", "{B214C2BA-43FA-486F-AD0B-D4890C1748C0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{56A74D50-0B52-4130-BF77-C5BD2B3441A6}"
 	ProjectSection(SolutionItems) = preProject
 		Settings.StyleCop = Settings.StyleCop
-		Winium.sln.DotSettings = Winium.sln.DotSettings
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7F1DBF6F-6390-429F-BAD0-08D85DE19E0C}"
@@ -16,6 +13,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{7F1DBF
 		.nuget\NuGet.Config = .nuget\NuGet.Config
 		.nuget\NuGet.targets = .nuget\NuGet.targets
 	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DotNetRemoteWebDriver", "DotNetRemoteWebDriver\DotNetRemoteWebDriver.csproj", "{B214C2BA-43FA-486F-AD0B-D4890C1748C0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

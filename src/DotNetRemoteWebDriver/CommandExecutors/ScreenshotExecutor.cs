@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -15,7 +21,7 @@
             var screenshot = CruciatusFactory.Screenshoter.GetScreenshot();
             var screenshotSource = screenshot.AsBase64String();
 
-            return this.JsonResponse(ResponseStatus.Success, screenshotSource);
+            return JsonResponse(ResponseStatus.Success, screenshotSource);
         }
 
         #endregion

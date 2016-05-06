@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Core;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Core;
+    
 
     #endregion
 
@@ -15,9 +20,9 @@
 
         protected override string DoImpl()
         {
-            var buttonId = Convert.ToInt32(this.ExecutedCommand.Parameters["button"]);
+            var buttonId = Convert.ToInt32(ExecutedCommand.Parameters["button"]);
 
-            switch ((MouseButton)buttonId)
+            switch ((MouseButton) buttonId)
             {
                 case MouseButton.Left:
                     CruciatusFactory.Mouse.LeftButtonClick();
@@ -28,10 +33,10 @@
                     break;
 
                 default:
-                    return this.JsonResponse(ResponseStatus.UnknownCommand, "Mouse button behavior is not implemented");
+                    return JsonResponse(ResponseStatus.UnknownCommand, "Mouse button behavior is not implemented");
             }
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

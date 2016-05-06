@@ -1,13 +1,17 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Windows.Automation;
+using DotNetRemoteWebDriver.Exceptions;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Core;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Windows.Automation;
-
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Core;
+    
 
     #endregion
 
@@ -17,7 +21,7 @@
 
         protected override string DoImpl()
         {
-            var windowHandle = int.Parse(this.ExecutedCommand.Parameters["name"].ToString());
+            var windowHandle = int.Parse(ExecutedCommand.Parameters["name"].ToString());
 
             var handleProperty = AutomationElement.NativeWindowHandleProperty;
             var window = CruciatusFactory.Root.FindElement(By.AutomationProperty(handleProperty, windowHandle));
@@ -28,7 +32,7 @@
 
             window.SetFocus();
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

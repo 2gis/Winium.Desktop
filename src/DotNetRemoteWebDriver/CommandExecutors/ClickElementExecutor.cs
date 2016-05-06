@@ -6,10 +6,10 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey).Click();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
+            Automator.ElementsRegistry.GetRegisteredElement(registeredKey).Click();
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

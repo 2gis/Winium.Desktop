@@ -9,14 +9,11 @@ using System.Runtime.InteropServices;
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
 
-[assembly: AssemblyTitle("Winium.Desktop.Driver")]
-[assembly:
-    AssemblyDescription(
-        "Selenium Remote WebDriver implementation for test automation of Windows application based on WinFroms and WPF platforms."
-        )]
+[assembly: AssemblyTitle("DotNetRemoteWebDriver")]
+[assembly:AssemblyDescription("The DotNetRemoteWebDriver provides a .Net port for the Java version of the stand alone remote web driver.")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("Winium.Desktop.Driver")]
+[assembly: AssemblyProduct("DotNetRemoteWebDriver")]
 [assembly: AssemblyCopyright("Copyright ©  2015")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

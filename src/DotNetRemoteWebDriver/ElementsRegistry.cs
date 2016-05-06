@@ -1,15 +1,19 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Threading;
+using DotNetRemoteWebDriver.Exceptions;
+using Winium.Cruciatus.Elements;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.Linq;
-    using System.Threading;
-
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Winium.Cruciatus.Elements;
+    
 
     #endregion
 
@@ -31,7 +35,18 @@
 
         public ElementsRegistry()
         {
-            this.registeredElements = new Dictionary<string, CruciatusElement>();
+            registeredElements = new Dictionary<string, CruciatusElement>();
+        }
+
+        #endregion
+
+        #region Methods
+
+        internal CruciatusElement GetRegisteredElementOrNull(string registeredKey)
+        {
+            CruciatusElement element;
+            registeredElements.TryGetValue(registeredKey, out element);
+            return element;
         }
 
         #endregion
@@ -40,7 +55,7 @@
 
         public void Clear()
         {
-            this.registeredElements.Clear();
+            registeredElements.Clear();
         }
 
         /// <summary>
@@ -51,7 +66,7 @@
         /// </exception>
         public CruciatusElement GetRegisteredElement(string registeredKey)
         {
-            var element = this.GetRegisteredElementOrNull(registeredKey);
+            var element = GetRegisteredElementOrNull(registeredKey);
             if (element != null)
             {
                 return element;
@@ -63,7 +78,7 @@
         public string RegisterElement(CruciatusElement element)
         {
             var registeredKey =
-                this.registeredElements.FirstOrDefault(
+                registeredElements.FirstOrDefault(
                     x => x.Value.Properties.RuntimeId == element.Properties.RuntimeId).Key;
 
             if (registeredKey == null)
@@ -73,7 +88,7 @@
                 // TODO: Maybe use RuntimeId how registeredKey?
                 registeredKey = element.GetHashCode() + "-"
                                 + safeInstanceCount.ToString(string.Empty, CultureInfo.InvariantCulture);
-                this.registeredElements.Add(registeredKey, element);
+                registeredElements.Add(registeredKey, element);
             }
 
             return registeredKey;
@@ -81,18 +96,7 @@
 
         public IEnumerable<string> RegisterElements(IEnumerable<CruciatusElement> elements)
         {
-            return elements.Select(this.RegisterElement);
-        }
-
-        #endregion
-
-        #region Methods
-
-        internal CruciatusElement GetRegisteredElementOrNull(string registeredKey)
-        {
-            CruciatusElement element;
-            this.registeredElements.TryGetValue(registeredKey, out element);
-            return element;
+            return elements.Select(RegisterElement);
         }
 
         #endregion

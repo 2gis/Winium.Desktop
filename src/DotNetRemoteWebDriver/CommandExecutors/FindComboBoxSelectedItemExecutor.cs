@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using DotNetRemoteWebDriver.Exceptions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -14,9 +19,9 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
 
-            var comboBox = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey).ToComboBox();
+            var comboBox = Automator.ElementsRegistry.GetRegisteredElement(registeredKey).ToComboBox();
 
             var selectedItem = comboBox.SelectedItem();
             if (selectedItem == null)
@@ -24,10 +29,10 @@
                 throw new AutomationException("No items is selected", ResponseStatus.NoSuchElement);
             }
 
-            var selectedItemKey = this.Automator.ElementsRegistry.RegisterElement(selectedItem);
+            var selectedItemKey = Automator.ElementsRegistry.RegisterElement(selectedItem);
             var registeredObject = new JsonElementContent(selectedItemKey);
 
-            return this.JsonResponse(ResponseStatus.Success, registeredObject);
+            return JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

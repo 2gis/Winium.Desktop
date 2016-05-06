@@ -1,10 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using Winium.Cruciatus.Elements;
+using Winium.Cruciatus.Exceptions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using Winium.Cruciatus.Elements;
-    using Winium.Cruciatus.Exceptions;
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -14,11 +20,11 @@
 
         protected override string DoImpl()
         {
-            var dataGridKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var column = int.Parse(this.ExecutedCommand.Parameters["COLUMN"].ToString());
-            var row = int.Parse(this.ExecutedCommand.Parameters["ROW"].ToString());
+            var dataGridKey = ExecutedCommand.Parameters["ID"].ToString();
+            var column = int.Parse(ExecutedCommand.Parameters["COLUMN"].ToString());
+            var row = int.Parse(ExecutedCommand.Parameters["ROW"].ToString());
 
-            var dataGrid = this.Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
+            var dataGrid = Automator.ElementsRegistry.GetRegisteredElement(dataGridKey).ToDataGrid();
 
             CruciatusElement dataGridCell;
             try
@@ -27,13 +33,13 @@
             }
             catch (CruciatusException exception)
             {
-                return this.JsonResponse(ResponseStatus.NoSuchElement, exception);
+                return JsonResponse(ResponseStatus.NoSuchElement, exception);
             }
 
-            var registeredKey = this.Automator.ElementsRegistry.RegisterElement(dataGridCell);
+            var registeredKey = Automator.ElementsRegistry.RegisterElement(dataGridCell);
             var registeredObject = new JsonElementContent(registeredKey);
 
-            return this.JsonResponse(ResponseStatus.Success, registeredObject);
+            return JsonResponse(ResponseStatus.Success, registeredObject);
         }
 
         #endregion

@@ -1,13 +1,17 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using System.Windows.Automation;
+using DotNetRemoteWebDriver.Extensions;
+using Winium.Cruciatus.Extensions;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-    using System.Windows.Automation;
-
-    using DotNetRemoteWebDriver.Extensions;
-
-    using Winium.Cruciatus.Extensions;
+    
 
     #endregion
 
@@ -17,21 +21,21 @@
 
         protected override string DoImpl()
         {
-            var registeredKey = this.ExecutedCommand.Parameters["ID"].ToString();
-            var propertyName = this.ExecutedCommand.Parameters["NAME"].ToString();
+            var registeredKey = ExecutedCommand.Parameters["ID"].ToString();
+            var propertyName = ExecutedCommand.Parameters["NAME"].ToString();
 
-            var element = this.Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
+            var element = Automator.ElementsRegistry.GetRegisteredElement(registeredKey);
 
             try
             {
                 var property = AutomationPropertyHelper.GetAutomationProperty(propertyName);
                 var propertyObject = element.GetAutomationPropertyValue<object>(property);
 
-                return this.JsonResponse(ResponseStatus.Success, PrepareValueToSerialize(propertyObject));
+                return JsonResponse(ResponseStatus.Success, PrepareValueToSerialize(propertyObject));
             }
             catch (Exception)
             {
-                return this.JsonResponse();
+                return JsonResponse();
             }
         }
 

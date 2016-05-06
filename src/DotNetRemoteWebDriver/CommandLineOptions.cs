@@ -1,14 +1,30 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using CommandLine;
+using CommandLine.Text;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using CommandLine;
-    using CommandLine.Text;
+    
 
     #endregion
 
     internal class CommandLineOptions
     {
+        #region Public Methods and Operators
+
+        [HelpOption]
+        public string GetUsage()
+        {
+            return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
+        }
+
+        #endregion
+
         #region Public Properties
 
         [Option("log-path", Required = false,
@@ -26,16 +42,6 @@
 
         [Option("verbose", Required = false, HelpText = "log verbosely")]
         public bool Verbose { get; set; }
-
-        #endregion
-
-        #region Public Methods and Operators
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
-        }
 
         #endregion
     }

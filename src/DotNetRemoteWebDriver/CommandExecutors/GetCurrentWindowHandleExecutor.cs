@@ -1,9 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System.Globalization;
+using System.Windows.Automation;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System.Globalization;
-    using System.Windows.Automation;
+    
 
     #endregion
 
@@ -22,9 +28,9 @@
             }
 
             var result = (node == rootElement)
-                             ? string.Empty
-                             : node.Current.NativeWindowHandle.ToString(CultureInfo.InvariantCulture);
-            return this.JsonResponse(ResponseStatus.Success, result);
+                ? string.Empty
+                : node.Current.NativeWindowHandle.ToString(CultureInfo.InvariantCulture);
+            return JsonResponse(ResponseStatus.Success, result);
         }
 
         #endregion

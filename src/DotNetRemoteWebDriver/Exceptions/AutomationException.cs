@@ -1,13 +1,25 @@
-﻿namespace DotNetRemoteWebDriver.Exceptions
+﻿#region using
+
+using System;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Exceptions
 {
     #region
 
-    using System;
+    
 
     #endregion
 
     public class AutomationException : Exception
     {
+        #region Public Properties
+
+        public ResponseStatus Status { get; set; } = ResponseStatus.UnknownError;
+
+        #endregion
+
         #region Fields
 
         #endregion
@@ -21,7 +33,7 @@
         public AutomationException(string message, ResponseStatus status)
             : base(message)
         {
-            this.Status = status;
+            Status = status;
         }
 
         public AutomationException(string message, params object[] args)
@@ -33,12 +45,6 @@
             : base(message, innerException)
         {
         }
-
-        #endregion
-
-        #region Public Properties
-
-        public ResponseStatus Status { get; set; } = ResponseStatus.UnknownError;
 
         #endregion
     }

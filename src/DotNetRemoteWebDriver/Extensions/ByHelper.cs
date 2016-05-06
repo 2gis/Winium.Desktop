@@ -1,11 +1,16 @@
-﻿namespace DotNetRemoteWebDriver.Extensions
+﻿#region using
+
+using System;
+using System.Windows.Automation;
+using Winium.Cruciatus.Core;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.Extensions
 {
     #region using
 
-    using System;
-    using System.Windows.Automation;
-
-    using Winium.Cruciatus.Core;
+    
 
     #endregion
 

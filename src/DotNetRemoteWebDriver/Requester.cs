@@ -1,36 +1,63 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.IO;
+using System.Net;
+using DotNetRemoteWebDriver.Exceptions;
+using Newtonsoft.Json;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System;
-    using System.Collections.Generic;
-    using System.Globalization;
-    using System.IO;
-    using System.Net;
-
-    using DotNetRemoteWebDriver.Exceptions;
-
-    using Newtonsoft.Json;
+    
 
     #endregion
 
     internal class Requester
     {
+        #region Constructors and Destructors
+
+        public Requester(string ip, int port)
+        {
+            ip = ip;
+            port = port;
+        }
+
+        #endregion
+
+        #region Methods
+
+        private static HttpWebRequest CreateWebRequest(string uri, string content)
+        {
+            // create request
+            var request = (HttpWebRequest) WebRequest.Create(uri);
+            request.ContentType = "application/json";
+            request.Method = "POST";
+            request.KeepAlive = false;
+
+            // write request body
+            if (!string.IsNullOrEmpty(content))
+            {
+                var writer = new StreamWriter(request.GetRequestStream());
+                writer.Write(content);
+                writer.Close();
+            }
+
+            return request;
+        }
+
+        #endregion
+
         #region Fields
 
         private readonly string ip;
 
         private readonly int port;
-
-        #endregion
-
-        #region Constructors and Destructors
-
-        public Requester(string ip, int port)
-        {
-            this.ip = ip;
-            this.port = port;
-        }
 
         #endregion
 
@@ -40,7 +67,7 @@
         {
             var serializedCommand = JsonConvert.SerializeObject(commandToForward);
 
-            var response = this.SendRequest(serializedCommand, verbose, timeout);
+            var response = SendRequest(serializedCommand, verbose, timeout);
             if (response.Key == HttpStatusCode.OK)
             {
                 return response.Value;
@@ -58,7 +85,7 @@
             try
             {
                 // create the request
-                var uri = string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", this.ip, this.port);
+                var uri = string.Format(CultureInfo.InvariantCulture, "http://{0}:{1}", ip, port);
                 var request = CreateWebRequest(uri, requestContent);
                 if (timeout != 0)
                 {
@@ -116,29 +143,6 @@
             }
 
             return new KeyValuePair<HttpStatusCode, string>(status, result);
-        }
-
-        #endregion
-
-        #region Methods
-
-        private static HttpWebRequest CreateWebRequest(string uri, string content)
-        {
-            // create request
-            var request = (HttpWebRequest)WebRequest.Create(uri);
-            request.ContentType = "application/json";
-            request.Method = "POST";
-            request.KeepAlive = false;
-
-            // write request body
-            if (!string.IsNullOrEmpty(content))
-            {
-                var writer = new StreamWriter(request.GetRequestStream());
-                writer.Write(content);
-                writer.Close();
-            }
-
-            return request;
         }
 
         #endregion

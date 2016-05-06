@@ -1,8 +1,14 @@
-﻿namespace DotNetRemoteWebDriver
+﻿#region using
+
+using System.Collections.Generic;
+
+#endregion
+
+namespace DotNetRemoteWebDriver
 {
     #region using
 
-    using System.Collections.Generic;
+    
 
     #endregion
 

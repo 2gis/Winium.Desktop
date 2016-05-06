@@ -1,10 +1,15 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using Winium.Cruciatus;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-
-    using Winium.Cruciatus;
+    
 
     #endregion
 
@@ -14,11 +19,11 @@
 
         protected override string DoImpl()
         {
-            var timeout = this.ExecutedCommand.Parameters["ms"];
+            var timeout = ExecutedCommand.Parameters["ms"];
 
             CruciatusFactory.Settings.SearchTimeout = Convert.ToInt32(timeout);
 
-            return this.JsonResponse();
+            return JsonResponse();
         }
 
         #endregion

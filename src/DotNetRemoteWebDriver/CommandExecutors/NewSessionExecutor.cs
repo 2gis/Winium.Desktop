@@ -1,20 +1,22 @@
-﻿namespace DotNetRemoteWebDriver.CommandExecutors
+﻿#region using
+
+using System;
+using DotNetRemoteWebDriver.Automator;
+using DotNetRemoteWebDriver.Input;
+using Newtonsoft.Json;
+using OpenQA.Selenium.Chrome;
+using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.IE;
+using Winium.Cruciatus;
+using Winium.Cruciatus.Settings;
+
+#endregion
+
+namespace DotNetRemoteWebDriver.CommandExecutors
 {
     #region using
 
-    using System;
-
-    using DotNetRemoteWebDriver.Automator;
-    using DotNetRemoteWebDriver.Input;
-
-    using Newtonsoft.Json;
-
-    using OpenQA.Selenium.Chrome;
-    using OpenQA.Selenium.Firefox;
-    using OpenQA.Selenium.IE;
-
-    using Winium.Cruciatus;
-    using Winium.Cruciatus.Settings;
+    
 
     #endregion
 
@@ -26,7 +28,7 @@
         {
             // So this method should instantiate a driver of the given browser type and return
             // the session id plus capabilities
-            var capabilities = this.ExecutedCommand.Parameters["desiredCapabilities"];
+            var capabilities = ExecutedCommand.Parameters["desiredCapabilities"];
             var driver = capabilities["browserName"].ToString().ToLower();
 
             var serializedCaps = JsonConvert.SerializeObject(capabilities);
@@ -35,51 +37,51 @@
             {
                 case "internet explorer":
                     var ieOptions = JsonConvert.DeserializeObject<InternetExplorerOptions>(serializedCaps);
-                    actualCapabilities = ieOptions; 
-                    this.Automator.Driver = new InternetExplorerDriver(ieOptions);
+                    actualCapabilities = ieOptions;
+                    Automator.Driver = new InternetExplorerDriver(ieOptions);
                     break;
                 case "chrome":
                     var chromeOptions = JsonConvert.DeserializeObject<ChromeOptions>(serializedCaps);
                     actualCapabilities = chromeOptions;
-                    this.Automator.Driver = new ChromeDriver(chromeOptions);
+                    Automator.Driver = new ChromeDriver(chromeOptions);
                     break;
                 case "firefox":
                     var ffOptions = JsonConvert.DeserializeObject<FirefoxOptions>(serializedCaps);
                     actualCapabilities = ffOptions;
                     var firefoxBinary = new FirefoxBinary(@"c:\Program Files (x86)\Mozilla Firefox\firefox.exe");
-                    this.Automator.Driver = new FirefoxDriver(firefoxBinary, new FirefoxProfile());
+                    Automator.Driver = new FirefoxDriver(firefoxBinary, new FirefoxProfile());
                     break;
                 default:
                     throw new NotSupportedException("Driver is invalid or not supported: " + driver);
             }
 
-            return this.JsonResponse(ResponseStatus.Success, actualCapabilities);
+            return JsonResponse(ResponseStatus.Success, actualCapabilities);
         }
 
         private void InitializeApplication(bool debugDoNotDeploy = false)
         {
-            var appPath = this.Automator.ActualCapabilities.App;
-            var appArguments = this.Automator.ActualCapabilities.Arguments;
+            var appPath = Automator.ActualCapabilities.App;
+            var appArguments = Automator.ActualCapabilities.Arguments;
 
-            this.Automator.Application = new Application(appPath);
+            Automator.Application = new Application(appPath);
             if (!debugDoNotDeploy)
             {
-                this.Automator.Application.Start(appArguments);
+                Automator.Application.Start(appArguments);
             }
         }
 
         private void InitializeKeyboardEmulator(KeyboardSimulatorType keyboardSimulatorType)
         {
-            this.Automator.WiniumKeyboard = new WiniumKeyboard(keyboardSimulatorType);
+            Automator.WiniumKeyboard = new WiniumKeyboard(keyboardSimulatorType);
 
             Logger.Debug("Current keyboard simulator: {0}", keyboardSimulatorType);
         }
 
         private Capabilities ParseCapabilities()
         {
-            var requestedCaps = this.ExecutedCommand.Parameters["desiredCapabilities"];
+            var requestedCaps = ExecutedCommand.Parameters["desiredCapabilities"];
             var caps = JsonConvert.SerializeObject(requestedCaps);
-            return this.Automator.ActualCapabilities = Capabilities.CapabilitiesFromJsonString(caps);
+            return Automator.ActualCapabilities = Capabilities.CapabilitiesFromJsonString(caps);
         }
 
         #endregion
