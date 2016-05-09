@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Management;
+using System.Threading;
 
 namespace DotNetRemoteWebDriver
 {
@@ -13,6 +14,12 @@ namespace DotNetRemoteWebDriver
         public void MonitorNewDrivers()
         {
             MonitorProcessesCreatedBy((uint) Process.GetCurrentProcess().Id);
+            new Timer(Callback, null, 500, 500);
+        }
+
+        private void Callback(object state)
+        {
+            MonitorNewDrivers();
         }
 
         private void MonitorProcessesCreatedBy(uint parentProcessId)
