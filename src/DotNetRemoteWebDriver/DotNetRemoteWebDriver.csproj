@@ -146,7 +146,7 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
     <MakeDir Directories="$(OutDir)Merge" />
-    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\DotNetRemoteWebDriver.exe $(OutDir)DotNetRemoteWebDriver.exe $(OutDir)*.dll" />
+    <Exec Command="&quot;$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe&quot; /target:exe /wildcards /ndebug /out:&quot;$(OutDir)Merge\DotNetRemoteWebDriver.exe&quot; &quot;$(OutDir)DotNetRemoteWebDriver.exe&quot; &quot;$(OutDir)*.dll&quot;" />
   </Target>
   <PropertyGroup>
     <PostBuildEvent>
