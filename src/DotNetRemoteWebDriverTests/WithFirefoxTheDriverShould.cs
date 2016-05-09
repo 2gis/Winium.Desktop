@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Linq;
+using System.Threading;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Remote;
@@ -14,14 +15,17 @@ namespace DotNetRemoteWebDriverTests
         [TestCleanup]
         public override void Cleanup()
         {
-            base.Cleanup();
             _driver?.Quit();
             _driver?.Dispose();
+
+            base.Cleanup();
         }
 
         [TestMethod, TestCategory("Integration")]
         public void Be_Able_To_Open_Google_And_Search()
         {
+            // Give the driver a chance to start
+            Thread.Sleep(1000);
             var remoteUrl = new Uri("http://localhost:4444/");
             var capabilities = DesiredCapabilities.Firefox();
             _driver = new RemoteWebDriver(remoteUrl, capabilities);
