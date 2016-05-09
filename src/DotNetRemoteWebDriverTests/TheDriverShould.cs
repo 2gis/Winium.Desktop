@@ -15,7 +15,7 @@ namespace DotNetRemoteWebDriverTests
         {
             var runningBefore = FindRunningProcesses();
 
-            _driverProcess = Process.Start("DotNetRemoteWebDriver.exe", "-log-path driver.log");
+            _driverProcess = Process.Start("DotNetRemoteWebDriver.exe", "--log-path driver.log");
             Assert.IsNotNull(_driverProcess);
             LaunchDriver(DesiredCapabilities.Firefox(), "http://google.com");
             LaunchDriver(DesiredCapabilities.Chrome(), "http://google.com");
