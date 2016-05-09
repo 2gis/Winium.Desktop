@@ -22,7 +22,7 @@ namespace DotNetRemoteWebDriverTests
             LaunchDriver(DesiredCapabilities.InternetExplorer(), "http://google.com");
 
             _driverProcess.CloseMainWindow();
-            if (!_driverProcess.WaitForExit(1000))
+            if (!_driverProcess.WaitForExit(5000))
                 throw new Exception("Failed to kill driver process");
 
             var runningAfter = FindRunningProcesses();
@@ -49,7 +49,7 @@ namespace DotNetRemoteWebDriverTests
                 try
                 {
                     var process = Process.GetProcessById(processId);
-                    if (!process.WaitForExit(1000))
+                    if (!process.WaitForExit(3000))
                         closed.Add(process.ProcessName);
                 }
                 catch (ArgumentException e)
