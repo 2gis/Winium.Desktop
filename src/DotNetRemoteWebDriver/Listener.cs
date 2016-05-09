@@ -105,31 +105,40 @@ namespace DotNetRemoteWebDriver
 
         private string HandleRequest(HttpRequest acceptedRequest)
         {
-            var firstHeaderTokens = acceptedRequest.StartingLine.Split(' ');
-            var method = firstHeaderTokens[0];
-            var resourcePath = firstHeaderTokens[1];
-
-            var uriToMatch = new Uri(Prefix, resourcePath);
-            var matched = _dispatcher.Match(method, uriToMatch);
-
-            if (matched == null)
+            try
             {
-                Logger.Warn("Unknown command recived: {0}", uriToMatch);
-                return HttpResponseHelper.ResponseString(HttpStatusCode.NotFound, "Unknown command " + uriToMatch);
+                var firstHeaderTokens = acceptedRequest.StartingLine.Split(' ');
+                var method = firstHeaderTokens[0];
+                var resourcePath = firstHeaderTokens[1];
+
+                var uriToMatch = new Uri(Prefix, resourcePath);
+                var matched = _dispatcher.Match(method, uriToMatch);
+
+                if (matched == null)
+                {
+                    Logger.Warn("Unknown command recived: {0}", uriToMatch);
+                    return HttpResponseHelper.ResponseString(HttpStatusCode.NotFound, "Unknown command " + uriToMatch);
+                }
+
+                var commandName = matched.Data.ToString();
+                var commandToExecute = new Command(commandName, acceptedRequest.MessageBody);
+                foreach (string variableName in matched.BoundVariables.Keys)
+                    commandToExecute.Parameters[variableName] = matched.BoundVariables[variableName];
+
+                string sessionId;
+                if (TryGetSession(matched.BoundVariables, out sessionId))
+                    commandToExecute.SessionId = sessionId;
+
+
+                var commandResponse = ProcessCommand(commandToExecute);
+                return HttpResponseHelper.ResponseString(commandResponse.HttpStatusCode, commandResponse.Content);
             }
-
-            var commandName = matched.Data.ToString();
-            var commandToExecute = new Command(commandName, acceptedRequest.MessageBody);
-            foreach (string variableName in matched.BoundVariables.Keys)
-                commandToExecute.Parameters[variableName] = matched.BoundVariables[variableName];
-
-            string sessionId;
-            if (TryGetSession(matched.BoundVariables, out sessionId))
-                commandToExecute.SessionId = sessionId;
-
-
-            var commandResponse = ProcessCommand(commandToExecute);
-            return HttpResponseHelper.ResponseString(commandResponse.HttpStatusCode, commandResponse.Content);
+            catch (Exception e)
+            {
+                Logger.Error("Failed to process request: " + e.Message, e);
+                return HttpResponseHelper.ResponseString(HttpStatusCode.InternalServerError,
+                    "Failed to process request: " + e.Message);
+            }
         }
 
         private bool TryGetSession(NameValueCollection boundVariables, out string sessionId)

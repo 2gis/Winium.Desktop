@@ -14,12 +14,6 @@ namespace DotNetRemoteWebDriver
         public void MonitorNewDrivers()
         {
             MonitorProcessesCreatedBy((uint) Process.GetCurrentProcess().Id);
-            new Timer(Callback, null, 500, 500);
-        }
-
-        private void Callback(object state)
-        {
-            MonitorNewDrivers();
         }
 
         private void MonitorProcessesCreatedBy(uint parentProcessId)
