@@ -46,7 +46,8 @@ namespace DotNetRemoteWebDriverTests
                 {
                     try
                     {
-                        process.KillAndWait();
+                        if(!process.HasExited)
+                            process.KillAndWait();
                     }
                     catch (Win32Exception)
                     {
