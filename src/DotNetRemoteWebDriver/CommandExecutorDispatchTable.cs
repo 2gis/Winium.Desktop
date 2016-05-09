@@ -27,7 +27,7 @@ namespace DotNetRemoteWebDriver
 
         #region Fields
 
-        private Dictionary<string, Type> commandExecutorsRepository;
+        private Dictionary<string, Type> _commandExecutorsRepository;
 
         #endregion
 
@@ -45,13 +45,8 @@ namespace DotNetRemoteWebDriver
         public CommandExecutorBase GetExecutor(string commandName)
         {
             Type executorType;
-            if (commandExecutorsRepository.TryGetValue(commandName, out executorType))
-            {
-            }
-            else
-            {
+            if (!_commandExecutorsRepository.TryGetValue(commandName, out executorType))
                 executorType = typeof (NotImplementedExecutor);
-            }
 
             return (CommandExecutorBase) Activator.CreateInstance(executorType);
         }
@@ -62,7 +57,7 @@ namespace DotNetRemoteWebDriver
 
         private void ConstructDispatcherTable()
         {
-            commandExecutorsRepository = new Dictionary<string, Type>();
+            _commandExecutorsRepository = new Dictionary<string, Type>();
 
             var q =
                 (from t in Assembly.GetExecutingAssembly().GetTypes()
@@ -76,7 +71,7 @@ namespace DotNetRemoteWebDriver
                 var executor = q.FirstOrDefault(x => x.Name.Equals(localField.Name + "Executor"));
                 if (executor != null)
                 {
-                    commandExecutorsRepository.Add(localField.GetValue(null).ToString(), executor);
+                    _commandExecutorsRepository.Add(localField.GetValue(null).ToString(), executor);
                 }
             }
         }

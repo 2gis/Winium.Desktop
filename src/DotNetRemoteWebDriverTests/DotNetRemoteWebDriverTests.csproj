@@ -56,6 +56,7 @@
   </Choose>
   <ItemGroup>
     <Compile Include="RemoteDriverInstanceBaseTest.cs" />
+    <Compile Include="TheDriverShould.cs" />
     <Compile Include="WithFirefoxTheDriverShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -67,6 +68,17 @@
       <Project>{b214c2ba-43fa-486f-ad0b-d4890c1748c0}</Project>
       <Name>DotNetRemoteWebDriver</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="chromedriver.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="IEDriverServer.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="wires.exe">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
   <Choose>
     <When Condition="'$(VisualStudioVersion)' == '10.0' And '$(IsCodedUITest)' == 'True'">

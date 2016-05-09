@@ -11,12 +11,12 @@ namespace DotNetRemoteWebDriver.CommandExecutors
         protected override string DoImpl()
         {
             // So this method should instantiate a driver of the given browser type and return
-            // the session id plus capabilities
+            // the session parentProcessId plus capabilities
             var capabilities = ExecutedCommand.Parameters["desiredCapabilities"];
             var driver = capabilities["browserName"].ToString().ToLower();
 
             var serializedCaps = JsonConvert.SerializeObject(capabilities);
-            object actualCapabilities = null;
+            object actualCapabilities;
             switch (driver)
             {
                 case "internet explorer":
@@ -32,12 +32,13 @@ namespace DotNetRemoteWebDriver.CommandExecutors
                 case "firefox":
                     var ffOptions = JsonConvert.DeserializeObject<FirefoxOptions>(serializedCaps);
                     actualCapabilities = ffOptions;
-                    var firefoxBinary = new FirefoxBinary(@"c:\Program Files (x86)\Mozilla Firefox\firefox.exe");
-                    Automator.Driver = new FirefoxDriver(firefoxBinary, new FirefoxProfile());
+                    Automator.Driver = new FirefoxDriver(new FirefoxBinary(), new FirefoxProfile());
                     break;
                 default:
                     throw new NotSupportedException("Driver is invalid or not supported: " + driver);
             }
+
+            Services.GetService<IDriverProcessMonitor>().MonitorNewDrivers();
 
             return JsonResponse(ResponseStatus.Success, actualCapabilities);
         }

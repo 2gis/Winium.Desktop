@@ -49,6 +49,7 @@
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Management" />
     <Reference Include="System.ServiceModel" />
     <Reference Include="System.Xml" />
     <Reference Include="UIAutomationClient" />
@@ -101,21 +102,27 @@
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="CommandResponse.cs" />
     <Compile Include="DriverCommand.cs" />
+    <Compile Include="DriverProcessMonitor.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Exceptions\AutomationException.cs" />
     <Compile Include="Exceptions\InnerDriverRequestException.cs" />
     <Compile Include="HttpRequest.cs" />
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="HttpResponseHelper.cs" />
+    <Compile Include="IDriverProcessMonitor.cs" />
+    <Compile Include="JobObject.cs" />
     <Compile Include="JsonErrorCodes.cs" />
     <Compile Include="JsonWireClasses.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="ParentProcessUtilities.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandHelpers\OSInfo.cs" />
     <Compile Include="CommandHelpers\BuildInfo.cs" />
     <Compile Include="ResponseStatus.cs" />
+    <Compile Include="ServiceProvider.cs" />
+    <Compile Include="ServiceProviderExtensons.cs" />
     <Compile Include="UriDispatchTables.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -139,10 +146,10 @@
   -->
   <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
     <MakeDir Directories="$(OutDir)Merge" />
-    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\Winium.Desktop.Driver.exe $(OutDir)Winium.Desktop.Driver.exe $(OutDir)*.dll" />
+    <Exec Command="$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe /target:exe /wildcards /ndebug /out:$(OutDir)Merge\DotNetRemoteWebDriver.exe $(OutDir)DotNetRemoteWebDriver.exe $(OutDir)*.dll" />
   </Target>
   <PropertyGroup>
-    <PostBuildEvent>mkdir merged 2&gt; nul
-$(SolutionDir)packages\ILMerge.2.14.1208\tools\ilmerge.exe DotNetRemoteWebDriver.exe CommandLine.dll NLog.dll Newtonsoft.json.dll WebDriver.dll /out:merged/DotNetRemoteWebDriver.exe</PostBuildEvent>
+    <PostBuildEvent>
+    </PostBuildEvent>
   </PropertyGroup>
 </Project>

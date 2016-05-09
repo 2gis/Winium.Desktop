@@ -1,6 +1,7 @@
 ﻿#region using
 
 using System;
+using System.Security.RightsManagement;
 using CommandLine;
 
 #endregion
@@ -44,9 +45,13 @@ namespace DotNetRemoteWebDriver
                 Logger.TargetNull();
             }
 
+            IDriverProcessMonitor processMonitor = null;
             try
             {
-                var listener = new Listener(listeningPort);
+                var services = new ServiceProvider();
+                processMonitor = new DriverProcessMonitor();
+                services.Register<IDriverProcessMonitor>(processMonitor);
+                var listener = new Listener(listeningPort, services);
                 Listener.UrnPrefix = options.UrlBase;
 
                 Console.WriteLine("Starting Windows Desktop Driver on port {0}\n", listeningPort);
@@ -57,6 +62,10 @@ namespace DotNetRemoteWebDriver
             {
                 Logger.Fatal("Failed to start driver: {0}", ex);
                 throw;
+            }
+            finally
+            {
+                processMonitor?.Dispose();
             }
         }
 

@@ -74,6 +74,8 @@ namespace DotNetRemoteWebDriver.CommandExecutors
         /// <summary>Get the requested element instance</summary>
         protected IWebElement RequestedElement => Automator.ElementsRegistry.Get(ExecutedCommand.Parameters["ID"]?.ToString());
 
+        public IServiceProvider Services { get; set; }
+
         protected abstract string DoImpl();
 
         /// <summary>

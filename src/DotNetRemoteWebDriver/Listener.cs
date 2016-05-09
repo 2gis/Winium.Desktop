@@ -27,20 +27,21 @@ namespace DotNetRemoteWebDriver
 
         #region Constructors and Destructors
 
-        public Listener(int listenerPort)
+        public Listener(int listenerPort, IServiceProvider services)
         {
             Port = listenerPort;
+            _services = services;
         }
 
         #endregion
 
         #region Fields
 
-        private UriDispatchTables dispatcher;
+        private UriDispatchTables _dispatcher;
+        private CommandExecutorDispatchTable _executorDispatcher;
 
-        private CommandExecutorDispatchTable executorDispatcher;
-
-        private TcpListener listener;
+        private TcpListener _listener;
+        private readonly IServiceProvider _services;
 
         #endregion
 
@@ -72,14 +73,14 @@ namespace DotNetRemoteWebDriver
         {
             try
             {
-                listener = new TcpListener(IPAddress.Any, Port);
+                _listener = new TcpListener(IPAddress.Any, Port);
 
                 Prefix = new Uri(string.Format(CultureInfo.InvariantCulture, "http://localhost:{0}", Port));
-                dispatcher = new UriDispatchTables(new Uri(Prefix, UrnPrefix));
-                executorDispatcher = new CommandExecutorDispatchTable();
+                _dispatcher = new UriDispatchTables(new Uri(Prefix, UrnPrefix));
+                _executorDispatcher = new CommandExecutorDispatchTable();
 
                 // Start listening for client requests.
-                listener.Start();
+                _listener.Start();
 
                 // Enter the listening loop
                 while (true)
@@ -87,7 +88,7 @@ namespace DotNetRemoteWebDriver
                     Logger.Debug("Waiting for a connection...");
 
                     // Perform a blocking call to accept requests. 
-                    var client = listener.AcceptTcpClient();
+                    var client = _listener.AcceptTcpClient();
 
                     // Get a stream object for reading and writing
                     using (var stream = client.GetStream())
@@ -130,13 +131,13 @@ namespace DotNetRemoteWebDriver
             finally
             {
                 // Stop listening for new clients.
-                listener.Stop();
+                _listener.Stop();
             }
         }
 
         public void StopListening()
         {
-            listener.Stop();
+            _listener.Stop();
         }
 
         #endregion
@@ -150,7 +151,7 @@ namespace DotNetRemoteWebDriver
             var resourcePath = firstHeaderTokens[1];
 
             var uriToMatch = new Uri(Prefix, resourcePath);
-            var matched = dispatcher.Match(method, uriToMatch);
+            var matched = _dispatcher.Match(method, uriToMatch);
 
             if (matched == null)
             {
@@ -181,7 +182,8 @@ namespace DotNetRemoteWebDriver
         private CommandResponse ProcessCommand(Command command)
         {
             Logger.Info("COMMAND {0}\r\n{1}", command.Name, command.Parameters.ToString());
-            var executor = executorDispatcher.GetExecutor(command.Name);
+            var executor = _executorDispatcher.GetExecutor(command.Name);
+            executor.Services = _services;
             executor.ExecutedCommand = command;
             var respnose = executor.Do();
             Logger.Debug("RESPONSE:\r\n{0}", respnose);
