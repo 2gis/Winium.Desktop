@@ -36,6 +36,7 @@ namespace DotNetRemoteWebDriver
                 if (_monitoredProcesses.Contains(childProcessId))
                     continue;
                     
+                Logger.Info("Registered sub process for shutdown on process exit: " + childProcessId);
                 _jobObject.AddProcess((int)childProcessId);
                 _monitoredProcesses.Add(childProcessId);
             }
