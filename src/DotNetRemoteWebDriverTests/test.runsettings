@@ -1,8 +1,7 @@
-﻿<?xml version="1.0" encoding="utf-8" ?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <RunSettings>
   <!-- Configurations that affect the Test Framework -->
   <RunConfiguration>
-    <MaxCpuCount>1</MaxCpuCount>
     <!-- Path relative to solution directory -->
     <ResultsDirectory>.\TestResults</ResultsDirectory>
 
@@ -12,9 +11,8 @@
 
     <!-- Framework35 | [Framework40] | Framework45 -->
     <TargetFrameworkVersion>Framework40</TargetFrameworkVersion>
-    
   </RunConfiguration>
-
+  
   <!-- Configurations for data collectors -->
   <DataCollectionRunSettings>
     <DataCollectors>
@@ -29,15 +27,19 @@
           </CodeCoverage>
         </Configuration>
       </DataCollector>
-
+      
     </DataCollectors>
   </DataCollectionRunSettings>
-
+  
+  <!-- Adapter Specific sections -->
+  
+  <!-- MSTest adapter -->
   <MSTest>
     <MapInconclusiveToFailed>True</MapInconclusiveToFailed>
     <CaptureTraceOutput>false</CaptureTraceOutput>
     <DeleteDeploymentDirectoryAfterTestRunIsComplete>False</DeleteDeploymentDirectoryAfterTestRunIsComplete>
     <DeploymentEnabled>False</DeploymentEnabled>
   </MSTest>
-
+  
+  
 </RunSettings>
