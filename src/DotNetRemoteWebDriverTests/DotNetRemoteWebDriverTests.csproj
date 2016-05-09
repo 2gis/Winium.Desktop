@@ -55,7 +55,6 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
-    <Compile Include="GlobalSetup.cs" />
     <Compile Include="RemoteDriverInstanceBaseTest.cs" />
     <Compile Include="TheDriverShould.cs" />
     <Compile Include="WithFirefoxTheDriverShould.cs" />
@@ -63,6 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
+    <None Include="testconfig.runsettings" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRemoteWebDriver\DotNetRemoteWebDriver.csproj">
