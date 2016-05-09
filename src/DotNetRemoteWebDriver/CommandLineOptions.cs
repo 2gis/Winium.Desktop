@@ -27,8 +27,7 @@ namespace DotNetRemoteWebDriver
 
         #region Public Properties
 
-        [Option("log-path", Required = false,
-            HelpText = "write server log to file instead of stdout, increases log level to INFO")]
+        [Option("log-path", Required = false, HelpText = "write server log to file instead of stdout, increases log level to INFO")]
         public string LogPath { get; set; }
 
         [Option("port", Required = false, HelpText = "port to listen on", DefaultValue = 4444)]

@@ -15,7 +15,7 @@ namespace DotNetRemoteWebDriverTests
         {
             var driverPath = Path.GetFullPath("DotNetRemoteWebDriver.exe");
             Console.WriteLine("Opening driver at: " + driverPath);
-            _driverProcess = Process.Start(driverPath);
+            _driverProcess = Process.Start(driverPath, "-log-path driver.log");
         }
 
         [TestCleanup]
