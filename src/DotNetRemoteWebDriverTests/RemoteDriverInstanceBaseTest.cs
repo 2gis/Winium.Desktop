@@ -1,4 +1,6 @@
-﻿using System.Diagnostics;
+﻿using System;
+using System.Diagnostics;
+using System.IO;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DotNetRemoteWebDriverTests
@@ -11,7 +13,9 @@ namespace DotNetRemoteWebDriverTests
         [TestInitialize]
         public virtual void Initialize()
         {
-            _driverProcess = Process.Start("DotNetRemoteWebDriver.exe");
+            var driverPath = Path.GetFullPath("DotNetRemoteWebDriver.exe");
+            Console.WriteLine("Opening driver at: " + driverPath);
+            _driverProcess = Process.Start(driverPath);
         }
 
         [TestCleanup]

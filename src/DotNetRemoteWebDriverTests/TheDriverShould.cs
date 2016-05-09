@@ -1,9 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
-using DotNetRemoteWebDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using OpenQA.Selenium.Remote;
 
@@ -12,14 +10,6 @@ namespace DotNetRemoteWebDriverTests
     [TestClass]
     public class TheDriverShould
     {
-        private string[] _trackProcesses = new[]
-        {
-            "firefox", "chrome", "iexplore", "dotnetremotewebdriver",
-            "wires", "iedriverserver", "chromedriver"
-        };
-
-        private Process _driverProcess;
-
         [TestMethod, TestCategory("Integration")]
         public void Close_Down_Drivers_On_Exit()
         {
@@ -41,6 +31,15 @@ namespace DotNetRemoteWebDriverTests
             if (stillRunning.Length > 0)
                 Assert.Fail("Processes should've been closed: " + string.Join(", ", stillRunning));
         }
+
+        #region members and support functions
+
+        private readonly string[] _trackProcesses = {
+            "firefox", "chrome", "iexplore", "dotnetremotewebdriver",
+            "wires", "iedriverserver", "chromedriver"
+        };
+
+        private Process _driverProcess;
 
         private IEnumerable<string> WaitUntilClosed(IEnumerable<int> running)
         {
@@ -75,5 +74,7 @@ namespace DotNetRemoteWebDriverTests
             var driver = new RemoteWebDriver(host, browserCapabilities);
             driver.Navigate().GoToUrl(url);
         }
+
+    #endregion
     }
 }
