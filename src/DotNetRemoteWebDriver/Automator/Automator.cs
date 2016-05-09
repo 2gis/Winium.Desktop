@@ -28,6 +28,23 @@ namespace DotNetRemoteWebDriver.Automator
 
         private static readonly Dictionary<string, Automator> AliveSessions = new Dictionary<string, Automator>();
 
+        public static void Clear()
+        {
+            foreach (var aliveSession in AliveSessions)
+            {
+                try
+                {
+                    aliveSession.Value.Dispose();
+                }
+                catch (Exception e)
+                {
+                    Logger.Error("Failed to clear out old driver session: " + e.Message, e);
+                }
+            }
+
+            AliveSessions.Clear();
+        }
+
         public static Automator InstanceForSession(string sessionId)
         {
             Automator session;
@@ -47,6 +64,7 @@ namespace DotNetRemoteWebDriver.Automator
 
         public void Dispose()
         {
+            Driver?.Quit();
             Driver?.Dispose();
             Driver = null;
         }

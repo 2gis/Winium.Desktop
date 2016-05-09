@@ -89,6 +89,8 @@ namespace DotNetRemoteWebDriver
                     Logger.Debug("Client closed\n");
                     Logger.Debug("Waiting for a connection...");
                 }
+
+                Automator.Automator.Clear();
             }
             catch (SocketException ex)
             {
