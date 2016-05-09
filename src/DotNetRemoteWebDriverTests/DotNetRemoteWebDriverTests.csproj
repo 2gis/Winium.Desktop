@@ -62,7 +62,7 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
-    <None Include="testconfig.runsettings" />
+    <None Include="config.testsettings" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DotNetRemoteWebDriver\DotNetRemoteWebDriver.csproj">
