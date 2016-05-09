@@ -31,8 +31,8 @@ namespace DotNetRemoteWebDriver
             HelpText = "write server log to file instead of stdout, increases log level to INFO")]
         public string LogPath { get; set; }
 
-        [Option("port", Required = false, HelpText = "port to listen on")]
-        public int? Port { get; set; }
+        [Option("port", Required = false, HelpText = "port to listen on", DefaultValue = 4444)]
+        public int Port { get; set; }
 
         [Option("silent", Required = false, HelpText = "log nothing")]
         public bool Silent { get; set; }

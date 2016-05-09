@@ -1,73 +1,32 @@
-﻿#region using
-
-using System;
+﻿using System;
 using System.Collections.Specialized;
 using System.Globalization;
 using System.IO;
 using System.Net;
 using System.Net.Sockets;
 
-#endregion
-
 namespace DotNetRemoteWebDriver
 {
-    #region using
-
-    
-
-    #endregion
-
     public class Listener
     {
-        #region Static Fields
-
-        private static string urnPrefix;
-
-        #endregion
-
-        #region Constructors and Destructors
-
         public Listener(int listenerPort, IServiceProvider services)
         {
             Port = listenerPort;
             _services = services;
         }
 
-        #endregion
-
-        #region Fields
-
         private UriDispatchTables _dispatcher;
         private CommandExecutorDispatchTable _executorDispatcher;
 
         private TcpListener _listener;
         private readonly IServiceProvider _services;
+        private bool _cancelled;
 
-        #endregion
-
-        #region Public Properties
-
-        public static string UrnPrefix
-        {
-            get { return urnPrefix; }
-
-            set
-            {
-                if (!string.IsNullOrEmpty(value))
-                {
-                    // Normalize prefix
-                    urnPrefix = "/" + value.Trim('/');
-                }
-            }
-        }
+        public static string UrnPrefix { get; set; }
 
         public int Port { get; }
 
         public Uri Prefix { get; private set; }
-
-        #endregion
-
-        #region Public Methods and Operators
 
         public void StartListening()
         {
@@ -79,11 +38,13 @@ namespace DotNetRemoteWebDriver
                 _dispatcher = new UriDispatchTables(new Uri(Prefix, UrnPrefix));
                 _executorDispatcher = new CommandExecutorDispatchTable();
 
+                Console.CancelKeyPress += (s, e) => _cancelled = true;
+
                 // Start listening for client requests.
                 _listener.Start();
 
                 // Enter the listening loop
-                while (true)
+                while (!_cancelled)
                 {
                     Logger.Debug("Waiting for a connection...");
 
@@ -139,8 +100,6 @@ namespace DotNetRemoteWebDriver
         {
             _listener.Stop();
         }
-
-        #endregion
 
         #region Methods
 

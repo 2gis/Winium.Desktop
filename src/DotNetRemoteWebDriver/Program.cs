@@ -1,49 +1,16 @@
-﻿#region using
-
-using System;
-using System.Security.RightsManagement;
+﻿using System;
 using CommandLine;
-
-#endregion
 
 namespace DotNetRemoteWebDriver
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class Program
     {
-        #region Methods
-
         [STAThread]
-        private static void Main(string[] args)
+        private static int Main(string[] args)
         {
-            var listeningPort = 4444;
-
-            var options = new CommandLineOptions();
-            if (Parser.Default.ParseArguments(args, options))
-            {
-                if (options.Port.HasValue)
-                {
-                    listeningPort = options.Port.Value;
-                }
-            }
-
-            if (options.LogPath != null)
-            {
-                Logger.TargetFile(options.LogPath, options.Verbose);
-            }
-            else if (!options.Silent)
-            {
-                Logger.TargetConsole(options.Verbose);
-            }
-            else
-            {
-                Logger.TargetNull();
-            }
+            CommandLineOptions options;
+            if (!TryInitializeOptions(args, out options))
+                return 1;
 
             IDriverProcessMonitor processMonitor = null;
             try
@@ -51,17 +18,21 @@ namespace DotNetRemoteWebDriver
                 var services = new ServiceProvider();
                 processMonitor = new DriverProcessMonitor();
                 services.Register<IDriverProcessMonitor>(processMonitor);
-                var listener = new Listener(listeningPort, services);
+                var listener = new Listener(options.Port, services);
+
+                if (!string.IsNullOrEmpty(options.UrlBase))
+                    options.UrlBase = "/" + options.UrlBase.Trim('/');
                 Listener.UrnPrefix = options.UrlBase;
 
-                Console.WriteLine("Starting Windows Desktop Driver on port {0}\n", listeningPort);
+                Console.WriteLine("Starting Windows Desktop Driver on port {0}\n", options.Port);
 
                 listener.StartListening();
+                return 0;
             }
             catch (Exception ex)
             {
                 Logger.Fatal("Failed to start driver: {0}", ex);
-                throw;
+                return 1;
             }
             finally
             {
@@ -69,6 +40,30 @@ namespace DotNetRemoteWebDriver
             }
         }
 
-        #endregion
+        private static bool TryInitializeOptions(string[] args, out CommandLineOptions options)
+        {
+            try
+            {
+                options = new CommandLineOptions();
+                if (!Parser.Default.ParseArguments(args, options))
+                    return false;
+
+                if (options.LogPath != null)
+                    Logger.TargetFile(options.LogPath, options.Verbose);
+                else if (!options.Silent)
+                    Logger.TargetConsole(options.Verbose);
+                else
+                    Logger.TargetNull();
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                options = null;
+                Console.Error.WriteLine("Failed to initialize application: " + e.Message);
+                Console.Error.WriteLine("Failed to initialize application: " + e.StackTrace);
+                return false;
+            }
+        }
     }
 }
