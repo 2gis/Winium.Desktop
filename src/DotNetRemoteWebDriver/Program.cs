@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Runtime.InteropServices;
+using System.Threading;
 using CommandLine;
 
 namespace DotNetRemoteWebDriver
@@ -15,6 +17,8 @@ namespace DotNetRemoteWebDriver
             IDriverProcessMonitor processMonitor = null;
             try
             {
+                new PriorCleanup { Port = options.Port}.Run();
+
                 var services = new ServiceProvider();
                 processMonitor = new DriverProcessMonitor();
                 services.Register<IDriverProcessMonitor>(processMonitor);

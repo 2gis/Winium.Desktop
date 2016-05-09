@@ -1,8 +1,11 @@
 ﻿using System;
+using System.Diagnostics;
+using System.Reflection;
 using Newtonsoft.Json;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
+using OpenQA.Selenium.Remote;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
@@ -38,7 +41,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
                     throw new NotSupportedException("Driver is invalid or not supported: " + driver);
             }
 
-            Services.GetService<IDriverProcessMonitor>().MonitorNewDrivers();
+            Services.GetService<IDriverProcessMonitor>().MonitorChildren();
 
             return JsonResponse(ResponseStatus.Success, actualCapabilities);
         }

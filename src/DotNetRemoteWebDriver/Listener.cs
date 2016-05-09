@@ -1,9 +1,14 @@
 ﻿using System;
+using System.CodeDom;
 using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Globalization;
 using System.IO;
+using System.Linq;
 using System.Net;
 using System.Net.Sockets;
+using System.Runtime.InteropServices;
+using System.Threading;
 
 namespace DotNetRemoteWebDriver
 {
@@ -28,7 +33,7 @@ namespace DotNetRemoteWebDriver
 
         public Uri Prefix { get; private set; }
 
-        public void StartListening()
+        public async void StartListening()
         {
             try
             {
@@ -38,18 +43,23 @@ namespace DotNetRemoteWebDriver
                 _dispatcher = new UriDispatchTables(new Uri(Prefix, UrnPrefix));
                 _executorDispatcher = new CommandExecutorDispatchTable();
 
-                Console.CancelKeyPress += (s, e) => _cancelled = true;
+                _handler += Handler;
+                SetConsoleCtrlHandler(_handler, true);
 
-                // Start listening for client requests.
                 _listener.Start();
 
                 // Enter the listening loop
+                Logger.Debug("Waiting for a connection...");
                 while (!_cancelled)
                 {
-                    Logger.Debug("Waiting for a connection...");
+                    if (!_listener.Pending())
+                    {
+                        Thread.Sleep(50);
+                        continue;
+                    }
 
                     // Perform a blocking call to accept requests. 
-                    var client = _listener.AcceptTcpClient();
+                    var client = await _listener.AcceptTcpClientAsync();
 
                     // Get a stream object for reading and writing
                     using (var stream = client.GetStream())
@@ -77,6 +87,7 @@ namespace DotNetRemoteWebDriver
                     client.Close();
 
                     Logger.Debug("Client closed\n");
+                    Logger.Debug("Waiting for a connection...");
                 }
             }
             catch (SocketException ex)
@@ -100,8 +111,6 @@ namespace DotNetRemoteWebDriver
         {
             _listener.Stop();
         }
-
-        #region Methods
 
         private string HandleRequest(HttpRequest acceptedRequest)
         {
@@ -159,6 +168,21 @@ namespace DotNetRemoteWebDriver
             return respnose;
         }
 
-        #endregion
+        [DllImport("Kernel32")]
+        private static extern bool SetConsoleCtrlHandler(EventHandler handler, bool add);
+
+        private delegate bool EventHandler(int sig);
+        static EventHandler _handler;
+
+        private bool Handler(int sig)
+        {
+            var ctrlTyp = new[] { "cancel", "break", "close", "logoff", "shutdown" };
+            var eventName = ctrlTyp[sig];
+            Logger.Info($"Recieved {eventName} signal. Shutting down.");
+            _cancelled = true;
+            _listener.Stop();
+            return true;
+        }
+
     }
 }

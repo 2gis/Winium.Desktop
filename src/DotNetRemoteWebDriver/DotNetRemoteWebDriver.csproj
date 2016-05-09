@@ -34,6 +34,9 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
@@ -110,12 +113,15 @@
     <Compile Include="CommandExecutors\IsElementSelectedExecutor.cs" />
     <Compile Include="HttpResponseHelper.cs" />
     <Compile Include="IDriverProcessMonitor.cs" />
-    <Compile Include="JobObject.cs" />
+    <Compile Include="ChildProcessTracker.cs" />
     <Compile Include="JsonErrorCodes.cs" />
     <Compile Include="JsonWireClasses.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
     <Compile Include="ParentProcessUtilities.cs" />
+    <Compile Include="PriorCleanup.cs" />
+    <Compile Include="ProcessPorts.cs" />
+    <Compile Include="ProcessTools.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="CommandHelpers\OSInfo.cs" />
@@ -129,6 +135,7 @@
     <None Include="App.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="app.manifest" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

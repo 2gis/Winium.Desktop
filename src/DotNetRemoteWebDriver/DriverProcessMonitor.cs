@@ -1,51 +1,57 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Diagnostics;
+using System.Linq;
 using System.Management;
-using System.Threading;
 
 namespace DotNetRemoteWebDriver
 {
     internal class DriverProcessMonitor : IDriverProcessMonitor
     {
-        private readonly List<uint> _monitoredProcesses = new List<uint>();
-        private readonly JobObject _jobObject = new JobObject();
+        private readonly List<int> _monitoredProcesses = new List<int>();
 
-        public void MonitorNewDrivers()
-        {
-            MonitorProcessesCreatedBy((uint) Process.GetCurrentProcess().Id);
+        public void Dispose()
+        {            
         }
 
-        private void MonitorProcessesCreatedBy(uint parentProcessId)
+        public void MonitorChildren()
         {
-            var processSearch = new ManagementObjectSearcher(
+            MonitorAllChildren((uint)Process.GetCurrentProcess().Handle);
+        }
+
+        private void MonitorAllChildren(uint parentProcessId)
+        {
+            var searcher = new ManagementObjectSearcher(
                 "SELECT * " +
                 "FROM Win32_Process " +
                 "WHERE ParentProcessId=" + parentProcessId);
 
-            var childProcesses = processSearch.Get();
-            if (childProcesses.Count <= 0)
-                return;
-
+            var childProcesses = searcher.Get();
+            if (childProcesses.Count <= 0) return;
+            
             foreach (var item in childProcesses)
             {
                 var childProcessId = (uint)item["ProcessId"];
-                if (childProcessId == Process.GetCurrentProcess().Id)
+
+                if (_monitoredProcesses.Contains((int) childProcessId))
                     continue;
 
-                MonitorProcessesCreatedBy(childProcessId);
-                if (_monitoredProcesses.Contains(childProcessId))
+                MonitorAllChildren(childProcessId);
+
+                _monitoredProcesses.Add((int)childProcessId);
+                Process process;
+                if(!TryGetProcess(childProcessId, out process))
                     continue;
-                    
-                Logger.Info("Registered sub process for shutdown on process exit: " + childProcessId);
-                _jobObject.AddProcess((int)childProcessId);
-                _monitoredProcesses.Add(childProcessId);
+
+                ChildProcessTracker.AddProcess(process);
+                _monitoredProcesses.Add((int)childProcessId);
             }
         }
 
-        public void Dispose()
+        private bool TryGetProcess(uint childProcessId, out Process process)
         {
-            _jobObject.Dispose();
+            process = Process.GetProcesses().FirstOrDefault(p => p.Id == childProcessId);
+            return process != null;
         }
+
     }
 }
