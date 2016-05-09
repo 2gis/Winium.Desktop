@@ -18,7 +18,7 @@ namespace DotNetRemoteWebDriverTests
         [TestMethod, TestCategory("Integration")]
         public void Can_Be_Started_After_Being_Killed()
         {
-            var timeBeforeTest = new DateTime();
+            var timeBeforeTest = DateTime.Now;
             try
             {
                 _driverProcess = Process.Start("DotNetRemoteWebDriver.exe", "--log-path driver.log");
