@@ -68,6 +68,7 @@
     <Compile Include="Command.cs" />
     <Compile Include="CommandExecutors\GetElementTagNameExecutor.cs" />
     <Compile Include="CommandExecutors\GetExecutor.cs" />
+    <Compile Include="CommandExecutors\GetTitleExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\Identifier.cs" />

@@ -22,10 +22,19 @@ namespace DotNetRemoteWebDriverTests
         }
 
         [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Get_Title()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.Firefox();
+            _driver = new RemoteWebDriver(remoteUrl, capabilities);
+            _driver.Navigate().GoToUrl("http://google.com");
+
+            Assert.AreEqual("Google", _driver.Title);
+        }
+
+        [TestMethod, TestCategory("Integration")]
         public void Be_Able_To_Open_Google_And_Search()
         {
-            // Give the driver a chance to start
-            Thread.Sleep(1000);
             var remoteUrl = new Uri("http://localhost:4444/");
             var capabilities = DesiredCapabilities.Firefox();
             _driver = new RemoteWebDriver(remoteUrl, capabilities);
