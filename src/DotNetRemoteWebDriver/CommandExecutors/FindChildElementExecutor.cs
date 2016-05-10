@@ -1,4 +1,5 @@
 ﻿using DotNetRemoteWebDriver.Exceptions;
+using OpenQA.Selenium;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {

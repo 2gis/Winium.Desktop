@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="CommandExecutors\GetElementTagNameExecutor.cs" />
     <Compile Include="CommandExecutors\GetExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
@@ -151,7 +152,7 @@
   <Target Name="BeforeBuild">
   </Target>
   -->
-  <Target Name="AfterBuild" Condition=" '$(Configuration)' == 'Release' ">
+  <Target Name="AfterBuild">
     <MakeDir Directories="$(OutDir)Merge" />
     <Exec Command="&quot;$(SolutionDir)packages\ILMerge.Tools.2.14.1208\tools\ILMerge.exe&quot; /target:exe /wildcards /ndebug /out:&quot;$(OutDir)Merge\DotNetRemoteWebDriver.exe&quot; &quot;$(OutDir)DotNetRemoteWebDriver.exe&quot; &quot;$(OutDir)*.dll&quot;" />
   </Target>

@@ -1,35 +1,15 @@
-﻿#region using
-
-using System.ComponentModel;
+﻿using System.ComponentModel;
 using NLog;
 using NLog.Config;
 using NLog.Targets;
 
-#endregion
-
 namespace DotNetRemoteWebDriver
 {
-    #region using
-
-    
-
-    #endregion
-
     internal static class Logger
     {
-        #region Constants
-
         private const string LayoutFormat = "${date:format=HH\\:mm\\:ss} [${level:uppercase=true}] ${message}";
 
-        #endregion
-
-        #region Static Fields
-
         private static readonly NLog.Logger Log = LogManager.GetLogger("outerdriver");
-
-        #endregion
-
-        #region Public Methods and Operators
 
         public static void Debug([Localizable(false)] string message, params object[] args)
         {
@@ -55,7 +35,7 @@ namespace DotNetRemoteWebDriver
         {
             var target = new ConsoleTarget {Layout = LayoutFormat};
 
-            SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Fatal);
+            SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Warn);
             LogManager.ReconfigExistingLoggers();
         }
 
@@ -82,7 +62,5 @@ namespace DotNetRemoteWebDriver
         {
             Log.Warn(message, args);
         }
-
-        #endregion
     }
 }

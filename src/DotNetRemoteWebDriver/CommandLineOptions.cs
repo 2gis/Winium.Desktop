@@ -1,31 +1,15 @@
-﻿#region using
-
-using CommandLine;
+﻿using CommandLine;
 using CommandLine.Text;
-
-#endregion
 
 namespace DotNetRemoteWebDriver
 {
-    #region using
-
-    
-
-    #endregion
-
     internal class CommandLineOptions
     {
-        #region Public Methods and Operators
-
         [HelpOption]
         public string GetUsage()
         {
             return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
         }
-
-        #endregion
-
-        #region Public Properties
 
         [Option("log-path", Required = false, HelpText = "write server log to file instead of stdout, increases log level to INFO")]
         public string LogPath { get; set; }
@@ -41,7 +25,5 @@ namespace DotNetRemoteWebDriver
 
         [Option("verbose", Required = false, HelpText = "log verbosely")]
         public bool Verbose { get; set; }
-
-        #endregion
     }
 }

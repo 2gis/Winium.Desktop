@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Runtime.InteropServices;
-using System.Threading;
 using CommandLine;
 
 namespace DotNetRemoteWebDriver
@@ -52,12 +50,12 @@ namespace DotNetRemoteWebDriver
                 if (!Parser.Default.ParseArguments(args, options))
                     return false;
 
-                if (options.LogPath != null)
+                if (!string.IsNullOrEmpty(options.LogPath))
                     Logger.TargetFile(options.LogPath, options.Verbose);
-                else if (!options.Silent)
-                    Logger.TargetConsole(options.Verbose);
-                else
+                else if (options.Silent)
                     Logger.TargetNull();
+                else
+                    Logger.TargetConsole(options.Verbose);
 
                 return true;
             }
