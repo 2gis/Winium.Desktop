@@ -26,7 +26,7 @@ namespace DotNetRemoteWebDriver
                     options.UrlBase = "/" + options.UrlBase.Trim('/');
                 Listener.UrnPrefix = options.UrlBase;
 
-                Console.WriteLine("Starting Windows Desktop Driver on port {0}\n", options.Port);
+                Console.WriteLine("Starting remote web driver on port {0}\n", options.Port);
 
                 listener.StartListening();
                 return 0;

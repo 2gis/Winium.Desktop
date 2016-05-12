@@ -22,6 +22,16 @@ namespace DotNetRemoteWebDriverTests
         }
 
         [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Refresh()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.Firefox();
+            _driver = new RemoteWebDriver(remoteUrl, capabilities);
+            _driver.Navigate().GoToUrl("http://google.com");
+            _driver.Navigate().Refresh();
+        }
+
+        [TestMethod, TestCategory("Integration")]
         public void Be_Able_To_Get_Title()
         {
             var remoteUrl = new Uri("http://localhost:4444/");
