@@ -1,6 +1,7 @@
 ﻿using System;
 using DotNetRemoteWebDriver.CommandHelpers;
 using Newtonsoft.Json;
+using NLog.LayoutRenderers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
@@ -24,8 +25,13 @@ namespace DotNetRemoteWebDriver.CommandExecutors
                     Automator.Driver = new InternetExplorerDriver((InternetExplorerOptions)actualCapabilities);
                     break;
                 case "chrome":
-                    actualCapabilities = CapabilityParser.ForChrome(capabilities);
-                    Automator.Driver = new ChromeDriver((ChromeOptions)actualCapabilities);
+                    var options = CapabilityParser.ForChrome(capabilities);
+                    actualCapabilities = options;
+                    var service = ChromeDriverService.CreateDefaultService();
+                    service.EnableVerboseLogging = true;
+                    //service.HideCommandPromptWindow = true;
+                    service.SuppressInitialDiagnosticInformation = true;
+                    Automator.Driver = new ChromeDriver(service, (ChromeOptions)actualCapabilities);
                     break;
                 case "firefox":
                     actualCapabilities = new FirefoxOptions();
