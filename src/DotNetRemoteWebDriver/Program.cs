@@ -12,33 +12,17 @@ namespace DotNetRemoteWebDriver
             if (!TryInitializeOptions(args, out options))
                 return 1;
 
-            IDriverProcessMonitor processMonitor = null;
             try
             {
-                new PriorCleanup { Port = options.Port}.Run();
+                using (var driverHost = new DriverHost(options.Port, options.UrlBase))
+                    driverHost.Run();
 
-                var services = new ServiceProvider();
-                processMonitor = new DriverProcessMonitor();
-                services.Register<IDriverProcessMonitor>(processMonitor);
-                var listener = new Listener(options.Port, services);
-
-                if (!string.IsNullOrEmpty(options.UrlBase))
-                    options.UrlBase = "/" + options.UrlBase.Trim('/');
-                Listener.UrnPrefix = options.UrlBase;
-
-                Console.WriteLine("Starting remote web driver on port {0}\n", options.Port);
-
-                listener.StartListening();
                 return 0;
             }
             catch (Exception ex)
             {
                 Logger.Fatal("Failed to start driver: {0}", ex);
                 return 1;
-            }
-            finally
-            {
-                processMonitor?.Dispose();
             }
         }
 

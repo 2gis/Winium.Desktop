@@ -55,8 +55,10 @@
     </Otherwise>
   </Choose>
   <ItemGroup>
+    <Compile Include="ChromeDriverShould.cs" />
+    <Compile Include="InternetExplorerDriverShould.cs" />
     <Compile Include="RemoteDriverInstanceBaseTest.cs" />
-    <Compile Include="TheDriverShould.cs" />
+    <Compile Include="DriverExecutableShould.cs" />
     <Compile Include="WithFirefoxTheDriverShould.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

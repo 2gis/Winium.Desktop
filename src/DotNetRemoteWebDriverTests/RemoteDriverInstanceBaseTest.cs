@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Threading;
+using System.Threading.Tasks;
+using DotNetRemoteWebDriver;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 
 namespace DotNetRemoteWebDriverTests
@@ -9,23 +10,35 @@ namespace DotNetRemoteWebDriverTests
     [TestClass]
     public class RemoteDriverInstanceBaseTest
     {
-        private Process _driverProcess;
+        private DriverHost _driverService;
 
         [TestInitialize]
         public virtual void Initialize()
         {
-            var driverPath = Path.GetFullPath("DotNetRemoteWebDriver.exe");
-            Console.WriteLine("Opening driver at: " + driverPath);
-            _driverProcess = Process.Start(driverPath, "--log-path driver.log");
+            _driverService = new DriverHost(4444, null);
+            Task.Run(() => _driverService.Run());
+            WaitUntilStarted(_driverService);
+        }
+
+        private void WaitUntilStarted(DriverHost driverService)
+        {
+            Stopwatch time = Stopwatch.StartNew();
+            while (time.Elapsed < TimeSpan.FromSeconds(15))
+            {
+                if (driverService.Running)
+                    break;
+
+                Thread.Sleep(200);
+            }
             
-            // Give the driver a chance to start
-            Thread.Sleep(1000);
+            // Give it another second for good measure
+            Thread.Sleep(2500);
         }
 
         [TestCleanup]
         public virtual void Cleanup()
         {
-            _driverProcess?.Kill();
+            _driverService?.Dispose();
         }
     }
 }

@@ -47,10 +47,11 @@ namespace DotNetRemoteWebDriver
                 SetConsoleCtrlHandler(_handler, true);
 
                 _listener.Start();
+                Running = true;
 
                 // Enter the listening loop
                 Logger.Debug("Waiting for a connection...");
-                while (!_cancelled)
+                while (!_cancelled && Running)
                 {
                     if (!_listener.Pending())
                     {
@@ -106,12 +107,16 @@ namespace DotNetRemoteWebDriver
             {
                 // Stop listening for new clients.
                 _listener.Stop();
+                Running = false;
             }
         }
+
+        public bool Running { get; private set; }
 
         public void StopListening()
         {
             _listener.Stop();
+            Running = false;
         }
 
         private string HandleRequest(HttpRequest acceptedRequest)

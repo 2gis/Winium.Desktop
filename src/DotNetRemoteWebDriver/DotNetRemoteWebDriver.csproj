@@ -104,10 +104,12 @@
     <Compile Include="CommandExecutors\NotImplementedExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToFrameExecutor.cs" />
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
+    <Compile Include="CommandHelpers\CapabilityParser.cs" />
     <Compile Include="CommandInfo.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="CommandResponse.cs" />
     <Compile Include="DriverCommand.cs" />
+    <Compile Include="DriverHost.cs" />
     <Compile Include="DriverProcessMonitor.cs" />
     <Compile Include="ElementsRegistry.cs" />
     <Compile Include="Exceptions\AutomationException.cs" />

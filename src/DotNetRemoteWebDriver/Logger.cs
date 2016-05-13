@@ -35,7 +35,7 @@ namespace DotNetRemoteWebDriver
         {
             var target = new ConsoleTarget {Layout = LayoutFormat};
 
-            SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Warn);
+            SimpleConfigurator.ConfigureForTargetLogging(target, verbose ? LogLevel.Debug : LogLevel.Info);
             LogManager.ReconfigExistingLoggers();
         }
 

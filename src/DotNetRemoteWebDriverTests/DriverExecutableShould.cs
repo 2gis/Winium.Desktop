@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Diagnostics;
 using System.Linq;
@@ -10,9 +9,9 @@ using OpenQA.Selenium.Remote;
 namespace DotNetRemoteWebDriverTests
 {
     [TestClass]
-    public class TheDriverShould
+    public class DriverExecutableShould
     {
-        private readonly string[] _processNames = new[] {"chromedriver", "iedriverserver", "wires", "chrome", "firefox", "iexplore"};
+        private readonly string[] _processNames = {"chromedriver", "iedriverserver", "wires", "chrome", "firefox", "iexplore"};
         private Process _driverProcess;
 
         [TestMethod, TestCategory("Integration")]

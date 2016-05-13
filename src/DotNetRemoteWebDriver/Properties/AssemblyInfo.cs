@@ -1,6 +1,7 @@
 ﻿#region using
 
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 #endregion
@@ -40,3 +41,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyVersion("0.9.2.*")]
 [assembly: AssemblyFileVersion("0.9.2")]
 [assembly: AssemblyInformationalVersion("1.5.0")]
+
+[assembly: InternalsVisibleTo("DotNetRemoteWebDriverTests")]

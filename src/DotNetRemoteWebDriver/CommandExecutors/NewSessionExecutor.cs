@@ -1,11 +1,9 @@
 ﻿using System;
-using System.Diagnostics;
-using System.Reflection;
+using DotNetRemoteWebDriver.CommandHelpers;
 using Newtonsoft.Json;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
-using OpenQA.Selenium.Remote;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
@@ -18,23 +16,19 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             var capabilities = ExecutedCommand.Parameters["desiredCapabilities"];
             var driver = capabilities["browserName"].ToString().ToLower();
 
-            var serializedCaps = JsonConvert.SerializeObject(capabilities);
             object actualCapabilities;
             switch (driver)
             {
                 case "internet explorer":
-                    var ieOptions = JsonConvert.DeserializeObject<InternetExplorerOptions>(serializedCaps);
-                    actualCapabilities = ieOptions;
-                    Automator.Driver = new InternetExplorerDriver(ieOptions);
+                    actualCapabilities = CapabilityParser.ForInternetExplorer(capabilities);
+                    Automator.Driver = new InternetExplorerDriver((InternetExplorerOptions)actualCapabilities);
                     break;
                 case "chrome":
-                    var chromeOptions = JsonConvert.DeserializeObject<ChromeOptions>(serializedCaps);
-                    actualCapabilities = chromeOptions;
-                    Automator.Driver = new ChromeDriver(chromeOptions);
+                    actualCapabilities = CapabilityParser.ForChrome(capabilities);
+                    Automator.Driver = new ChromeDriver((ChromeOptions)actualCapabilities);
                     break;
                 case "firefox":
-                    var ffOptions = JsonConvert.DeserializeObject<FirefoxOptions>(serializedCaps);
-                    actualCapabilities = ffOptions;
+                    actualCapabilities = new FirefoxOptions();
                     Automator.Driver = new FirefoxDriver(new FirefoxBinary(), new FirefoxProfile());
                     break;
                 default:
@@ -43,6 +37,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
 
             Services.GetService<IDriverProcessMonitor>().MonitorChildren();
 
+            Logger.Info($"Created a '{driver}' with capabilites: \n" + JsonConvert.SerializeObject(actualCapabilities, Formatting.Indented));
             return JsonResponse(ResponseStatus.Success, actualCapabilities);
         }
     }
