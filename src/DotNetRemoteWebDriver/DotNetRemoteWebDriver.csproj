@@ -71,7 +71,9 @@
     <Compile Include="CommandExecutors\GetTitleExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
+    <Compile Include="CommandExecutors\GoBackExecutor.cs" />
     <Compile Include="CommandExecutors\Identifier.cs" />
+    <Compile Include="CommandExecutors\MaximizeWindowExecutor.cs" />
     <Compile Include="CommandExecutors\RefreshExecutor.cs" />
     <Compile Include="CommandExecutors\SetTimeoutExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />

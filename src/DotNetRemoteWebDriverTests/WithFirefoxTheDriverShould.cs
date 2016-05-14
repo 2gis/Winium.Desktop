@@ -43,6 +43,27 @@ namespace DotNetRemoteWebDriverTests
         }
 
         [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Maximize_Window()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.InternetExplorer();
+            _driver = new RemoteWebDriver(remoteUrl, capabilities);
+            _driver.Navigate().GoToUrl("http://google.com");
+            _driver.Manage().Window.Maximize();
+        }
+
+        [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Go_Back()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.InternetExplorer();
+            _driver = new RemoteWebDriver(remoteUrl, capabilities);
+            _driver.Navigate().GoToUrl("http://google.com");
+            _driver.FindElement(By.LinkText("About")).Click();
+            _driver.Navigate().Back();
+        }
+
+        [TestMethod, TestCategory("Integration")]
         public void Be_Able_To_Open_Google_And_Search()
         {
             var remoteUrl = new Uri("http://localhost:4444/");
