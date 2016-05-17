@@ -16,12 +16,18 @@ namespace DotNetRemoteWebDriver
         {
             public int Port { get; set; }
             public int ProcessId { get; set; }
+            public override string ToString()
+            {
+                return $"Port {Port} listened to by process {ProcessId}";
+            }
         }
 
         public static bool TryFindProcessIdForPort(int port, out int processId)
         {
-            processId = GetNetStatPorts().FirstOrDefault(p => p.Port == port).ProcessId;
-            return processId != 0;
+            PortUsage pu = GetNetStatPorts().FirstOrDefault(p => p.Port == port);
+            processId = pu.ProcessId;
+            Logger.Debug($"Port {port} in use?: {pu.ProcessId > 0}");
+            return pu.ProcessId > 0;
         }
 
         /// <summary>
@@ -54,31 +60,49 @@ namespace DotNetRemoteWebDriver
                 string netstatOutput = standardOutput.ReadToEnd() + standardError.ReadToEnd();
 
                 if (netstatProcess.ExitCode != 0)
-                    Console.WriteLine("NetStat command failed. This may require elevated permissions.");
+                    Logger.Warn("NetStat command failed. This may require elevated permissions.");
 
                 var outputLines = Regex.Split(netstatOutput, "\r\n");
 
                 foreach (string line in outputLines)
                 {
-                    string[] tokens = Regex.Split(line, "\\s+");
-                    if (tokens.Length > 4 && (tokens[1].Equals("UDP") || tokens[1].Equals("TCP")))
-                    {
-                        var ipAddress = Regex.Replace(tokens[2], @"\[(.*?)\]", "1.1.1.1");
-
-                        {
-                            var processId = tokens[1] == "UDP"
-                                ? Convert.ToInt16(tokens[4])
-                                : Convert.ToInt16(tokens[5]);
-
-                            yield return new PortUsage
-                            {
-                                ProcessId = processId,
-                                Port = Convert.ToInt32(ipAddress.Split(':')[1])
-                            };
-                        }
-                    }
+                    PortUsage pu;
+                    if (TryExtractPortUsage(line, out pu))
+                        yield return pu;
                 }
             }
         }
+
+        private static bool TryExtractPortUsage(string line, out PortUsage pu)
+        {
+            pu = new PortUsage();
+            try
+            {
+                string[] tokens = Regex.Split(line, "\\s+");
+                if (tokens.Length > 4 && (tokens[1].Equals("UDP") || tokens[1].Equals("TCP")))
+                {
+                    var ipAddress = Regex.Replace(tokens[2], @"\[(.*?)\]", "1.1.1.1");
+                    var processId = tokens[1] == "UDP"
+                        ? Convert.ToInt32(tokens[4])
+                        : Convert.ToInt32(tokens[5]);
+
+                    pu =  new PortUsage
+                    {
+                        ProcessId = processId,
+                        Port = Convert.ToInt32(ipAddress.Split(':')[1])
+                    };
+                    return true;
+                }
+                else
+                    return false;
+            }
+            catch(Exception e)
+            {
+                Logger.Warn($"Error parsing NetStat line '{line}': {e}");
+                return false;
+            }
+
+        }
     }
 }
+

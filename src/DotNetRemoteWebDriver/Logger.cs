@@ -2,6 +2,7 @@
 using NLog;
 using NLog.Config;
 using NLog.Targets;
+using System.Linq;
 
 namespace DotNetRemoteWebDriver
 {
@@ -62,5 +63,7 @@ namespace DotNetRemoteWebDriver
         {
             Log.Warn(message, args);
         }
+
+        public static int CurrentLevel => LogManager.GlobalThreshold.Ordinal;
     }
 }
