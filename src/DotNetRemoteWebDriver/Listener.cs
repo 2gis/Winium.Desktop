@@ -1,10 +1,7 @@
 ﻿using System;
-using System.CodeDom;
 using System.Collections.Specialized;
-using System.Diagnostics;
 using System.Globalization;
 using System.IO;
-using System.Linq;
 using System.Net;
 using System.Net.Sockets;
 using System.Runtime.InteropServices;
@@ -102,6 +99,10 @@ namespace DotNetRemoteWebDriver
             {
                 Logger.Error("ArgumentException occurred while trying to start listner: {0}", ex);
                 throw;
+            }
+            catch (Exception e)
+            {
+                Logger.Error($"Unexpected exception occurred while trying to start listener: {e}");
             }
             finally
             {

@@ -35,7 +35,7 @@ namespace DotNetRemoteWebDriver
             services.Register<IDriverProcessMonitor>(_processMonitor);
             _listener = new Listener(_port, services);
             Listener.UrnPrefix = _urlBase;
-            Console.WriteLine("Starting remote web driver on port {0}\n", _port);
+            Logger.Info("Starting remote web driver on port {0}\n", _port);
 
             _listener.StartListening();
         }
