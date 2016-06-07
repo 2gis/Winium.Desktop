@@ -44,7 +44,7 @@ namespace DotNetRemoteWebDriver
                     Logger.TargetNull();
                 else
                     Logger.TargetConsole(options.Verbose);
-
+                Logger.Info($"Logging level is {Logger.CurrentLevel}");
                 return true;
             }
             catch (Exception e)

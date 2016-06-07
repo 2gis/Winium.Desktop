@@ -15,7 +15,9 @@ namespace DotNetRemoteWebDriver
 
         public void MonitorChildren()
         {
-            MonitorAllChildren((uint)Process.GetCurrentProcess().Handle);
+            uint processHandle = (uint)Process.GetCurrentProcess().Handle;
+            Logger.Debug($"Registering monitor on driver process handle {processHandle}.");
+            MonitorAllChildren(processHandle);
         }
 
         private void MonitorAllChildren(uint parentProcessId)

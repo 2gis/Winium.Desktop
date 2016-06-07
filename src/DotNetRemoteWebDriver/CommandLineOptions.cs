@@ -17,13 +17,13 @@ namespace DotNetRemoteWebDriver
         [Option("port", Required = false, HelpText = "port to listen on", DefaultValue = 4444)]
         public int Port { get; set; }
 
-        [Option("silent", Required = false, HelpText = "log nothing")]
+        [Option("silent", Required = false, HelpText = "log nothing", DefaultValue = false)]
         public bool Silent { get; set; }
 
         [Option("url-base", Required = false, HelpText = "base URL path prefix for commands, e.g. wd/url")]
         public string UrlBase { get; set; }
 
-        [Option("verbose", Required = false, HelpText = "log verbosely")]
+        [Option("verbose", Required = false, HelpText = "log verbosely", DefaultValue = false)]
         public bool Verbose { get; set; }
     }
 }
