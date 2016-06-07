@@ -12,6 +12,10 @@ namespace DotNetRemoteWebDriver
             if (!TryInitializeOptions(args, out options))
                 return 1;
 
+            var version = typeof (Program).Assembly.GetName().Version.ToString(3);
+            Logger.Info($"Running remote web driver version {version}");
+            Logger.Info($"Running from {Environment.CurrentDirectory}");
+
             try
             {
                 using (var driverHost = new DriverHost(options.Port, options.UrlBase))
