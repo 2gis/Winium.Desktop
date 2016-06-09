@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="Automator\Automator.cs" />
     <Compile Include="Command.cs" />
+    <Compile Include="CommandExecutors\GetCurrentUrlExecutor.cs" />
     <Compile Include="CommandExecutors\GetElementTagNameExecutor.cs" />
     <Compile Include="CommandExecutors\GetExecutor.cs" />
     <Compile Include="CommandExecutors\GetTitleExecutor.cs" />
