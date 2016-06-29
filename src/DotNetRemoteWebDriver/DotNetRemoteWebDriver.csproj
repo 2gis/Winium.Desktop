@@ -73,6 +73,7 @@
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GoBackExecutor.cs" />
+    <Compile Include="CommandExecutors\GoForwardExecutor.cs" />
     <Compile Include="CommandExecutors\Identifier.cs" />
     <Compile Include="CommandExecutors\MaximizeWindowExecutor.cs" />
     <Compile Include="CommandExecutors\RefreshExecutor.cs" />
