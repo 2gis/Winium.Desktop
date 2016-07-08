@@ -2,7 +2,7 @@
 {
     #region using
 
-    using Winium.Desktop.Driver.CommonHelpers;
+    using Winium.Desktop.Driver.CommandHelpers;
 
     #endregion
 
@@ -12,7 +12,7 @@
 
         protected override string DoImpl()
         {
-            return CommonHelpers.TerminateExcecutor(this.Automator, this.JsonResponse());
+            return TerminateApp.TerminateExcecutor(this.Automator, this.JsonResponse());
         }
 
         #endregion

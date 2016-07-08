@@ -1,4 +1,4 @@
-﻿namespace Winium.Desktop.Driver.CommonHelpers
+﻿namespace Winium.Desktop.Driver.CommandHelpers
 {
     #region using
 
@@ -9,7 +9,7 @@
 
     #endregion
 
-    public static class CommonHelpers
+    public static class TerminateApp
     {
         public static string TerminateExcecutor(object automatorObject, string jsonResponse)
         {
