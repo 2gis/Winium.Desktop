@@ -18,5 +18,27 @@ namespace DotNetRemoteWebDriverTests
             using (_driver = new RemoteWebDriver(remoteUrl, capabilities))
                 _driver.Navigate().GoToUrl("http://google.com");
         }
+
+        [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Return_Capabilities()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.InternetExplorer();
+            capabilities.SetCapability("browserAttachTimeout", 15000);
+            using (_driver = new RemoteWebDriver(remoteUrl, capabilities))
+                Assert.AreEqual("internet explorer", _driver.Capabilities.BrowserName);
+        }
+
+        [TestMethod, TestCategory("Integration")]
+        public void Be_Able_To_Return_Window_Handle()
+        {
+            var remoteUrl = new Uri("http://localhost:4444/");
+            var capabilities = DesiredCapabilities.InternetExplorer();
+            using (_driver = new RemoteWebDriver(remoteUrl, capabilities))
+            {
+                _driver.Navigate().GoToUrl("http://google.com");
+                Assert.IsNotNull(_driver.CurrentWindowHandle);
+            }
+        }
     }
 }

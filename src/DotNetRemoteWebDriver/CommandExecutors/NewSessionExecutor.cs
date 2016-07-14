@@ -1,6 +1,9 @@
 ﻿using System;
+using System.Collections.Generic;
 using DotNetRemoteWebDriver.CommandHelpers;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using NLog.LayoutRenderers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
@@ -17,24 +20,20 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             var capabilities = ExecutedCommand.Parameters["desiredCapabilities"];
             var driver = capabilities["browserName"].ToString().ToLower();
 
-            object actualCapabilities;
             switch (driver)
             {
                 case "internet explorer":
-                    actualCapabilities = CapabilityParser.ForInternetExplorer(capabilities);
-                    Automator.Driver = new InternetExplorerDriver((InternetExplorerOptions)actualCapabilities);
+                    var ieCaps = CapabilityParser.ForInternetExplorer(capabilities);
+                    Automator.Driver = new InternetExplorerDriver(ieCaps);
                     break;
                 case "chrome":
-                    var options = CapabilityParser.ForChrome(capabilities);
-                    actualCapabilities = options;
+                    var chromeCaps = CapabilityParser.ForChrome(capabilities);
                     var service = ChromeDriverService.CreateDefaultService();
                     service.EnableVerboseLogging = true;
-                    //service.HideCommandPromptWindow = true;
                     service.SuppressInitialDiagnosticInformation = true;
-                    Automator.Driver = new ChromeDriver(service, (ChromeOptions)actualCapabilities);
+                    Automator.Driver = new ChromeDriver(service, chromeCaps);
                     break;
                 case "firefox":
-                    actualCapabilities = new FirefoxOptions();
                     Automator.Driver = new FirefoxDriver(new FirefoxBinary(), new FirefoxProfile());
                     break;
                 default:
@@ -43,8 +42,9 @@ namespace DotNetRemoteWebDriver.CommandExecutors
 
             Services.GetService<IDriverProcessMonitor>().MonitorChildren();
 
-            Logger.Info($"Created a '{driver}' with capabilites: \n" + JsonConvert.SerializeObject(actualCapabilities, Formatting.Indented));
-            return JsonResponse(ResponseStatus.Success, actualCapabilities);
+            var response = JsonResponse(ResponseStatus.Success, new CapabilityWrapper(Automator.Driver.Capabilities));
+            Logger.Info($"Created a '{driver}' with capabilites: \n" + response);
+            return response;
         }
     }
 }

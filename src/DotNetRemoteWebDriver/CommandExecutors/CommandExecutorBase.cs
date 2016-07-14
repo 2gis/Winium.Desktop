@@ -1,10 +1,13 @@
 ﻿#region using
 
 using System;
+using System.Collections.Generic;
 using System.Net;
 using System.Windows.Media.Converters;
 using DotNetRemoteWebDriver.Exceptions;
 using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using OpenQA.Selenium;
 
 #endregion
