@@ -87,6 +87,17 @@
                     // Perform a blocking call to accept requests. 
                     var client = this.listener.AcceptTcpClient();
 
+                    //Detect connection close, this happens a lot on Windows 10
+                    if (client.Client.Poll(0, SelectMode.SelectRead))
+                    {
+                        byte[] buff = new byte[1];
+                        if(client.Client.Receive(buff,SocketFlags.Peek) == 0)
+                        {
+                            var ep = (IPEndPoint)client.Client.RemoteEndPoint;
+                            Logger.Debug("Connection disconnected for  IP: {0}/port: {1}",ep.Address, ep.Port);
+                            continue;
+                        }
+                    }
                     // Get a stream object for reading and writing
                     using (var stream = client.GetStream())
                     {

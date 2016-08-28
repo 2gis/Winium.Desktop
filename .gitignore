@@ -163,3 +163,4 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+src/.nuget/NuGet.exe
