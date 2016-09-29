@@ -22,7 +22,7 @@
         [SetUp]
         public void FindMainWindow()
         {
-            this.MainWindow = this.Driver.FindElement(By.Id("WpfTestApplicationMainWindow"));
+            this.MainWindow = this.Driver.FindElement(By.XPath("/*[@AutomationId='WpfTestApplicationMainWindow']"));
         }
 
         #endregion

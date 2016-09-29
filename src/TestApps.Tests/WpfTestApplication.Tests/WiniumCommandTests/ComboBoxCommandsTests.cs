@@ -65,7 +65,7 @@
         [SetUp]
         public new void SetUp()
         {
-            var mainWindow = this.Driver.FindElementById("WpfTestApplicationMainWindow");
+            var mainWindow = this.Driver.FindElement(By.XPath("/*[@AutomationId='WpfTestApplicationMainWindow']"));
             this.ComboBoxElement = mainWindow.FindElement(By.Id("TextComboBox"));
         }
 

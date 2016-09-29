@@ -21,7 +21,7 @@
         [SetUp]
         public void FindMainWindow()
         {
-            this.MainWindow = this.Driver.FindElementById("Form1");
+            this.MainWindow = this.Driver.FindElement(By.XPath("/*[@AutomationId='Form1']"));
         }
 
         #endregion

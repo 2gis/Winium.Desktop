@@ -17,7 +17,8 @@
         [TestCase("TextListBox", 200, 100)]
         public void GetSizeOfElement(string elementId, int width, int height)
         {
-            var element = this.Driver.FindElementById("WpfTestApplicationMainWindow").FindElement(By.Id(elementId));
+            var mainWindowStrategy = By.XPath("/*[@AutomationId='WpfTestApplicationMainWindow']");
+            var element = this.Driver.FindElement(mainWindowStrategy).FindElement(By.Id(elementId));
 
             var size = element.Size;
 
