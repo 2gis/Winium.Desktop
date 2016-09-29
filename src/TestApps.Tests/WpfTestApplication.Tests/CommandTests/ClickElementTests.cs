@@ -38,6 +38,18 @@
             Assert.IsFalse(listItem3.Selected);
         }
 
+        [Test]
+        public void ClickByElementBoundingRecatngleCenter()
+        {
+            var list = this.MainWindow.FindElement(By.Id("TextListBox"));
+
+            var listItem1 = list.FindElement(By.Name("March"));
+
+            this.Driver.ExecuteScript("input: brc_click", listItem1);
+
+            Assert.IsTrue(listItem1.Selected);
+        }
+
         #endregion
     }
 }

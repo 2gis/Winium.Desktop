@@ -8,6 +8,7 @@
 
     using Newtonsoft.Json.Linq;
 
+    using Winium.Cruciatus.Core;
     using Winium.Cruciatus.Elements;
     using Winium.Cruciatus.Extensions;
     using Winium.StoreApps.Common;
@@ -98,6 +99,9 @@
             {
                 case "ctrl_click":
                     element.ClickWithPressedCtrl();
+                    return;
+                case "brc_click":
+                    element.Click(MouseButton.Left, ClickStrategies.BoundingRectangleCenter);
                     return;
                 default:
                     var msg = string.Format(HelpUnknownScriptMsg, "input:", command, HelpUrlInputScript);
