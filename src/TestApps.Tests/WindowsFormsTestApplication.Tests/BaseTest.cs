@@ -26,6 +26,7 @@
         {
             var dc = new DesiredCapabilities();
             dc.SetCapability("app", Path.Combine(Environment.CurrentDirectory, "WindowsFormsTestApplication.exe"));
+            dc.SetCapability("launchDelay", 2);
             this.Driver = new RemoteWebDriver(new Uri("http://localhost:9999"), dc);
         }
 
