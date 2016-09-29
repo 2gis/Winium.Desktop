@@ -39,6 +39,8 @@
          * string, bool, int - should be as plain text
          * System.Windows.Automation.ControlType - should be used `ProgrammaticName` property
          * System.Window.Rect, System.Window.Point - overrides `ToString()` method, can serialize
+         * Int32[] array - use `string.Join()` method, can serialize
+         * enum - use `ToString()` method, can serialize
          */
         private static object PrepareValueToSerialize(object obj)
         {
@@ -58,6 +60,18 @@
                 return controlType.ProgrammaticName;
             }
 
+            var intArray = obj as Int32[];
+            if (intArray != null)
+            {
+                return string.Join(",", intArray);
+            }
+
+            var intValue = obj as Enum;
+            if (intValue != null)
+            {
+                return intValue.ToString();
+            }
+            
             return obj;
         }
 

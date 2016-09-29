@@ -1,22 +1,18 @@
 ﻿namespace Winium.Desktop.Driver.CommandExecutors
 {
+    #region using
+
+    using Winium.Desktop.Driver.CommandHelpers;
+
+    #endregion
+
     internal class CloseExecutor : CommandExecutorBase
     {
         #region Methods
 
         protected override string DoImpl()
         {
-            if (!this.Automator.ActualCapabilities.DebugConnectToRunningApp)
-            {
-                if (!this.Automator.Application.Close())
-                {
-                    this.Automator.Application.Kill();
-                }
-
-                this.Automator.ElementsRegistry.Clear();
-            }
-
-            return this.JsonResponse();
+            return TerminateApp.TerminateExcecutor(this.Automator, this.JsonResponse());
         }
 
         #endregion

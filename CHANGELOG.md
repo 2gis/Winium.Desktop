@@ -5,7 +5,14 @@
 - Add driver option --silent to disable logging
 -->
 
-## v1.5.0
+
+## v1.6.0
+
+- Fix exception Process Not Found in close/quit function
+- Fix throw exceptions in getting some gui element's attributes
+
+
+## v1.5.0
 
 - Add `SwitchToWindow` command
 - Fix XPath attribute value if this ControlType

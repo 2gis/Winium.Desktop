@@ -31,7 +31,7 @@
 
             // Gives sometime to load visuals (needed only in case of slow emulation)
             Thread.Sleep(this.Automator.ActualCapabilities.LaunchDelay);
-
+            
             return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
         }
 
