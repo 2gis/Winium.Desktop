@@ -8,6 +8,7 @@
 
     #endregion
 
+    [Ignore]
     public class DataGridCommandsTests : BaseTest<TestWebDriver>
     {
         #region Public Properties

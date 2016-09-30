@@ -91,19 +91,27 @@
                     using (var stream = client.GetStream())
                     {
                         var acceptedRequest = HttpRequest.ReadFromStreamWithoutClosing(stream);
-                        Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
 
-                        var response = this.HandleRequest(acceptedRequest);
-                        using (var writer = new StreamWriter(stream))
+                        if (string.IsNullOrWhiteSpace(acceptedRequest.StartingLine))
                         {
-                            try
+                            Logger.Warn("ACCEPTED EMPTY REQUEST");
+                        }
+                        else
+                        {
+                            Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
+
+                            var response = this.HandleRequest(acceptedRequest);
+                            using (var writer = new StreamWriter(stream))
                             {
-                                writer.Write(response);
-                                writer.Flush();
-                            }
-                            catch (IOException ex)
-                            {
-                                Logger.Error("Error occured while writing response: {0}", ex);
+                                try
+                                {
+                                    writer.Write(response);
+                                    writer.Flush();
+                                }
+                                catch (IOException ex)
+                                {
+                                    Logger.Error("Error occured while writing response: {0}", ex);
+                                }
                             }
                         }
 
