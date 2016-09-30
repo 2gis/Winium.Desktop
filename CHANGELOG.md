@@ -5,7 +5,15 @@
 - Add driver option --silent to disable logging
 -->
 
-## v1.5.0
+## v1.6.0
+
+- Add new script command for click to element center (by bounding rectangle). Thanks @kdavydenko
+- Add `GetOrientation` and `SetOrientation` command. Thanks @jonstoneman
+- Fix listener crashing on empty incoming request (python bindings >2.53.3)
+- Fix get attribute response format
+
+
+## v1.5.0
 
 - Add `SwitchToWindow` command
 - Fix XPath attribute value if this ControlType
@@ -38,6 +46,7 @@
 New features:
 - Support Action Chains from bindings
 - Add new script command for setting value to element using ValuePattern
+
 
 
 
