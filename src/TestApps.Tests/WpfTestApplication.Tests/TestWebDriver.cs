@@ -53,7 +53,7 @@
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities)
             : base(remoteAddress, desiredCapabilities)
         {
-            CommandInfoRepository.Instance.TryAddCommand(
+            /*CommandInfoRepository.Instance.TryAddCommand(
                 FindDataGridCellCommand,
                 new CommandInfo("POST", "/session/{sessionId}/element/{id}/datagrid/cell/{row}/{column}"));
 
@@ -95,7 +95,7 @@
 
             CommandInfoRepository.Instance.TryAddCommand(
                 SelectMenuItemCommand,
-                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/select/{path}"));
+                new CommandInfo("POST", "/session/{sessionId}/element/{id}/menu/select/{path}"));*/
         }
 
         public TestWebDriver(Uri remoteAddress, ICapabilities desiredCapabilities, TimeSpan commandTimeout)
