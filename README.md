@@ -33,7 +33,8 @@ You have Selenium WebDriver for testing of web apps, Appium for testing of iOS a
 	```python
 	# put it in setUp
 	self.driver = webdriver.Remote(command_executor='http://localhost:9999',
-	                               desired_capabilities={'app': 'C:\\testApp.exe'})
+	                               desired_capabilities={'app': 'C:\\testApp.exe',
+	                                                     'args': '-port 345'})
 	# put it in test method body
 	win = self.driver.find_element_by_id('WpfTestApplicationMainWindow')
 	win.find_element_by_id('SetTextButton').click()
