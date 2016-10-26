@@ -22,8 +22,5 @@ namespace DotNetRemoteWebDriver
 
         [Option("url-base", Required = false, HelpText = "base URL path prefix for commands, e.g. wd/url")]
         public string UrlBase { get; set; }
-
-        [Option("verbose", Required = false, HelpText = "log verbosely", DefaultValue = false)]
-        public bool Verbose { get; set; }
     }
 }
