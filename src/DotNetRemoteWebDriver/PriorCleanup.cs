@@ -18,21 +18,21 @@ namespace DotNetRemoteWebDriver
 
         public void Run()
         {
-            Logger.Debug($"Clearing any prior processes listening on port {Port}.");
+            Logger.Log.Debug($"Clearing any prior processes listening on port {Port}.");
             int prevProcessId;
             if (!ProcessPorts.TryFindProcessIdForPort(Port, out prevProcessId))
             {
-                Logger.Debug($"No prior process using port {Port} was found.");
+                Logger.Log.Debug($"No prior process using port {Port} was found.");
                 return;
             }
 
-            Logger.Info($"Prior process {prevProcessId} using port {Port} detected.");
+            Logger.Log.Info($"Prior process {prevProcessId} using port {Port} detected.");
 
             // Kill previous process and any kids
             Process process;
             if (ProcessTools.TryGetProcess(prevProcessId, out process))
             {
-                Logger.Info($"Killing prior process {prevProcessId}..");
+                Logger.Log.Info($"Killing prior process {prevProcessId}..");
                 process.KillAndWait();
             }
 
@@ -41,7 +41,7 @@ namespace DotNetRemoteWebDriver
                 if (!ProcessTools.TryGetProcess(descendentId, out process))
                     continue;
 
-                Logger.Info($"Killing prior child process {descendentId}.");
+                Logger.Log.Info($"Killing prior child process {descendentId}.");
                 process.KillAndWait();
             }
         }

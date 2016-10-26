@@ -13,8 +13,8 @@ namespace DotNetRemoteWebDriver
                 return 1;
 
             var version = typeof (Program).Assembly.GetName().Version.ToString(3);
-            Logger.Info($"Running remote web driver version {version}");
-            Logger.Info($"Running from {Environment.CurrentDirectory}");
+            Logger.Log.Info($"Running remote web driver version {version}");
+            Logger.Log.Info($"Running from {Environment.CurrentDirectory}");
 
             try
             {
@@ -25,7 +25,7 @@ namespace DotNetRemoteWebDriver
             }
             catch (Exception ex)
             {
-                Logger.Fatal("Failed to start driver: {0}", ex);
+                Logger.Log.Fatal("Failed to start driver: {0}", ex);
                 return 1;
             }
         }
@@ -38,13 +38,10 @@ namespace DotNetRemoteWebDriver
                 if (!Parser.Default.ParseArguments(args, options))
                     return false;
 
-                if (!string.IsNullOrEmpty(options.LogPath))
-                    Logger.TargetFile(options.LogPath, options.Verbose);
+                if (!string.IsNullOrEmpty(options.LogConfig))
+                    Logger.LoadConfig(options.LogConfig);
                 else if (options.Silent)
-                    Logger.TargetNull();
-                else
-                    Logger.TargetConsole(options.Verbose);
-                Logger.Info($"Logging level is {Logger.CurrentLevel}");
+                    Logger.Silence();
                 return true;
             }
             catch (Exception e)

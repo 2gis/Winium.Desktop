@@ -47,7 +47,7 @@ namespace DotNetRemoteWebDriver
                 Running = true;
 
                 // Enter the listening loop
-                Logger.Debug("Waiting for a connection...");
+                Logger.Log.Debug("Waiting for a connection...");
                 while (!_cancelled && Running)
                 {
                     if (!_listener.Pending())
@@ -63,7 +63,7 @@ namespace DotNetRemoteWebDriver
                     using (var stream = client.GetStream())
                     {
                         var acceptedRequest = HttpRequest.ReadFromStreamWithoutClosing(stream);
-                        Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
+                        Logger.Log.Debug($"ACCEPTED REQUEST {acceptedRequest.StartingLine}");
 
                         var response = HandleRequest(acceptedRequest);
                         using (var writer = new StreamWriter(stream))
@@ -75,7 +75,7 @@ namespace DotNetRemoteWebDriver
                             }
                             catch (IOException ex)
                             {
-                                Logger.Error("Error occured while writing response: {0}", ex);
+                                Logger.Log.Error("Error occured while writing response: {0}", ex);
                             }
                         }
 
@@ -84,25 +84,25 @@ namespace DotNetRemoteWebDriver
 
                     client.Close();
 
-                    Logger.Debug("Client closed\n");
-                    Logger.Debug("Waiting for a connection...");
+                    Logger.Log.Debug("Client closed\n");
+                    Logger.Log.Debug("Waiting for a connection...");
                 }
 
                 Automator.Automator.Clear();
             }
             catch (SocketException ex)
             {
-                Logger.Error("SocketException occurred while trying to start listner: {0}", ex);
+                Logger.Log.Error("SocketException occurred while trying to start listner: {0}", ex);
                 throw;
             }
             catch (ArgumentException ex)
             {
-                Logger.Error("ArgumentException occurred while trying to start listner: {0}", ex);
+                Logger.Log.Error("ArgumentException occurred while trying to start listner: {0}", ex);
                 throw;
             }
             catch (Exception e)
             {
-                Logger.Error($"Unexpected exception occurred while trying to start listener: {e}");
+                Logger.Log.Error($"Unexpected exception occurred while trying to start listener: {e}");
             }
             finally
             {
@@ -133,7 +133,7 @@ namespace DotNetRemoteWebDriver
 
                 if (matched == null)
                 {
-                    Logger.Warn("Unknown command recived: {0}", uriToMatch);
+                    Logger.Log.Warn($"Unknown command recived: {uriToMatch}");
                     return HttpResponseHelper.ResponseString(HttpStatusCode.NotFound, "Unknown command " + uriToMatch);
                 }
 
@@ -152,7 +152,7 @@ namespace DotNetRemoteWebDriver
             }
             catch (Exception e)
             {
-                Logger.Error("Failed to process request: " + e.Message, e);
+                Logger.Log.Error("Failed to process request: " + e.Message, e);
                 return HttpResponseHelper.ResponseString(HttpStatusCode.InternalServerError,
                     "Failed to process request: " + e.Message);
             }
@@ -166,14 +166,14 @@ namespace DotNetRemoteWebDriver
 
         private CommandResponse ProcessCommand(Command command)
         {
-            Logger.Info("COMMAND {0}\r\n{1}", command.Name, command.Parameters.ToString());
+            Logger.Log.Info($"COMMAND {command.Name}\r\n{command.Parameters.ToString()}");
             var executor = _executorDispatcher.GetExecutor(command.Name);
             executor.Services = _services;
             executor.ExecutedCommand = command;
-            var respnose = executor.Do();
-            Logger.Debug("RESPONSE:\r\n{0}", respnose);
+            var response = executor.Do();
+            Logger.Log.Debug($"RESPONSE:\r\n{response}");
 
-            return respnose;
+            return response;
         }
 
         [DllImport("Kernel32")]
@@ -186,7 +186,7 @@ namespace DotNetRemoteWebDriver
         {
             var ctrlTyp = new[] { "cancel", "break", "close", "logoff", "shutdown" };
             var eventName = ctrlTyp[sig];
-            Logger.Info($"Recieved {eventName} signal. Shutting down.");
+            Logger.Log.Info($"Recieved {eventName} signal. Shutting down.");
             _cancelled = true;
             _listener.Stop();
             return true;

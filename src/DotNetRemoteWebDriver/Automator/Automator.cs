@@ -38,7 +38,7 @@ namespace DotNetRemoteWebDriver.Automator
                 }
                 catch (Exception e)
                 {
-                    Logger.Error("Failed to clear out old driver session: " + e.Message, e);
+                    Logger.Log.Error("Failed to clear out old driver session: " + e.Message, e);
                 }
             }
 

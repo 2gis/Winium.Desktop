@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyProduct("DotNetRemoteWebDriver")]
-[assembly: AssemblyCopyright("Copyright ©  2015")]
+[assembly: AssemblyCopyright("Copyright ©  2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
@@ -43,3 +43,5 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyInformationalVersion("1.5.0")]
 
 [assembly: InternalsVisibleTo("DotNetRemoteWebDriverTests")]
+
+[assembly: log4net.Config.XmlConfigurator(ConfigFile= "log.config")]

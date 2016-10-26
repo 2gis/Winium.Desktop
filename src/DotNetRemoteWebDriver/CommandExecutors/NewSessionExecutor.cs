@@ -4,7 +4,6 @@ using DotNetRemoteWebDriver.CommandHelpers;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using NLog.LayoutRenderers;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
@@ -43,7 +42,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             Services.GetService<IDriverProcessMonitor>().MonitorChildren();
 
             var response = JsonResponse(ResponseStatus.Success, new CapabilityWrapper(Automator.Driver.Capabilities));
-            Logger.Info($"Created a '{driver}' with capabilites: \n" + response);
+            Logger.Log.Info($"Created a '{driver}' with capabilites: \n" + response);
             return response;
         }
     }
