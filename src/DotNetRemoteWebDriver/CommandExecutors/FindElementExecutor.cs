@@ -1,4 +1,5 @@
 ﻿using DotNetRemoteWebDriver.Exceptions;
+using OpenQA.Selenium;
 
 namespace DotNetRemoteWebDriver.CommandExecutors
 {
@@ -6,9 +7,15 @@ namespace DotNetRemoteWebDriver.CommandExecutors
     {
         protected override string DoImpl()
         {
-            var element = Automator.Driver.FindElement(Identifier.From(ExecutedCommand.Parameters));
-            if (element == null)
-                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
+            IWebElement element;
+            try
+            {
+                element = Automator.Driver.FindElement(Identifier.From(ExecutedCommand.Parameters));
+            }
+            catch (NoSuchElementException e)
+            {
+                throw new AutomationException(e.Message, ResponseStatus.NoSuchElement);
+            }    
 
             var registeredKey = Automator.ElementsRegistry.Register(element);
             var registeredObject = new JsonElementContent(registeredKey);

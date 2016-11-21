@@ -63,7 +63,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             }
             catch (Exception exception)
             {
-                Logger.Error($"Failed to execute '{GetType().Name}': {exception.Message}", exception);
+                Logger.Error($"Failed to execute '{GetType().Name}': {exception.Message} at \r\n{exception.StackTrace}", exception);
                 return CommandResponse.Create(
                     HttpStatusCode.OK,
                     JsonResponse(ResponseStatus.UnknownError, exception));

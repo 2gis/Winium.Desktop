@@ -7,13 +7,17 @@ namespace DotNetRemoteWebDriver.CommandExecutors
     {
         protected override string DoImpl()
         {
-            var element = RequestedElement.FindElement(Identifier.From(ExecutedCommand.Parameters));
-            if (element == null)
-                throw new AutomationException("Element cannot be found", ResponseStatus.NoSuchElement);
-
-            var registeredKey = Automator.ElementsRegistry.Register(element);
-            var registeredObject = new JsonElementContent(registeredKey);
-            return JsonResponse(ResponseStatus.Success, registeredObject);
+            try
+            {
+                var element = RequestedElement.FindElement(Identifier.From(ExecutedCommand.Parameters));
+                var registeredKey = Automator.ElementsRegistry.Register(element);
+                var registeredObject = new JsonElementContent(registeredKey);
+                return JsonResponse(ResponseStatus.Success, registeredObject);
+            }
+            catch (NoSuchElementException e)
+            {
+                throw new AutomationException(e.Message, ResponseStatus.NoSuchElement);
+            }
         }
     }
 }

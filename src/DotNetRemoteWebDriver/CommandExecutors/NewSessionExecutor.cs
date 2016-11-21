@@ -1,10 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using DotNetRemoteWebDriver.CommandHelpers;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
-using NLog.LayoutRenderers;
+using Newtonsoft.Json.Linq;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
 using OpenQA.Selenium.IE;
@@ -17,8 +13,8 @@ namespace DotNetRemoteWebDriver.CommandExecutors
         {
             // So this method should instantiate a driver of the given browser type and return
             // the session parentProcessId plus capabilities
-            var capabilities = ExecutedCommand.Parameters["desiredCapabilities"];
-            var driver = capabilities["browserName"].ToString().ToLower();
+            var capabilities = CurrentDesiredCapabilties();
+            var driver = GetBrowserName(capabilities);
 
             switch (driver)
             {
@@ -45,6 +41,25 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             var response = JsonResponse(ResponseStatus.Success, new CapabilityWrapper(Automator.Driver.Capabilities));
             Logger.Info($"Created a '{driver}' with capabilites: \n" + response);
             return response;
+        }
+
+        private string GetBrowserName(JToken capabilities)
+        {
+            const string browserNameKey = "browserName";
+            var browser = capabilities[browserNameKey]?.ToString();
+            if(string.IsNullOrEmpty(browser))
+                throw new ArgumentException($"No '{browserNameKey}' specified.", browserNameKey);
+
+            return browser.ToLower();
+        }
+
+        private JToken CurrentDesiredCapabilties()
+        {
+            const string capabilitiesKey = "desiredCapabilities";
+            if (!ExecutedCommand.Parameters.ContainsKey(capabilitiesKey))
+                throw new ArgumentException($"No '{capabilitiesKey}' specified.", capabilitiesKey);
+
+            return ExecutedCommand.Parameters[capabilitiesKey];
         }
     }
 }
