@@ -26,7 +26,7 @@ namespace DotNetRemoteWebDriver
         {
             PortUsage pu = GetNetStatPorts().FirstOrDefault(p => p.Port == port);
             processId = pu.ProcessId;
-            Logger.Debug($"Port {port} in use?: {pu.ProcessId > 0}");
+            Logger.Log.Debug($"Port {port} in use?: {pu.ProcessId > 0}");
             return pu.ProcessId > 0;
         }
 
@@ -60,7 +60,7 @@ namespace DotNetRemoteWebDriver
                 string netstatOutput = standardOutput.ReadToEnd() + standardError.ReadToEnd();
 
                 if (netstatProcess.ExitCode != 0)
-                    Logger.Warn("NetStat command failed. This may require elevated permissions.");
+                    Logger.Log.Warn("NetStat command failed. This may require elevated permissions.");
 
                 var outputLines = Regex.Split(netstatOutput, "\r\n");
 
@@ -98,7 +98,7 @@ namespace DotNetRemoteWebDriver
             }
             catch(Exception e)
             {
-                Logger.Warn($"Error parsing NetStat line '{line}': {e}");
+                Logger.Log.Warn($"Error parsing NetStat line '{line}': {e}");
                 return false;
             }
 

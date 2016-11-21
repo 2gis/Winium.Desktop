@@ -39,7 +39,7 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             Services.GetService<IDriverProcessMonitor>().MonitorChildren();
 
             var response = JsonResponse(ResponseStatus.Success, new CapabilityWrapper(Automator.Driver.Capabilities));
-            Logger.Info($"Created a '{driver}' with capabilites: \n" + response);
+            Logger.Log.Info($"Created a '{driver}' with capabilites: \n" + response);
             return response;
         }
 

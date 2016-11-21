@@ -51,12 +51,12 @@ namespace DotNetRemoteWebDriver.CommandExecutors
             }
             catch (AutomationException exception)
             {
-                Logger.Error($"Command '{GetType().Name}' failed: " + exception.Message, exception);
+                Logger.Log.Error($"Command '{GetType().Name}' failed: " + exception.Message, exception);
                 return CommandResponse.Create(HttpStatusCode.OK, JsonResponse(exception.Status, exception));
             }
             catch (NotImplementedException exception)
             {
-                Logger.Error($"This command is not implemented: {GetType().Name}");
+                Logger.Log.Error($"This command is not implemented: {GetType().Name}");
                 return CommandResponse.Create(
                     HttpStatusCode.NotImplemented,
                     JsonResponse(ResponseStatus.UnknownCommand, exception));

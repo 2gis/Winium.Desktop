@@ -20,7 +20,7 @@ namespace DotNetRemoteWebDriverTests
             var timeBeforeTest = DateTime.Now;
             try
             {
-                _driverProcess = Process.Start("DotNetRemoteWebDriver.exe", "--log-path driver.log");
+                _driverProcess = Process.Start("DotNetRemoteWebDriver.exe");
                 Assert.IsNotNull(_driverProcess);
                 LaunchDriver(DesiredCapabilities.Firefox(), "http://google.com");
                 LaunchDriver(DesiredCapabilities.Chrome(), "http://google.com");
@@ -29,7 +29,7 @@ namespace DotNetRemoteWebDriverTests
                 _driverProcess.CloseMainWindow();
                 _driverProcess.KillAndWait();
 
-                _driverProcess = Process.Start("DotNetRemoteWebDriver.exe", "--log-path driver.log");
+                _driverProcess = Process.Start("DotNetRemoteWebDriver.exe");
                 Assert.IsNotNull(_driverProcess);
                 Assert.IsFalse(_driverProcess.HasExited);
                 _driverProcess.KillAndWait();

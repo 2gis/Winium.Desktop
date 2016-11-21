@@ -14,7 +14,6 @@ namespace DotNetRemoteWebDriverTests
         {
             var remoteUrl = new Uri("http://localhost:4444/");
             var capabilities = DesiredCapabilities.Chrome();
-            capabilities.SetCapability("args", new [] { "enable-logging", "v=1" });
             using (_driver = new RemoteWebDriver(remoteUrl, capabilities))
                 _driver.Navigate().GoToUrl("http://google.com");
         }

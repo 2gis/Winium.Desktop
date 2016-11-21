@@ -28,17 +28,17 @@ namespace DotNetRemoteWebDriver
 
         public void Run()
         {
-            Logger.Debug("Start of DriverHost.Run()");
+            Logger.Log.Debug("Start of DriverHost.Run()");
             new PriorCleanup(_port).Run();
 
-            Logger.Debug("Ready to start new remote WebDriver.");
+            Logger.Log.Debug("Ready to start new remote WebDriver.");
             var services = new ServiceProvider();
             _processMonitor = new DriverProcessMonitor();
             services.Register<IDriverProcessMonitor>(_processMonitor);
             _listener = new Listener(_port, services);
             Listener.UrnPrefix = _urlBase;
 
-            Logger.Info("Starting remote web driver on port {0}\n", _port);
+            Logger.Log.Info($"Starting remote web driver on port {_port}\n");
             _listener.StartListening();
         }
     }
