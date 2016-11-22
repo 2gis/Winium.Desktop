@@ -57,6 +57,19 @@ Contributions are welcome!
 3. We recommend to write a test which shows that the bug was fixed or that the feature works as expected.
 4. Send a pull request and bug the maintainer until it gets merged and published. :smiley:
 
+## Fix issue there're some applications that launched process exists immediately, so in close/quit function it throws exception Process Not Found.
+Call Winium.Cruciatus/Application.UpdateRunApplicationProcessBy(string name) in Winium.Desktop.Driver/CommandExecutors/NewSessionExecutor.cs to make sure process is not existed.
+To use this update, must add more parameter process name when call setUp functions.
+self.driver = webdriver.Remote(command_executor='http://localhost:9999',
+	                               desired_capabilities={'app': 'C:\\testApp.exe', 'processname': 'testApp'})
+## Fix error exceptions when getting some attributes of gui element.
+Add some code blocks in Winium.Desktop.Driver/CommandExecutors/GetElementAttributeExecutor.cs to fix following issues:
+
+1. Fix issue error when parse runtimeId attribute of element(return Int32[] array) by convert them into string
+2. Fix issue error when parse Oriented attribute of element(return enum) by convert it to string
+
+##
+
 ## Contact
 
 Have some questions? Found a bug? Create [new issue](https://github.com/2gis/Winium.Desktop/issues/new) or contact us at g.golovin@2gis.ru

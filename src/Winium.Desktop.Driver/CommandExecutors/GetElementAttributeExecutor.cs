@@ -58,6 +58,20 @@
                 return controlType.ProgrammaticName;
             }
 
+            // Fix issue error when parse runtimeId attribute of element(return Int32[] array) by convert them into string
+            var intArray = obj as Int32[];
+            if (intArray != null)
+            {
+                return string.Join(".", intArray);
+            }
+
+            // Fix issue error when parse Oriented attribute of element(return enum) by convert it to string
+            var intValue = obj as Enum;
+            if (intValue != null)
+            {
+                return intValue.ToString();
+            }
+            
             return obj;
         }
 
