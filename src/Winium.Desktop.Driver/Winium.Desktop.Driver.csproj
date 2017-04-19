@@ -52,8 +52,8 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.3.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -72,6 +72,7 @@
     <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\FindComboBoxSelectedItemExecutor.cs" />
     <Compile Include="CommandExecutors\GetOrientationExecutor.cs" />
+    <Compile Include="CommandExecutors\GetSessionCapabilitiesExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
@@ -85,6 +86,7 @@
     <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\FindDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\SetOrientationExecutor.cs" />
+    <Compile Include="CommandExecutors\SetTimeoutExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
