@@ -27,6 +27,15 @@
 
         #region Public Properties
 
+        [JsonProperty("platformName")]
+        public static string PlatformName
+        {
+            get
+            {
+                return "Windows";
+            }
+        }
+
         [JsonProperty("app")]
         public string App { get; set; }
 

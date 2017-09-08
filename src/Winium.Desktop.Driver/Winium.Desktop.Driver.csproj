@@ -38,6 +38,7 @@
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -128,6 +129,7 @@
     <Compile Include="Input\WiniumKeyboard.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="NodeRegistrar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requester.cs" />
