@@ -42,15 +42,18 @@
 
         private void ResetDirectory(string resetDirectory)
         {
-            DirectoryInfo directory = new DirectoryInfo(resetDirectory);
+            if (!string.IsNullOrEmpty(resetDirectory))
+            {
+                DirectoryInfo directory = new DirectoryInfo(resetDirectory);
 
-            foreach (FileInfo file in directory.GetFiles())
-            {
-                file.Delete();
-            }
-            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
-            {
-                subDirectory.Delete(true);
+                foreach (FileInfo file in directory.GetFiles())
+                {
+                    file.Delete();
+                }
+                foreach (DirectoryInfo subDirectory in directory.GetDirectories())
+                {
+                    subDirectory.Delete(true);
+                }
             }
         }
 
