@@ -12,6 +12,7 @@
     using Winium.Desktop.Driver.Automator;
     using Winium.Desktop.Driver.Input;
     using Winium.StoreApps.Common;
+    using System.IO;
 
     #endregion
 
@@ -29,6 +30,7 @@
                 JsonConvert.SerializeObject(this.ExecutedCommand.Parameters["desiredCapabilities"]);
             this.Automator.ActualCapabilities = Capabilities.CapabilitiesFromJsonString(serializedCapability);
 
+            this.ResetDirectory(this.Automator.ActualCapabilities.ResetDirectory);
             this.InitializeApplication(this.Automator.ActualCapabilities.DebugConnectToRunningApp);
             this.InitializeKeyboardEmulator(this.Automator.ActualCapabilities.KeyboardSimulator);
 
@@ -36,6 +38,20 @@
             Thread.Sleep(this.Automator.ActualCapabilities.LaunchDelay);
 
             return this.JsonResponse(ResponseStatus.Success, this.Automator.ActualCapabilities);
+        }
+
+        private void ResetDirectory(string resetDirectory)
+        {
+            DirectoryInfo directory = new DirectoryInfo(resetDirectory);
+
+            foreach (FileInfo file in directory.GetFiles())
+            {
+                file.Delete();
+            }
+            foreach (DirectoryInfo subDirectory in directory.GetDirectories())
+            {
+                subDirectory.Delete(true);
+            }
         }
 
         private void InitializeApplication(bool debugDoNotDeploy = false)
