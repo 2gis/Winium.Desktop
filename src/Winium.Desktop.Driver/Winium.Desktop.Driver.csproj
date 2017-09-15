@@ -38,6 +38,7 @@
     <Reference Include="CommandLine">
       <HintPath>..\packages\CommandLineParser.1.9.71\lib\net45\CommandLine.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json">
       <HintPath>..\packages\Newtonsoft.Json.6.0.8\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
@@ -52,8 +53,8 @@
     <Reference Include="System.ServiceModel" />
     <Reference Include="UIAutomationClient" />
     <Reference Include="UIAutomationTypes" />
-    <Reference Include="WebDriver, Version=2.53.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\Selenium.WebDriver.2.53.1\lib\net40\WebDriver.dll</HintPath>
+    <Reference Include="WebDriver, Version=3.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\Selenium.WebDriver.3.3.0\lib\net40\WebDriver.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="WindowsBase" />
@@ -72,6 +73,7 @@
     <Compile Include="CommandExecutors\CollapseComboBoxExecutor.cs" />
     <Compile Include="CommandExecutors\FindComboBoxSelectedItemExecutor.cs" />
     <Compile Include="CommandExecutors\GetOrientationExecutor.cs" />
+    <Compile Include="CommandExecutors\GetSessionCapabilitiesExecutor.cs" />
     <Compile Include="CommandExecutors\GetWindowHandlesExecutor.cs" />
     <Compile Include="CommandExecutors\GetCurrentWindowHandleExecutor.cs" />
     <Compile Include="CommandExecutors\GetDataGridRowCountExecutor.cs" />
@@ -85,6 +87,7 @@
     <Compile Include="CommandExecutors\SelectDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\FindDataGridCellExecutor.cs" />
     <Compile Include="CommandExecutors\SetOrientationExecutor.cs" />
+    <Compile Include="CommandExecutors\SetTimeoutExecutor.cs" />
     <Compile Include="CommandExecutors\StatusExecutor.cs" />
     <Compile Include="CommandExecutors\SubmitElementExecutor.cs" />
     <Compile Include="CommandExecutors\ExecuteScriptExecutor.cs" />
@@ -117,6 +120,7 @@
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
+    <Compile Include="Exceptions\SessionNotCreatedException.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />
@@ -126,6 +130,7 @@
     <Compile Include="Input\WiniumKeyboard.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="Logger.cs" />
+    <Compile Include="NodeRegistrar.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Requester.cs" />

@@ -3,6 +3,7 @@
     #region using
 
     using System;
+    using Winium.Desktop.Driver.CommandHelpers;
 
     #endregion
 
@@ -13,15 +14,16 @@
         [STAThread]
         private static void Main(string[] args)
         {
-            var listeningPort = 9999;
-
             var options = new CommandLineOptions();
-            if (CommandLine.Parser.Default.ParseArguments(args, options))
+            CommandLine.Parser.Default.ParseArgumentsStrict(args, options);
+
+            var appName = typeof(Program).Assembly.GetName().Name;
+            var versionInfo = string.Format("{0}, {1}", appName, new BuildInfo());
+
+            if (options.Version)
             {
-                if (options.Port.HasValue)
-                {
-                    listeningPort = options.Port.Value;
-                }
+                Console.WriteLine(versionInfo);
+                Environment.Exit(0);
             }
 
             if (options.LogPath != null)
@@ -37,12 +39,13 @@
                 Logger.TargetNull();
             }
 
+            Logger.Info(versionInfo);
+
             try
             {
-                var listener = new Listener(listeningPort);
-                Listener.UrnPrefix = options.UrlBase;
+                var listener = new Listener(options.Port, options.UrlBase, options.NodeConfig);
 
-                Console.WriteLine("Starting Windows Desktop Driver on port {0}\n", listeningPort);
+                Console.WriteLine("Starting {0} on port {1}\n", appName, listener.Port);
 
                 listener.StartListening();
             }

@@ -17,6 +17,8 @@
         {
             this.App = string.Empty;
             this.Arguments = string.Empty;
+            this.ResetDirectory = string.Empty;
+            this.ResetProcesses = false;
             this.LaunchDelay = 0;
             this.DebugConnectToRunningApp = false;
             this.InnerPort = 9998;
@@ -27,11 +29,26 @@
 
         #region Public Properties
 
+        [JsonProperty("platformName")]
+        public static string PlatformName
+        {
+            get
+            {
+                return "Windows";
+            }
+        }
+
         [JsonProperty("app")]
         public string App { get; set; }
 
         [JsonProperty("args")]
         public string Arguments { get; set; }
+
+        [JsonProperty("resetDirectory")]
+        public string ResetDirectory { get; set; }
+
+        [JsonProperty("resetProcesses")]
+        public bool ResetProcesses { get; set; }
 
         [JsonProperty("debugConnectToRunningApp")]
         public bool DebugConnectToRunningApp { get; set; }
