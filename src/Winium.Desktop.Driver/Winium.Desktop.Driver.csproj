@@ -120,6 +120,7 @@
     <Compile Include="CommandExecutors\SwitchToWindowExecutor.cs" />
     <Compile Include="CommandLineOptions.cs" />
     <Compile Include="ElementsRegistry.cs" />
+    <Compile Include="Exceptions\SessionNotCreatedException.cs" />
     <Compile Include="Extensions\AutomationPropertyHelper.cs" />
     <Compile Include="Extensions\ByHelper.cs" />
     <Compile Include="HttpRequest.cs" />

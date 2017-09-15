@@ -8,6 +8,7 @@
     using Newtonsoft.Json;
 
     using Winium.Desktop.Driver.Automator;
+    using Winium.Desktop.Driver.Exceptions;
     using Winium.StoreApps.Common;
     using Winium.StoreApps.Common.Exceptions;
 
@@ -52,6 +53,12 @@
                     HttpStatusCode.NotImplemented,
                     this.JsonResponse(ResponseStatus.UnknownCommand, exception));
             }
+            catch (SessionNotCreatedException exception)
+            {
+                return CommandResponse.Create(
+                    HttpStatusCode.InternalServerError,
+                    this.JsonResponse(ResponseStatus.SessionNotCreatedException, exception.GetBaseException()));
+            }
             catch (Exception exception)
             {
                 return CommandResponse.Create(
@@ -76,8 +83,13 @@
 
         protected string JsonResponse(ResponseStatus status, object value)
         {
+            var session = this.Automator.Session;
+            if (status == ResponseStatus.SessionNotCreatedException)
+            {
+                this.Automator.Session = null;
+            }
             return JsonConvert.SerializeObject(
-                new JsonResponse(this.Automator.Session, status, value),
+                new JsonResponse(session, status, value),
                 Formatting.Indented);
         }
 

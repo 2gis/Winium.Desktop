@@ -18,6 +18,7 @@
             this.App = string.Empty;
             this.Arguments = string.Empty;
             this.ResetDirectory = string.Empty;
+            this.ResetProcesses = false;
             this.LaunchDelay = 0;
             this.DebugConnectToRunningApp = false;
             this.InnerPort = 9998;
@@ -45,6 +46,9 @@
 
         [JsonProperty("resetDirectory")]
         public string ResetDirectory { get; set; }
+
+        [JsonProperty("resetProcesses")]
+        public bool ResetProcesses { get; set; }
 
         [JsonProperty("debugConnectToRunningApp")]
         public bool DebugConnectToRunningApp { get; set; }
