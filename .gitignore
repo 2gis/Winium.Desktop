@@ -163,3 +163,12 @@ $RECYCLE.BIN/
 
 # Mac crap
 .DS_Store
+/src/.nuget/NuGet.targets
+/src/.nuget/NuGet.exe
+/src/.nuget/NuGet.Config
+/src/.nuget/NuGet.targets
+/src/.vs/Winium/v15/Server/sqlite3/db.lock
+/src/.vs/Winium/v15/Server/sqlite3/storage.ide
+/src/.vs/Winium/v15/Server/sqlite3/storage.ide-shm
+/src/.vs/Winium/v15/Server/sqlite3/storage.ide-wal
+/src/.nuget/NuGet.targets

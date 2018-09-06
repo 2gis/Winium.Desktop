@@ -216,13 +216,12 @@
 
         private RemoteWebElement CreateElementFromResponse(Response response)
         {
-            var elementDictionary = response.Value as Dictionary<string, object>;
-            if (elementDictionary == null)
+            if (!(response.Value is Dictionary<string, object> elementDictionary))
             {
                 return null;
             }
 
-            return this.CreateElement((string)elementDictionary["ELEMENT"]);
+            return this.ElementFactory.CreateElement(elementDictionary);
         }
 
         #endregion

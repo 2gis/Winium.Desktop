@@ -8,7 +8,7 @@
 
     #endregion
 
-    [Ignore]
+    [Ignore("")]
     public class MenuCommandsTests : BaseTest<TestWebDriver>
     {
         #region Public Properties

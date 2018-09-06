@@ -72,12 +72,13 @@
             {
                 this.listener = new TcpListener(IPAddress.Any, this.Port);
 
-                this.Prefix = new Uri(string.Format(CultureInfo.InvariantCulture, "http://localhost:{0}", this.Port));
+                this.Prefix = new Uri(string.Format(CultureInfo.InvariantCulture, $"http://localhost:{this.Port}"));
                 this.dispatcher = new UriDispatchTables(new Uri(this.Prefix, UrnPrefix));
                 this.executorDispatcher = new CommandExecutorDispatchTable();
 
                 // Start listening for client requests.
                 this.listener.Start();
+                Console.WriteLine($"Successfully started on port {this.Port}.");
 
                 // Enter the listening loop
                 while (true)
@@ -98,7 +99,7 @@
                         }
                         else
                         {
-                            Logger.Debug("ACCEPTED REQUEST {0}", acceptedRequest.StartingLine);
+                            Logger.Debug($"ACCEPTED REQUEST {acceptedRequest.StartingLine}");
 
                             var response = this.HandleRequest(acceptedRequest);
                             using (var writer = new StreamWriter(stream))
@@ -110,7 +111,7 @@
                                 }
                                 catch (IOException ex)
                                 {
-                                    Logger.Error("Error occured while writing response: {0}", ex);
+                                    Logger.Error($"Error occured while writing response: {ex}");
                                 }
                             }
                         }
@@ -125,12 +126,12 @@
             }
             catch (SocketException ex)
             {
-                Logger.Error("SocketException occurred while trying to start listner: {0}", ex);
+                Logger.Error($"SocketException occurred while trying to start listner: {ex}");
                 throw;
             }
             catch (ArgumentException ex)
             {
-                Logger.Error("ArgumentException occurred while trying to start listner: {0}", ex);
+                Logger.Error($"ArgumentException occurred while trying to start listner: {ex}");
                 throw;
             }
             finally
@@ -160,7 +161,7 @@
 
             if (matched == null)
             {
-                Logger.Warn("Unknown command recived: {0}", uriToMatch);
+                Logger.Warn($"Unknown command recived: {uriToMatch}");
                 return HttpResponseHelper.ResponseString(HttpStatusCode.NotFound, "Unknown command " + uriToMatch);
             }
 
@@ -177,11 +178,11 @@
 
         private CommandResponse ProcessCommand(Command command)
         {
-            Logger.Info("COMMAND {0}\r\n{1}", command.Name, command.Parameters.ToString());
+            Logger.Info($"COMMAND {command.Name}\r\n{command.Parameters.ToString()}");
             var executor = this.executorDispatcher.GetExecutor(command.Name);
             executor.ExecutedCommand = command;
             var respnose = executor.Do();
-            Logger.Debug("RESPONSE:\r\n{0}", respnose);
+            Logger.Debug($"RESPONSE:\r\n{respnose}");
 
             return respnose;
         }

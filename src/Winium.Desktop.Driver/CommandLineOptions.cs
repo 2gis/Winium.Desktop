@@ -28,15 +28,5 @@
         public bool Silent { get; set; }
 
         #endregion
-
-        #region Public Methods and Operators
-
-        [HelpOption]
-        public string GetUsage()
-        {
-            return HelpText.AutoBuild(this, current => HelpText.DefaultParsingErrorsHandler(this, current));
-        }
-
-        #endregion
     }
 }
