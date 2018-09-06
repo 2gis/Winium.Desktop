@@ -16,8 +16,16 @@
         [STAThread]
         private static void Main(string[] args)
         {
-            // args usage
-            args = new[] { /*"--log-path=null",*/ "--port=80", "--url-base=null", "--verbose", /*"--silent=false"*/ };
+            var message =
+                "Hint: args usage is to run .exe file with following arguments:\n" +  
+                "--log-path=type_path_here [enables logging onto file]\n" + 
+                "--port=port_number [launch exe on this port]\n" +
+                "--url-base=url_address [url address]\n" +
+                "--verbose [enables full logging]\n" +
+                "--silent [disables logging at all]";
+
+            Console.WriteLine(message);
+            Console.WriteLine();
 
             var listeningPort = 9999;
             var parser = new Parser();
